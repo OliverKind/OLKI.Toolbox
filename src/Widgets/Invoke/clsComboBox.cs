@@ -1,8 +1,8 @@
 ﻿/*
  * OLKI.Widgets
  * 
- * Copyright:   Oliver Kind - 2020
- * License:     LGPL
+ * Initial Author: Oliver Kind - 2021
+ * License:        LGPL
  * 
  * Desctiption:
  * Set ComboBox properties by invoking, if required
