@@ -39,10 +39,6 @@ namespace OLKI.Toolbox.Widgets
     {
         #region Constants
         /// <summary>
-        /// Digits to show for deciaml values
-        /// </summary>
-        private const int DECIMAL_DIGITS = 2;
-        /// <summary>
         /// Defines the format for a actual and maximum value
         /// </summary>
         private const string FORMAT_ACTUAL_MAX_VALUE = "{0} / {1}";
@@ -53,7 +49,7 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// Defines the format for a string with a byte number value
         /// </summary>
-        private const string FORMAT_VALUE = "{0:n2}";
+        private const string FORMAT_VALUE = "{0:n{_DIGIGS_}}";
         #endregion
 
         #region Enums
@@ -77,6 +73,17 @@ namespace OLKI.Toolbox.Widgets
         /// Set True if changes on widgeds was done by system and change events should been ignored
         /// </summary>
         private bool _suppressControleEvents = false;
+
+        /// <summary>
+        /// Format to Show Value Numers
+        /// </summary>
+        private string ValueNumberFormat
+        {
+            get
+            {
+                return FORMAT_VALUE.Replace("{_DIGIGS_}", this.DecimalDigits.ToString());
+            }
+        }
 
         #region Size and Location of Controles
         /// <summary>
@@ -177,6 +184,15 @@ namespace OLKI.Toolbox.Widgets
                 this._byteDimension = value;
             }
         }
+
+        /// <summary>
+        /// Get or set decimal Digits to show for values
+        /// </summary>
+        [Category("ProgressBar Extension")]
+        [DisplayName("Decimal Digits")]
+        [DefaultValue(2)]
+        [Description("Decimal Digits to show for values")]
+        public uint DecimalDigits { get; set; } = 2;
 
         /// <summary>
         /// Get or set the description text
@@ -454,13 +470,13 @@ namespace OLKI.Toolbox.Widgets
                 if (this._maxValue > 0)
                 {
                     Dimension = FileSize.GetHighestDimension(this._maxValue, this.AutoByteBase, FileSize.Dimension._Automatic_);
-                    ActValue = FileSize.ConvertNum(this._value, DECIMAL_DIGITS, this.AutoByteBase, (FileSize.Dimension)Dimension);
-                    MaxValue = FileSize.ConvertNum(this._maxValue, DECIMAL_DIGITS, this.AutoByteBase, (FileSize.Dimension)Dimension);
+                    ActValue = FileSize.ConvertNum(this._value, this.DecimalDigits, this.AutoByteBase, (FileSize.Dimension)Dimension);
+                    MaxValue = FileSize.ConvertNum(this._maxValue, this.DecimalDigits, this.AutoByteBase, (FileSize.Dimension)Dimension);
                 }
                 else
                 {
                     Dimension = FileSize.GetHighestDimension(this._value, this.AutoByteBase, FileSize.Dimension._Automatic_);
-                    ActValue = FileSize.ConvertNum(this._value, DECIMAL_DIGITS, this.AutoByteBase, (FileSize.Dimension)Dimension);
+                    ActValue = FileSize.ConvertNum(this._value, this.DecimalDigits, this.AutoByteBase, (FileSize.Dimension)Dimension);
                 }
                 this.ByteDimension = (FileSize.Dimension)Dimension;
 
@@ -475,8 +491,8 @@ namespace OLKI.Toolbox.Widgets
 
                 FileSize.ByteBase ByteBase = this.cboByteDime.SelectedIndex >= FileSize.UnitPrefix_IEC.Length ? FileSize.ByteBase.SI : FileSize.ByteBase.IEC;
 
-                ActValue = FileSize.ConvertNum(this._value, DECIMAL_DIGITS, ByteBase, (FileSize.Dimension)Dimension);
-                if (this._maxValue > 0) MaxValue = FileSize.ConvertNum(this._maxValue, DECIMAL_DIGITS, ByteBase, (FileSize.Dimension)Dimension);
+                ActValue = FileSize.ConvertNum(this._value, this.DecimalDigits, ByteBase, (FileSize.Dimension)Dimension);
+                if (this._maxValue > 0) MaxValue = FileSize.ConvertNum(this._maxValue, this.DecimalDigits, ByteBase, (FileSize.Dimension)Dimension);
             }
 
             if (this._maxValue > 0)
@@ -484,14 +500,14 @@ namespace OLKI.Toolbox.Widgets
                 this._percentageProgress = (int)Matehmatics.UpLimit(Matehmatics.Percentages(this._value, this._maxValue), 100);
                 ProgressBarInv.Value(this.pbaProgress, this._percentageProgress);
                 TextBoxInv.Text(this.txtBytesPer, this._value == -1 ? "" : string.Format(FORMAT_PERCENTAGE, this._percentageProgress));
-                TextBoxInv.Text(this.txtBytesNum, this._value == -1 ? "" : string.Format(FORMAT_ACTUAL_MAX_VALUE, new object[] { string.Format(FORMAT_VALUE, ActValue), string.Format(FORMAT_VALUE, MaxValue) }));
+                TextBoxInv.Text(this.txtBytesNum, this._value == -1 ? "" : string.Format(FORMAT_ACTUAL_MAX_VALUE, new object[] { string.Format(this.ValueNumberFormat, ActValue), string.Format(this.ValueNumberFormat, MaxValue) }));
             }
             else
             {
                 this._percentageProgress = 0;
                 ProgressBarInv.Value(this.pbaProgress, 0);
                 TextBoxInv.Text(this.txtBytesPer, "");
-                TextBoxInv.Text(this.txtBytesNum, this._value == -1 ? "" : string.Format(FORMAT_VALUE, ActValue));
+                TextBoxInv.Text(this.txtBytesNum, this._value == -1 ? "" : string.Format(this.ValueNumberFormat, ActValue));
             }
         }
 
