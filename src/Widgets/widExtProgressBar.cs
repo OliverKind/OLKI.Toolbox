@@ -49,7 +49,7 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// Defines the format for a string with a byte number value
         /// </summary>
-        private const string FORMAT_VALUE = "{0:n{_DIGIGS_}}";
+        private const string FORMAT_VALUE = "{0:n{_DIGITS_}}";
         #endregion
 
         #region Enums
@@ -81,7 +81,7 @@ namespace OLKI.Toolbox.Widgets
         {
             get
             {
-                return FORMAT_VALUE.Replace("{_DIGIGS_}", this.DecimalDigits.ToString());
+                return FORMAT_VALUE.Replace("{_DIGITS_}", this.DecimalDigits.ToString());
             }
         }
 
