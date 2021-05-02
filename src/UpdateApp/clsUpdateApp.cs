@@ -25,6 +25,7 @@
  * 
  * */
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Octokit;
@@ -41,6 +42,7 @@ namespace OLKI.Toolbox.UpdateApp
         #endregion
 
         #region Methodes
+        #region GetLastReleaseData
         /// <summary>
         /// Get all Date (to Update an Application) of the last Relase of an Repository
         /// </summary>
@@ -48,11 +50,34 @@ namespace OLKI.Toolbox.UpdateApp
         /// <param name="name">Repository Name</param>
         /// <param name="changeLogPattern">Pattern to identify the ChangeLog File</param>
         /// <param name="setupFilePattern">Pattern to identify the Setup Asset</param>
-        /// <returns>Date of the last Release</returns>
+        /// <returns>Date of the last Release, or NULL if Release data can't be determinated</returns>
         public ReleaseData GetLastReleaseData(string owner, string name, string changeLogPattern, string setupFilePattern)
         {
-            Task<ReleaseData> ReleaseDataTask = Task.Run(async () => await this.GetLastReleaseDataAsync(owner, name, changeLogPattern, setupFilePattern));
-            return ReleaseDataTask.Result;
+            return this.GetLastReleaseData(owner, name, changeLogPattern, setupFilePattern, out _);
+        }
+
+        /// <summary>
+        /// Get all Date (to Update an Application) of the last Relase of an Repository
+        /// </summary>
+        /// <param name="owner">Repository Owner</param>
+        /// <param name="name">Repository Name</param>
+        /// <param name="changeLogPattern">Pattern to identify the ChangeLog File</param>
+        /// <param name="setupFilePattern">Pattern to identify the Setup Asset</param>
+        /// <param name="exception">Exception while getting release data</param>
+        /// <returns>Date of the last Release, or NULL if Release data can't be determinated</returns>
+        public ReleaseData GetLastReleaseData(string owner, string name, string changeLogPattern, string setupFilePattern, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                Task<ReleaseData> ReleaseDataTask = Task.Run(async () => await this.GetLastReleaseDataAsync(owner, name, changeLogPattern, setupFilePattern));
+                return ReleaseDataTask.Result;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return null;
+            }
         }
 
         /// <summary>
@@ -95,7 +120,9 @@ namespace OLKI.Toolbox.UpdateApp
 
             return ReleaseData;
         }
+        #endregion
 
+        #region GetLastRelease
         /// <summary>
         /// Get the last Relase of an Repository
         /// </summary>
@@ -105,8 +132,29 @@ namespace OLKI.Toolbox.UpdateApp
         /// <returns>The Data of the last Relase</returns>
         public Release GetLastRelease(string owner, string name, GitHubClient client)
         {
-            Task<Release> ReleaseTask = Task.Run(async () => await this.GetLastReleaseAsync(owner, name, client));
-            return ReleaseTask.Result;
+            return this.GetLastRelease(owner, name, client, out _);
+        }
+
+        /// <summary>
+        /// Get the last Relase of an Repository
+        /// </summary>
+        /// <param name="owner">Repository Owner</param>
+        /// <param name="name">Repository Name</param>
+        /// <param name="client">GitHubClient instance to get the last Relase</param>
+        /// <returns>The Data of the last Relase</returns>
+        public Release GetLastRelease(string owner, string name, GitHubClient client, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                Task<Release> ReleaseTask = Task.Run(async () => await this.GetLastReleaseAsync(owner, name, client));
+                return ReleaseTask.Result;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return null;
+            }
         }
 
         /// <summary>
@@ -121,17 +169,40 @@ namespace OLKI.Toolbox.UpdateApp
             IReadOnlyList<Release> Releases = await client.Repository.Release.GetAll(owner, name);
             return Releases[0];
         }
+        #endregion
+
+        #region GetSetupAsset
+        /// <summary>
+        /// Get the SetupAsses from all Assets of an defined release
+        /// </summary>
+        /// <param name="release">Release to search of the Setup Asset</param>
+        /// <param name="pattern">Pattern to identify the Setup Asset</param>
+        /// <returns>The Setup Asset or NULL if there is not an Setup Asset or if it can't be determinated</returns>
+        public ReleaseAsset GetSetupAsset(Release release, string pattern)
+        {
+            return this.GetSetupAsset(release, pattern, out _);
+        }
 
         /// <summary>
         /// Get the SetupAsses from all Assets of an defined release
         /// </summary>
         /// <param name="release">Release to search of the Setup Asset</param>
         /// <param name="pattern">Pattern to identify the Setup Asset</param>
-        /// <returns>The Setup Asset or NULL if there is not an Setup Asset</returns>
-        public ReleaseAsset GetSetupAsset(Release release, string pattern)
+        /// <param name="exception">Exception while getting Asset data</param>
+        /// <returns>The Setup Asset or NULL if there is not an Setup Asset or if it can't be determinated</returns>
+        public ReleaseAsset GetSetupAsset(Release release, string pattern, out Exception exception)
         {
-            Task<ReleaseAsset> AssetTask = Task.Run(async () => await this.GetSetupAssetAsync(release, pattern));
-            return AssetTask.Result;
+            exception = null;
+            try
+            {
+                Task<ReleaseAsset> AssetTask = Task.Run(async () => await this.GetSetupAssetAsync(release, pattern));
+                return AssetTask.Result;
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return null;
+            }
         }
 
         /// <summary>
@@ -148,6 +219,7 @@ namespace OLKI.Toolbox.UpdateApp
             }
             return null;
         }
+        #endregion
         #endregion
     }
 }
