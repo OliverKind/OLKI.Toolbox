@@ -95,7 +95,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             }
             #endregion
 
-            #region
+            #region ToBlackWhite
             /// <summary>
             /// Convert an image to black and white palette
             /// </summary>
