@@ -190,6 +190,20 @@ namespace OLKI.Toolbox.ColorAndPicture
         }
         #endregion
 
+        #region LimitTo255
+        /// <summary>
+        /// Limit the given Color Numer to an Value between 0 and 255
+        /// </summary>
+        /// <param name="inColor">Number of an Color to limit between 0 and 255</param>
+        /// <returns>The limited color number</returns>
+        public static int LimitTo255(int inColor)
+        {
+            if (inColor < 0) inColor = 0;
+            if (inColor > 255) inColor = 255;
+            return inColor;
+        }
+        #endregion
+
         #region ReverseColor
         /// <summary>
         /// A method for programatically determining the complementary color of a given color
