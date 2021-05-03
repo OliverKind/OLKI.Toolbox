@@ -64,31 +64,19 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
                     OrgColor = TempBmp.GetPixel(x, y);
 
                     // Proced brightnes for read
-                    NewR = OrgColor.R + brightness;
-                    if (NewR < 0) NewR = 0;
-                    if (NewR > 255) NewR = 255;
+                    NewR = Color.LimitTo255(OrgColor.R + brightness);
                     // Proced contrast for read
-                    NewR = (int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0);
-                    if (NewR < 0) NewR = 0;
-                    if (NewR > 255) NewR = 255;
+                    NewR = Color.LimitTo255((int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     // Proced brightnes for green
-                    NewG = OrgColor.G + brightness;
-                    if (NewG < 0) NewG = 0;
-                    if (NewG > 255) NewG = 255;
+                    NewG = Color.LimitTo255(OrgColor.G + brightness);
                     // Proced contrast for green
-                    NewG = (int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0);
-                    if (NewG < 0) NewG = 0;
-                    if (NewG > 255) NewG = 255;
+                    NewG = Color.LimitTo255((int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     // Proced brightnes for blue
-                    NewB = OrgColor.B + brightness;
-                    if (NewB < 0) NewB = 0;
-                    if (NewB > 255) NewB = 255;
+                    NewB = Color.LimitTo255(OrgColor.B + brightness);
                     // Proced contrast for blue
-                    NewB = (int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0);
-                    if (NewB < 0) NewB = 0;
-                    if (NewB > 255) NewB = 255;
+                    NewB = Color.LimitTo255((int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(NewR, NewG, NewB));
                 }
