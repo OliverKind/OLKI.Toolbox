@@ -24,6 +24,8 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace OLKI.Toolbox.ColorAndPicture.Picture
 {
@@ -98,6 +100,10 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             /// <summary>
             /// Convert an image to grayscale palette
             /// </summary>
+            /// <remarks>
+            /// Based on the Article: "Fast Image Processing in C#" by "turgay"
+            /// Published at http://csharpexamples.com/fast-image-processing-c/
+            /// </remarks>
             /// <param name="image">Specifies the image to convert to grayscale palette</param>
             /// <param name="factorBlue">Factor blue for calculating the grayvalue of a color</param>
             /// <param name="factorGreen">Factor green for calculating the grayvalue of a color</param>
@@ -105,19 +111,37 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             /// <returns>The image in grayscale palette</returns>
             public static Image ToGrayscale(Image image, double factorBlue, double factorGreen, double factorRead)
             {
-                Bitmap TempBmp = (Bitmap)image.Clone();
-                System.Drawing.Color OrgColor;
-                for (int x = 0; x < TempBmp.Width; x++)
+                unsafe
                 {
-                    for (int y = 0; y < TempBmp.Height; y++)
+                    Bitmap TempBmp = (Bitmap)image.Clone();
+                    BitmapData BitmapData = TempBmp.LockBits(new Rectangle(0, 0, TempBmp.Width, TempBmp.Height), ImageLockMode.ReadWrite, TempBmp.PixelFormat);
+
+                    int BytesPerPixel = Image.GetPixelFormatSize(TempBmp.PixelFormat) / 8;
+                    int HeightInPixels = BitmapData.Height;
+                    int WidthInBytes = BitmapData.Width * BytesPerPixel;
+                    byte* PtrFirstPixel = (byte*)BitmapData.Scan0;
+
+                    // Calculate new grayscale
+                    Parallel.For(0, HeightInPixels, y =>
                     {
-                        OrgColor = TempBmp.GetPixel(x, y);
-                        int GrayValue = GetGrayValue(OrgColor, factorBlue, factorGreen, factorRead);
-                        TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(GrayValue, GrayValue, GrayValue));
-                    }
+                        byte* CurrentLine = PtrFirstPixel + (y * BitmapData.Stride);
+                        for (int x = 0; x < WidthInBytes; x += BytesPerPixel)
+                        {
+                            System.Drawing.Color OrgColor = new System.Drawing.Color();
+                            OrgColor = System.Drawing.Color.FromArgb(CurrentLine[x + 2], CurrentLine[x + 1], CurrentLine[x + 0]);
+
+                            byte GrayValue = (byte)GetGrayValue(OrgColor, factorBlue, factorGreen, factorRead);
+
+                            CurrentLine[x + 2] = GrayValue;
+                            CurrentLine[x + 1] = GrayValue;
+                            CurrentLine[x + 0] = GrayValue;
+                        }
+                    });
+                    TempBmp.UnlockBits(BitmapData);
+                    return (Image)TempBmp;
                 }
-                return (Image)TempBmp.Clone();
             }
+
             #endregion
 
             #region ToBlackWhite
@@ -135,6 +159,10 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             /// <summary>
             /// Convert an image to black and white palette
             /// </summary>
+            /// <remarks>
+            /// Based on the Article: "Fast Image Processing in C#" by "turgay"
+            /// Published at http://csharpexamples.com/fast-image-processing-c/
+            /// </remarks>
             /// <param name="image">Specifies the image to convert to black and white palette</param>
             /// <param name="threshold">Threshold to make an pixel black or white, depending on this grayscale value</param>
             /// <param name="factorBlue">Factor blue for calculating the grayvalue of a color</param>
@@ -143,20 +171,36 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             /// <returns>The image in black and white palette</returns>
             public static Image ToBlackWhite(Image image, int threshold, double factorBlue, double factorGreen, double factorRead)
             {
-                Image Image = ToGrayscale(image, factorBlue, factorGreen, factorRead);
-
-                Bitmap TempBmp = (Bitmap)Image.Clone();
-                System.Drawing.Color OrgColor;
-                for (int x = 0; x < TempBmp.Width; x++)
+                unsafe
                 {
-                    for (int y = 0; y < TempBmp.Height; y++)
+                    Bitmap TempBmp = (Bitmap)image.Clone();
+                    BitmapData BitmapData = TempBmp.LockBits(new Rectangle(0, 0, TempBmp.Width, TempBmp.Height), ImageLockMode.ReadWrite, TempBmp.PixelFormat);
+
+                    int BytesPerPixel = Image.GetPixelFormatSize(TempBmp.PixelFormat) / 8;
+                    int HeightInPixels = BitmapData.Height;
+                    int WidthInBytes = BitmapData.Width * BytesPerPixel;
+                    byte* PtrFirstPixel = (byte*)BitmapData.Scan0;
+
+                    // Calculate new brightnes and contrast
+                    Parallel.For(0, HeightInPixels, y =>
                     {
-                        OrgColor = TempBmp.GetPixel(x, y);
-                        int BwColor = OrgColor.R >= 255 - threshold ? 255 : 0;
-                        TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(BwColor, BwColor, BwColor));
-                    }
+                        byte* CurrentLine = PtrFirstPixel + (y * BitmapData.Stride);
+                        for (int x = 0; x < WidthInBytes; x += BytesPerPixel)
+                        {
+                            System.Drawing.Color OrgColor = new System.Drawing.Color();
+                            OrgColor = System.Drawing.Color.FromArgb(CurrentLine[x + 2], CurrentLine[x + 1], CurrentLine[x + 0]);
+
+                            int GrayValue = GetGrayValue(OrgColor, factorBlue, factorGreen, factorRead);
+                            byte BwValue = (byte)(GrayValue >= 255 - threshold ? 255 : 0);
+
+                            CurrentLine[x + 2] = BwValue;
+                            CurrentLine[x + 1] = BwValue;
+                            CurrentLine[x + 0] = BwValue;
+                        }
+                    });
+                    TempBmp.UnlockBits(BitmapData);
+                    return (Image)TempBmp;
                 }
-                return (Image)TempBmp.Clone();
             }
             #endregion
             #endregion
