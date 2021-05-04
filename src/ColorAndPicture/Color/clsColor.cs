@@ -196,7 +196,7 @@ namespace OLKI.Toolbox.ColorAndPicture
         /// </summary>
         /// <param name="inColor">Number of an Color to limit between 0 and 255</param>
         /// <returns>The limited color number</returns>
-        public static int LimitTo255(int inColor)
+        internal static int LimitTo255(int inColor)
         {
             if (inColor < 0) inColor = 0;
             if (inColor > 255) inColor = 255;
