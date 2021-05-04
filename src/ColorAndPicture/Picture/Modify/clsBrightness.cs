@@ -40,10 +40,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         public static Image Brightness(Image image, int brightness)
         {
             Bitmap TempBmp = (Bitmap)image.Clone();
-
-            // Brightnes preprocess
-            if (brightness < -255) brightness = -255;
-            if (brightness > 255) brightness = 255;
+            brightness = Color.BrightnesChangeLimiter(brightness);
 
             // Calculate new brightness
             System.Drawing.Color OrgColor;

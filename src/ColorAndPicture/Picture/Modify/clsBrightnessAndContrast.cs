@@ -42,15 +42,8 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         public static Image BrightnessAndContrast(Image image, int brightness, int contrast)
         {
             Bitmap TempBmp = (Bitmap)image.Clone();
-
-            // Brightnes preprocess
-            if (brightness < -255) brightness = -255;
-            if (brightness > 255) brightness = 255;
-
-            // Contrast preprocess
-            if (contrast < -100) contrast = -100;
-            if (contrast > 100) contrast = 100;
-            double ContrastFactor = Math.Pow((100.0 + contrast) / 100.0, 2);
+            brightness = Color.BrightnesChangeLimiter(brightness);
+            double ContrastFactor = Color.ContrastFactor(contrast);
 
             // Calculate new brightnes and contrast
             System.Drawing.Color OrgColor;
@@ -63,19 +56,11 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
                 {
                     OrgColor = TempBmp.GetPixel(x, y);
 
-                    // Proced brightnes for read
                     NewR = Color.ColorLimiter(OrgColor.R + brightness);
-                    // Proced contrast for read
                     NewR = Color.ColorLimiter((int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-
-                    // Proced brightnes for green
                     NewG = Color.ColorLimiter(OrgColor.G + brightness);
-                    // Proced contrast for green
                     NewG = Color.ColorLimiter((int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-
-                    // Proced brightnes for blue
                     NewB = Color.ColorLimiter(OrgColor.B + brightness);
-                    // Proced contrast for blue
                     NewB = Color.ColorLimiter((int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(NewR, NewG, NewB));

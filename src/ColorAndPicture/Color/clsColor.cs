@@ -190,6 +190,20 @@ namespace OLKI.Toolbox.ColorAndPicture
         }
         #endregion
 
+        #region BrightnesChangeLimiter
+        /// <summary>
+        /// Limit the given BrightnesChange to an Value between -255 and 255
+        /// </summary>
+        /// <param name="inBrightnes">BrightnesChange to limit between -255 and 255</param>
+        /// <returns>Limited BrightnesChange</returns>
+        internal static int BrightnesChangeLimiter(int inBrightnes)
+        {
+            if (inBrightnes < -255) return -255;
+            if (inBrightnes > 255) return 255;
+            return inBrightnes;
+        }
+        #endregion
+
         #region ColorLimiter
         /// <summary>
         /// Limit the given Color Numer to an Value between 0 and 255
@@ -201,6 +215,33 @@ namespace OLKI.Toolbox.ColorAndPicture
             if (inColor < 0) inColor = 0;
             if (inColor > 255) inColor = 255;
             return inColor;
+        }
+        #endregion
+
+        #region ContrastChangeLimiter
+        /// <summary>
+        /// Limit the given ContrastChange to an Value between -100 and 100
+        /// </summary>
+        /// <param name="inContrast">ContrastChange to limit between -100 and 100</param>
+        /// <returns>Limited ContrastChange</returns>
+        internal static int ContrastChangeLimiter(int inContrast)
+        {
+            if (inContrast < -100) return -100;
+            if (inContrast > 100) return 100;
+            return inContrast;
+        }
+        #endregion
+
+        #region ContrastChangeLimiter
+        /// <summary>
+        /// Get the factor to Change the Contrast from an given Contrast change
+        /// </summary>
+        /// <param name="inContrast">Contrast to get the factor from</param>
+        /// <returns>Factor how to change the Contrast</returns>
+        internal static double ContrastFactor(int inContrast)
+        {
+            inContrast = ContrastChangeLimiter(inContrast);
+            return Math.Pow((100.0 + inContrast) / 100.0, 2);
         }
         #endregion
 

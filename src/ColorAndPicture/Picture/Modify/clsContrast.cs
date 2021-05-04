@@ -38,14 +38,10 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         /// <param name="image">The original image to change the contrast</param>
         /// <param name="contrast">The value to change the contrast. Betwenn -255 and 255.</param>
         /// <returns>The image with modified contrast</returns>
-        public static Image Contrast(Image image, double contrast)
+        public static Image Contrast(Image image, int contrast)
         {
             Bitmap TempBmp = (Bitmap)image.Clone();
-
-            // Contrast preprocess
-            if (contrast < -100) contrast = -100;
-            if (contrast > 100) contrast = 100;
-            double ContrastFactor = Math.Pow((100.0 + contrast) / 100.0, 2);
+            double ContrastFactor = Color.ContrastFactor(contrast);
 
             // Calculate new contrast
             System.Drawing.Color OrgColor;
