@@ -59,6 +59,31 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             #endregion
 
             #region Methodes
+            #region GetGrayValue
+            /// <summary>
+            /// Convert an Color to its grayvalue
+            /// </summary>
+            /// <param name="inColor">Color to convert to grayvalue</param>
+            /// <returns>Grayvalue of an given color</returns>
+            private static int GetGrayValue(System.Drawing.Color inColor)
+            {
+                return GetGrayValue(inColor, DEFAULT_COLOR_GRAYVALUE_FACTOR_B, DEFAULT_COLOR_GRAYVALUE_FACTOR_G, DEFAULT_COLOR_GRAYVALUE_FACTOR_R);
+            }
+
+            /// <summary>
+            /// Convert an Color to its grayvalue
+            /// </summary>
+            /// <param name="inColor">Color to convert to grayvalue</param>
+            /// <param name="factorBlue">Factor blue for calculating the grayvalue of a color</param>
+            /// <param name="factorGreen">Factor green for calculating the grayvalue of a color</param>
+            /// <param name="factorRead">Factor red for calculating the grayvalue of a color</param>
+            /// <returns>Grayvalue of an given color</returns>
+            private static int GetGrayValue(System.Drawing.Color inColor, double factorBlue, double factorGreen, double factorRead)
+            {
+                return (int)Math.Round(factorRead * inColor.R + factorGreen * inColor.G + factorBlue * inColor.B, 0);
+            }
+            #endregion
+
             #region ToGrayscale
             /// <summary>
             /// Convert an image to grayscale palette
@@ -87,7 +112,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
                     for (int y = 0; y < TempBmp.Height; y++)
                     {
                         OrgColor = TempBmp.GetPixel(x, y);
-                        int GrayValue = (int)Math.Round(factorRead * OrgColor.R + factorGreen * OrgColor.G + factorBlue * OrgColor.B, 0);
+                        int GrayValue = GetGrayValue(OrgColor, factorBlue, factorGreen, factorRead);
                         TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(GrayValue, GrayValue, GrayValue));
                     }
                 }
