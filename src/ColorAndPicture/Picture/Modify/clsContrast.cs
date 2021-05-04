@@ -24,6 +24,8 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace OLKI.Toolbox.ColorAndPicture.Picture
 {
@@ -35,32 +37,52 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         /// <summary>
         /// Change the contrast of an image
         /// </summary>
+        /// <remarks>
+        /// Based on the Article: "Fast Image Processing in C#" by "turgay"
+        /// Published at http://csharpexamples.com/fast-image-processing-c/
+        /// </remarks>
         /// <param name="image">The original image to change the contrast</param>
         /// <param name="contrast">The value to change the contrast. Betwenn -255 and 255.</param>
         /// <returns>The image with modified contrast</returns>
         public static Image Contrast(Image image, int contrast)
         {
-            Bitmap TempBmp = (Bitmap)image.Clone();
-            double ContrastFactor = Color.ContrastFactor(contrast);
-
-            // Calculate new contrast
-            System.Drawing.Color OrgColor;
-            int NewR;
-            int NewG;
-            int NewB;
-            for (int x = 0; x < TempBmp.Width; x++)
+            unsafe
             {
-                for (int y = 0; y < TempBmp.Height; y++)
-                {
-                    OrgColor = TempBmp.GetPixel(x, y);
-                    NewR = Color.ColorLimiter((int)Math.Round(((((OrgColor.R / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-                    NewG = Color.ColorLimiter((int)Math.Round(((((OrgColor.G / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-                    NewB = Color.ColorLimiter((int)Math.Round(((((OrgColor.B / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                Bitmap TempBmp = (Bitmap)image.Clone();
+                BitmapData BitmapData = TempBmp.LockBits(new Rectangle(0, 0, TempBmp.Width, TempBmp.Height), ImageLockMode.ReadWrite, TempBmp.PixelFormat);
 
-                    TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(NewR, NewG, NewB));
-                }
+                int BytesPerPixel = Image.GetPixelFormatSize(TempBmp.PixelFormat) / 8;
+                int HeightInPixels = BitmapData.Height;
+                int WidthInBytes = BitmapData.Width * BytesPerPixel;
+                byte* PtrFirstPixel = (byte*)BitmapData.Scan0;
+
+                double ContrastFactor = Color.ContrastFactor(contrast);
+
+                // Calculate new brightnes and contrast
+                Parallel.For(0, HeightInPixels, y =>
+                {
+                    byte* CurrentLine = PtrFirstPixel + (y * BitmapData.Stride);
+                    for (int x = 0; x < WidthInBytes; x += BytesPerPixel)
+                    {
+                        System.Drawing.Color OrgColor = new System.Drawing.Color();
+                        OrgColor = System.Drawing.Color.FromArgb(CurrentLine[x + 2], CurrentLine[x + 1], CurrentLine[x + 0]);
+
+                        int NewR = CurrentLine[x + 2];
+                        int NewG = CurrentLine[x + 1];
+                        int NewB = CurrentLine[x + 0];
+
+                        NewR = Color.ColorLimiter((int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                        NewG = Color.ColorLimiter((int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                        NewB = Color.ColorLimiter((int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+
+                        CurrentLine[x + 2] = (byte)NewR;
+                        CurrentLine[x + 1] = (byte)NewG;
+                        CurrentLine[x + 0] = (byte)NewB;
+                    }
+                });
+                TempBmp.UnlockBits(BitmapData);
+                return (Image)TempBmp;
             }
-            return (Image)TempBmp.Clone();
         }
     }
 }
