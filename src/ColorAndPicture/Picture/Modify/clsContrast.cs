@@ -57,9 +57,9 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
                 for (int y = 0; y < TempBmp.Height; y++)
                 {
                     OrgColor = TempBmp.GetPixel(x, y);
-                    NewR = Color.LimitTo255((int)Math.Round(((((OrgColor.R / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-                    NewG = Color.LimitTo255((int)Math.Round(((((OrgColor.G / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-                    NewB = Color.LimitTo255((int)Math.Round(((((OrgColor.B / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                    NewR = Color.ColorLimiter((int)Math.Round(((((OrgColor.R / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                    NewG = Color.ColorLimiter((int)Math.Round(((((OrgColor.G / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                    NewB = Color.ColorLimiter((int)Math.Round(((((OrgColor.B / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(NewR, NewG, NewB));
                 }

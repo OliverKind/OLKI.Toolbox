@@ -64,19 +64,19 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
                     OrgColor = TempBmp.GetPixel(x, y);
 
                     // Proced brightnes for read
-                    NewR = Color.LimitTo255(OrgColor.R + brightness);
+                    NewR = Color.ColorLimiter(OrgColor.R + brightness);
                     // Proced contrast for read
-                    NewR = Color.LimitTo255((int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                    NewR = Color.ColorLimiter((int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     // Proced brightnes for green
-                    NewG = Color.LimitTo255(OrgColor.G + brightness);
+                    NewG = Color.ColorLimiter(OrgColor.G + brightness);
                     // Proced contrast for green
-                    NewG = Color.LimitTo255((int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                    NewG = Color.ColorLimiter((int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     // Proced brightnes for blue
-                    NewB = Color.LimitTo255(OrgColor.B + brightness);
+                    NewB = Color.ColorLimiter(OrgColor.B + brightness);
                     // Proced contrast for blue
-                    NewB = Color.LimitTo255((int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                    NewB = Color.ColorLimiter((int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
                     TempBmp.SetPixel(x, y, System.Drawing.Color.FromArgb(NewR, NewG, NewB));
                 }
