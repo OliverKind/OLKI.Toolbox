@@ -122,5 +122,43 @@ namespace OLKI.Toolbox.src.UpdateApp {
                 return ResourceManager.GetString("0x0003m", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Auf Aktualisierungen prüfen. ähnelt.
+        /// </summary>
+        internal static string _0x0004c {
+            get {
+                return ResourceManager.GetString("0x0004c", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sie verwenden die aktuelle Version dieser Software. ähnelt.
+        /// </summary>
+        internal static string _0x0004m {
+            get {
+                return ResourceManager.GetString("0x0004m", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Prüfen auf Aktualisierungen. ähnelt.
+        /// </summary>
+        internal static string _0x0005c {
+            get {
+                return ResourceManager.GetString("0x0005c", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Beim Prüfen auf neue Versionen des Programms ist ein Fehler aufgetreten.
+        ///
+        ///{0} ähnelt.
+        /// </summary>
+        internal static string _0x0005m {
+            get {
+                return ResourceManager.GetString("0x0005m", resourceCulture);
+            }
+        }
     }
 }

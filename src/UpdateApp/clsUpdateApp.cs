@@ -25,9 +25,11 @@
  * 
  * */
 
+using OLKI.Toolbox.src.UpdateApp;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Octokit;
 
 namespace OLKI.Toolbox.UpdateApp
@@ -218,6 +220,56 @@ namespace OLKI.Toolbox.UpdateApp
                 if (AssetItem.Name == pattern) return Task.FromResult(AssetItem);
             }
             return null;
+        }
+        #endregion
+
+        #region UpdateApp
+        /// <summary>
+        /// Check if there is a new version, download the Setup file and Start the setup
+        /// </summary>
+        /// <param name="owner">Owner Form of the Host Application</param>
+        /// <param name="actualVersion">Actual version of the Host Application</param>
+        /// <param name="lastReleaseData">Last release Data of the Host Application</param>
+        /// <param name="getDataException">Exception while requesting last release Date of the Host Application</param>
+        /// <param name="hideMessages""/>Hide Messages for no update or if update data can't be determinated</paramref>
+        /// <returns>True if the Setup File for a new Version was dwonloaded an startet</returns>
+        public bool UpdateDownload(IWin32Window owner, ReleaseVersion actualVersion, ReleaseData lastReleaseData, Exception getDataException, bool hideMessages)
+        {
+
+            if (lastReleaseData == null && getDataException != null && !hideMessages)
+            {
+                string ExMessage = getDataException.Message;
+                ExMessage += this.GetInnerExceptionMessageRecursive(getDataException);
+                MessageBox.Show(owner, string.Format(Stringtable._0x0005m, new object[] { ExMessage }), Stringtable._0x0005c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Exit if failed to determinate last release data
+            if (lastReleaseData == null) return false;
+
+            if (lastReleaseData.Version.Compare(actualVersion) == ReleaseVersion.VersionCompare.Higher)
+            {
+                UpdateForm UpdateForm = new UpdateForm(lastReleaseData, actualVersion.TagName);
+                if (UpdateForm.ShowDialog(owner) == DialogResult.OK) return true;
+            }
+            else
+            {
+                if (!hideMessages) MessageBox.Show(owner, Stringtable._0x0004m, Stringtable._0x0004c, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Get inner InnerException Messages recursive
+        /// </summary>
+        /// <param name="exception">Exception to get InnerException Messages from</param>
+        /// <returns>InnerException Messages. A new line for every Message, beginnen with an -.</returns>
+        private string GetInnerExceptionMessageRecursive(Exception exception)
+        {
+            if (exception.InnerException != null)
+            {
+                return "\n- " + exception.InnerException.Message + GetInnerExceptionMessageRecursive(exception.InnerException);
+            }
+            return "";
         }
         #endregion
         #endregion

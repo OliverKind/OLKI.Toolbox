@@ -144,4 +144,18 @@ Das Progarmm wird jetzt beendet und die neue Version installiert.
 Pfad zur Setup Datei:
 {0}</value>
   </data>
+  <data name="0x0004c" xml:space="preserve">
+    <value>Auf Aktualisierungen prüfen.</value>
+  </data>
+  <data name="0x0004m" xml:space="preserve">
+    <value>Sie verwenden die aktuelle Version dieser Software.</value>
+  </data>
+  <data name="0x0005c" xml:space="preserve">
+    <value>Fehler beim Prüfen auf Aktualisierungen.</value>
+  </data>
+  <data name="0x0005m" xml:space="preserve">
+    <value>Beim Prüfen auf neue Versionen des Programms ist ein Fehler aufgetreten.
+
+{0}</value>
+  </data>
 </root>
