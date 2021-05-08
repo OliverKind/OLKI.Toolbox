@@ -37,6 +37,18 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         /// <summary>
         /// Change the brightness and contrast at once of an image
         /// </summary>
+        /// <param name="image">The original image to change the brightness and contrast</param>
+        /// <param name="brightness">The value to change the brightness. Betwenn -255 and 255.</param>
+        /// <param name="contrast">The value to change the contrast. Betwenn -255 and 255.</param>
+        /// <returns>The image with modified brightness and contrast or NULL if an exception was thrown</returns>
+        public static Image BrightnessAndContrast(Image image, int brightness, int contrast)
+        {
+            return BrightnessAndContrast(image, brightness, contrast, out _);
+        }
+
+        /// <summary>
+        /// Change the brightness and contrast at once of an image
+        /// </summary>
         /// <remarks>
         /// Based on the Article: "Fast Image Processing in C#" by "turgay"
         /// Published at http://csharpexamples.com/fast-image-processing-c/
@@ -44,49 +56,59 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         /// <param name="image">The original image to change the brightness and contrast</param>
         /// <param name="brightness">The value to change the brightness. Betwenn -255 and 255.</param>
         /// <param name="contrast">The value to change the contrast. Betwenn -255 and 255.</param>
-        /// <returns>The image with modified brightness and contrast</returns>
-        public static Image BrightnessAndContrast(Image image, int brightness, int contrast)
+        /// <param name="exception">Exception while change brightness</param>
+        /// <returns>The image with modified brightness and contrast or NULL if an exception was thrown</returns>
+        public static Image BrightnessAndContrast(Image image, int brightness, int contrast, out Exception exception)
         {
-            unsafe
+            try
             {
-                Bitmap TempBmp = (Bitmap)image.Clone();
-                BitmapData BitmapData = TempBmp.LockBits(new Rectangle(0, 0, TempBmp.Width, TempBmp.Height), ImageLockMode.ReadWrite, TempBmp.PixelFormat);
-
-                int BytesPerPixel = Image.GetPixelFormatSize(TempBmp.PixelFormat) / 8;
-                int HeightInPixels = BitmapData.Height;
-                int WidthInBytes = BitmapData.Width * BytesPerPixel;
-                byte* PtrFirstPixel = (byte*)BitmapData.Scan0;
-
-                brightness = Color.BrightnesChangeLimiter(brightness);
-                double ContrastFactor = Color.ContrastFactor(contrast);
-
-                // Calculate new brightnes and contrast
-                Parallel.For(0, HeightInPixels, y =>
+                exception = null;
+                unsafe
                 {
-                    byte* CurrentLine = PtrFirstPixel + (y * BitmapData.Stride);
-                    for (int x = 0; x < WidthInBytes; x += BytesPerPixel)
+                    Bitmap TempBmp = (Bitmap)image.Clone();
+                    BitmapData BitmapData = TempBmp.LockBits(new Rectangle(0, 0, TempBmp.Width, TempBmp.Height), ImageLockMode.ReadWrite, TempBmp.PixelFormat);
+
+                    int BytesPerPixel = Image.GetPixelFormatSize(TempBmp.PixelFormat) / 8;
+                    int HeightInPixels = BitmapData.Height;
+                    int WidthInBytes = BitmapData.Width * BytesPerPixel;
+                    byte* PtrFirstPixel = (byte*)BitmapData.Scan0;
+
+                    brightness = Color.BrightnesChangeLimiter(brightness);
+                    double ContrastFactor = Color.ContrastFactor(contrast);
+
+                    // Calculate new brightnes and contrast
+                    Parallel.For(0, HeightInPixels, y =>
                     {
-                        System.Drawing.Color OrgColor = new System.Drawing.Color();
-                        OrgColor = System.Drawing.Color.FromArgb(CurrentLine[x + 2], CurrentLine[x + 1], CurrentLine[x + 0]);
+                        byte* CurrentLine = PtrFirstPixel + (y * BitmapData.Stride);
+                        for (int x = 0; x < WidthInBytes; x += BytesPerPixel)
+                        {
+                            System.Drawing.Color OrgColor = new System.Drawing.Color();
+                            OrgColor = System.Drawing.Color.FromArgb(CurrentLine[x + 2], CurrentLine[x + 1], CurrentLine[x + 0]);
 
-                        int NewR = CurrentLine[x + 2];
-                        int NewG = CurrentLine[x + 1];
-                        int NewB = CurrentLine[x + 0];
+                            int NewR = CurrentLine[x + 2];
+                            int NewG = CurrentLine[x + 1];
+                            int NewB = CurrentLine[x + 0];
 
-                        NewR = Color.ColorLimiter(OrgColor.R + brightness);
-                        NewR = Color.ColorLimiter((int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-                        NewG = Color.ColorLimiter(OrgColor.G + brightness);
-                        NewG = Color.ColorLimiter((int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
-                        NewB = Color.ColorLimiter(OrgColor.B + brightness);
-                        NewB = Color.ColorLimiter((int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                            NewR = Color.ColorLimiter(OrgColor.R + brightness);
+                            NewR = Color.ColorLimiter((int)Math.Round(((((NewR / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                            NewG = Color.ColorLimiter(OrgColor.G + brightness);
+                            NewG = Color.ColorLimiter((int)Math.Round(((((NewG / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
+                            NewB = Color.ColorLimiter(OrgColor.B + brightness);
+                            NewB = Color.ColorLimiter((int)Math.Round(((((NewB / 255.0) - 0.5) * ContrastFactor) + 0.5) * 255.0, 0));
 
-                        CurrentLine[x + 2] = (byte)NewR;
-                        CurrentLine[x + 1] = (byte)NewG;
-                        CurrentLine[x + 0] = (byte)NewB;
-                    }
-                });
-                TempBmp.UnlockBits(BitmapData);
-                return (Image)TempBmp;
+                            CurrentLine[x + 2] = (byte)NewR;
+                            CurrentLine[x + 1] = (byte)NewG;
+                            CurrentLine[x + 0] = (byte)NewB;
+                        }
+                    });
+                    TempBmp.UnlockBits(BitmapData);
+                    return (Image)TempBmp;
+                }
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return null;
             }
         }
     }
