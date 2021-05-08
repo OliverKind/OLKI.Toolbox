@@ -37,7 +37,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         /// </summary>
         /// <param name="image">Image to crop</param>
         /// <param name="cropArea">The area to keep</param>
-        /// <returns>Cropped image or the original if an exception was thrown</returns>
+        /// <returns>Cropped image or NULL if an exception was thrown</returns>
         public static Image Crop(Image image, Rectangle? cropArea)
         {
             return Crop(image, cropArea, out _);
@@ -49,7 +49,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         /// <param name="image">Image to crop</param>
         /// <param name="cropArea">The area to keep</param>
         /// <param name="exception">Exception while cropping</param>
-        /// <returns>Cropped image or the original if an exception was thrown</returns>
+        /// <returns>Cropped image or NULL if an exception was thrown</returns>
         public static Image Crop(Image image, Rectangle? cropArea, out Exception exception)
         {
             try
@@ -63,7 +63,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             catch (Exception ex)
             {
                 exception = ex;
-                return image;
+                return null;
             }
         }
     }
