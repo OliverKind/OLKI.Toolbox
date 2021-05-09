@@ -67,7 +67,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Check if the access to a specified directory is allowed
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to an directory where the access should been checked</param>
+        /// <param name="path">A string that specifies the path to an directory where the access should been checked</param>
         /// <returns>True if the access is allofed and false if the access is denied</returns>
         public static bool CheckAccess(string path)
         {
@@ -86,7 +86,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Check if the access to a specified directory is allowed and can show a message if the access is denied
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to an directory where the access should been checked</param>
+        /// <param name="path">A string that specifies the path to an directory where the access should been checked</param>
         /// <param name="showMessageIfNoAccess">Specifies if an message should been shown if the access to the specified directory is denied</param>
         /// <returns>True if the access is allofed and false if the access is denied</returns>
         public static bool CheckAccess(string path, bool showMessageIfNoAccess)
@@ -115,8 +115,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Copys a specified directory to a specified destination and the sub directories
         /// </summary>
-        /// <param name="sourcePath">An null-terminated string that specifies the source directory path</param>
-        /// <param name="destPath">An null-terminated string that specifies the destination directory path</param>
+        /// <param name="sourcePath">A string that specifies the source directory path</param>
+        /// <param name="destPath">A string that specifies the destination directory path</param>
         /// <returns>True if copy was successful and false if not</returns>
         public static bool Copy(string sourcePath, string destPath)
         {
@@ -125,8 +125,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Copys a specified directory to a specified destination and the sub directoys if specified
         /// </summary>
-        /// <param name="sourcePath">An null-terminated string that specifies the destination directory path</param>
-        /// <param name="destPath">An null-terminated string that specifies the destination directory path</param>
+        /// <param name="sourcePath">A string that specifies the destination directory path</param>
+        /// <param name="destPath">A string that specifies the destination directory path</param>
         /// <param name="copySubDirs">Specifies if sub directory should ben copied</param>
         /// <returns>True if copy was successful and false if not</returns>
         public static bool Copy(string sourcePath, string destPath, bool copySubDirs)
@@ -174,7 +174,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Creates a directory at the specified path
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path where the directory should be created</param>
+        /// <param name="path">A string that specifies the path where the directory should be created</param>
         /// <returns>True if creation of the specified directory was successful and false if not</returns>
         public static bool Create(string path)
         {
@@ -183,7 +183,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Creates a directory at the specified path and copies the content from an template directory
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path where the directory should be created</param>
+        /// <param name="path">A string that specifies the path where the directory should be created</param>
         /// <param name="templatePath">An null-terminated string that specifies a template directory that sould be copied</param>
         /// <returns>True if creation of the specified directory was successful and false if not</returns>
         public static bool Create(string path, string templatePath)
@@ -212,7 +212,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Delete the specified direcotry and shows a secority question
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to the directory to delete</param>
+        /// <param name="path">A string that specifies the path to the directory to delete</param>
         /// <returns>True if the specified directory was deleted successful and false if not</returns>
         public static bool Delete(string path)
         {
@@ -221,7 +221,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Delete the specified direcotry and shows a secority question if specified
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to the directory to delete</param>
+        /// <param name="path">A string that specifies the path to the directory to delete</param>
         /// <param name="showSecurityQuestion">Specifies if a security question should been shown before the direcotry will be deleted</param>
         /// <returns>True if the specified directory was deleted successful and false if not</returns>
         public static bool Delete(string path, bool showSecurityQuestion)
@@ -246,7 +246,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Open the specified directory in explorerr. Ask for creating the directory if it does not exists.
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to the directory to open</param>
+        /// <param name="path">A string that specifies the path to the directory to open</param>
         /// <returns>True if the specified directory was opend successful and false if not</returns>
         public static bool Open(string path)
         {
@@ -255,7 +255,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Open the specified directory in explorer
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to the directory to open</param>
+        /// <param name="path">A string that specifies the path to the directory to open</param>
         /// <param name="askForCreateFolder">Ask if the directory should be created if it dose not exists</param>
         /// <returns>True if the specified directory was opend successful and false if not</returns>
         public static bool Open(string path, bool askForCreateFolder)
@@ -265,7 +265,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Open the specified directory in explorer.  Ask for creating the directory if it does not exists and uses the specified template directory to create the new directory
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to the directory to open</param>
+        /// <param name="path">A string that specifies the path to the directory to open</param>
         /// <param name="templatePath">An null-terminated string that specifies a template directory that sould be copied</param>
         /// <returns>True if the specified directory was opend successful and false if not</returns>
         public static bool Open(string path, string templatePath)
@@ -275,7 +275,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Open the specified directory in explorer and uses the specified template directory to create the new directory
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the path to the directory to open</param>
+        /// <param name="path">A string that specifies the path to the directory to open</param>
         /// <param name="askForCreateFolder">Ask if the directory should be created if it dose not exists</param>
         /// <param name="templatePath">An null-terminated string that specifies a template directory that sould be copied</param>
         /// <returns>True if the specified directory was opend successful and false if not</returns>

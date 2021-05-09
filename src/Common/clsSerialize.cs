@@ -115,7 +115,7 @@ namespace OLKI.Toolbox.Common
         /// Serialize  an specified object to an specified file in XML scheme
         /// </summary>
         /// <param name="toSerialize">An Objext to serialize</param>
-        /// <param name="ptah">An null-terminated string that specifies the file path where the XML scheme should been wirtten to</param>
+        /// <param name="ptah">A string that specifies the file path where the XML scheme should been wirtten to</param>
         public static bool ObjectToXML(object toSerialize, string ptah)
         {
             try
@@ -143,7 +143,7 @@ namespace OLKI.Toolbox.Common
         /// Deserialize  an specified XML file to an specified object and showing an error message if an exception occurs
         /// </summary>
         /// <param name="toDeserialize">The object to deserialize</param>
-        /// <param name="ptah">An null-terminated string that specifies the file path to the XML-File do deserialize</param>
+        /// <param name="ptah">A string that specifies the file path to the XML-File do deserialize</param>
         /// <returns>An object with data from the specified deserialized file or false if an exception occours</returns>
         public static object XMLToObject(object toDeserialize, string ptah)
         {
@@ -153,7 +153,7 @@ namespace OLKI.Toolbox.Common
         /// Deserialize  an specified XML file to an specified object
         /// </summary>
         /// <param name="toDeserialize">The object to deserialize</param>
-        /// <param name="ptah">An null-terminated string that specifies the file path to the XML-File do deserialize</param>
+        /// <param name="ptah">A string that specifies the file path to the XML-File do deserialize</param>
         /// <param name="showErrorMessage">Specifies if an error message should been shown if an exception during the deserialization occurs</param>
         /// <returns>An object with data from the specified deserialized file or false if an exception occours</returns>
         public static object XMLToObject(object toDeserialize, string ptah, bool showErrorMessage)

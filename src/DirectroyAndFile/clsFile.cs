@@ -54,8 +54,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Copies the specified file to the specified destination and ask to overwrite if the destination file already exists
         /// </summary>
-        /// <param name="sourcePath">An null-terminated string that specifies the source file path</param>
-        /// <param name="destPath">An null-terminated string that specifies the destination file path</param>
+        /// <param name="sourcePath">A string that specifies the source file path</param>
+        /// <param name="destPath">A string that specifies the destination file path</param>
         /// <returns>True if copy was successful and false if not</returns>
         public static bool Copy(string sourcePath, string destPath)
         {
@@ -64,8 +64,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Copies the specified file to the specified destination
         /// </summary>
-        /// <param name="sourcePath">An null-terminated string that specifies the source file path</param>
-        /// <param name="destPath">An null-terminated string that specifies the destination file path</param>
+        /// <param name="sourcePath">A string that specifies the source file path</param>
+        /// <param name="destPath">A string that specifies the destination file path</param>
         /// <param name="overwrite">Set true to overwrite an existing file without question</param>
         /// <returns>True if copy was successful and false if not</returns>
         public static bool Copy(string sourcePath, string destPath, bool overwrite)
@@ -98,8 +98,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Creates an empty file with the specified name in the specified directory
         /// </summary>
-        /// <param name="directoryPath">An null-terminated string that specifies the directory where the file shoukd be created</param>
-        /// <param name="fileName">An null-terminated string that specifies the file name of the file to create</param>
+        /// <param name="directoryPath">A string that specifies the directory where the file shoukd be created</param>
+        /// <param name="fileName">A string that specifies the file name of the file to create</param>
         /// <returns>True if creation of the specified file was successful and false if not</returns>
         public static bool Create(string directoryPath, string fileName)
         {
@@ -125,7 +125,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Delete the specified file an shows a security question
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the file to delete</param>
+        /// <param name="path">A string that specifies the file to delete</param>
         /// <returns>True if deleting of the specified file was successful and false if not</returns>
         public static bool Delete(string path)
         {
@@ -134,7 +134,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Delete the specified file an shows a security question if specified
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the file to delete</param>
+        /// <param name="path">A string that specifies the file to delete</param>
         /// <param name="showSecurityQuestion">Specifies if a security question should been shown before the file will be deleted</param>
         /// <returns>True if deleting of the specified file was successful and false if not</returns>
         public static bool Delete(string path, bool showSecurityQuestion)
@@ -159,7 +159,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Opens the specified file and returns the content as string. If the file can not open an empty string will returned
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the file top open</param>
+        /// <param name="path">A string that specifies the file top open</param>
         /// <returns>The content of the specified file as string or an empty string if file can not be opened</returns>
         public static string OpenToString(string path)
         {
@@ -168,8 +168,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Opens the specified file and returns the content as string
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the file top open</param>
-        /// <param name="valueIfFileNotExists">An null-terminated string that specifies the string to return if the file can not be opened</param>
+        /// <param name="path">A string that specifies the file top open</param>
+        /// <param name="valueIfFileNotExists">A string that specifies the string to return if the file can not be opened</param>
         /// <returns>The content of the specified file as string or the specified string if file can not be opened</returns>
         public static string OpenToString(string path, string valueIfFileNotExists)
         {

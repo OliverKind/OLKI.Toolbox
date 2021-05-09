@@ -141,7 +141,7 @@ namespace OLKI.Toolbox.Common
         /// <summary>
         /// Adds a new recent file element to the list
         /// </summary>
-        /// <param name="path">An null-terminated string that specifies the file path to add to the file list</param>
+        /// <param name="path">A string that specifies the file path to add to the file list</param>
         public void AddToList(string path)
         {
             // If list is "null" then create new list
@@ -206,7 +206,7 @@ namespace OLKI.Toolbox.Common
         /// <summary>
         /// Converts an specified string to a recent file list, using "|" as seperator
         /// </summary>
-        /// <param name="list">An null-terminated string that specifies the file list with "|" as seperator</param>
+        /// <param name="list">A string that specifies the file list with "|" as seperator</param>
         public void SetFromString(string list)
         {
             this.SetFromString(list, this._seperator);
@@ -215,8 +215,8 @@ namespace OLKI.Toolbox.Common
         /// <summary>
         /// Converts an specified string to a recent file list
         /// </summary>
-        /// <param name="list">An null-terminated string that specifies the file list with an specified seperator</param>
-        /// <param name="setepator">An null-terminated string that specifies the seperator for the specified file list</param>
+        /// <param name="list">A string that specifies the file list with an specified seperator</param>
+        /// <param name="setepator">A string that specifies the seperator for the specified file list</param>
         public void SetFromString(string list, string setepator)
         {
             if (string.IsNullOrEmpty(list))

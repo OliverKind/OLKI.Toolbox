@@ -36,7 +36,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Repairs the specified path by removing wrong escape sequences and emend wrong path seperators. Convertes \\ to \ and / to \
         /// </summary>
-        /// <param name="path">An string that specifies the path to repair</param>
+        /// <param name="path">A string that specifies the path to repair</param>
         /// <returns>The corrected path</returns>
         public static string Repair(string path)
         {
@@ -50,7 +50,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Check if the specified path is an drive
         /// </summary>
-        /// <param name="path">An string that specifies the path to check if it is an drive</param>
+        /// <param name="path">A string that specifies the path to check if it is an drive</param>
         /// <returns>True if the direcotry is an drive</returns>
         public static bool IsDrive(string path)
         {
