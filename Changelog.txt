@@ -2,5 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.1.0.2] - 2021-05-09
+### Added
+- OLKI.Toolbox.Widgets.ExtProgressBar: Catch Exception for non Asyn methodes
+- OLKI.Toolbox.UpdateApp.UpdateApp: UpdateDownload
+
+### Changed
+- OLKI.Toolbox.Widgets.ExtProgressBar: Enable to change number of dicimal digits
+- OLKI.Toolbox.ColorAndPicture.Picture.Modify: Spped up Image Processing (Brightness, Contrast, Palette)
+- OLKI.Toolbox.ColorAndPicture.Picture.Crop: Return original image --> NULL if an exception was thrown
+
 ## [1.0.0.1] - 2021-05-01
 ### Initial release
