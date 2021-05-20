@@ -47,6 +47,7 @@ namespace OLKI.Toolbox.Widgets
             this.cboByteDime.Size = new System.Drawing.Size(57, 21);
             this.cboByteDime.TabIndex = 25;
             this.cboByteDime.SelectedIndexChanged += new System.EventHandler(this.cboByteDimension_SelectedIndexChanged);
+            this.cboByteDime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cboByteDime_MouseDown);
             // 
             // txtBytesNum
             // 
@@ -86,7 +87,7 @@ namespace OLKI.Toolbox.Widgets
             this.txtDescript.Size = new System.Drawing.Size(725, 20);
             this.txtDescript.TabIndex = 26;
             // 
-            // ProgressbarExt
+            // ExtProgressBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,7 +97,7 @@ namespace OLKI.Toolbox.Widgets
             this.Controls.Add(this.txtBytesPer);
             this.Controls.Add(this.pbaProgress);
             this.MinimumSize = new System.Drawing.Size(300, 23);
-            this.Name = "ProgressbarExt";
+            this.Name = "ExtProgressBar";
             this.Size = new System.Drawing.Size(725, 49);
             this.Resize += new System.EventHandler(this.ProgressbarEx_Resize);
             this.ResumeLayout(false);

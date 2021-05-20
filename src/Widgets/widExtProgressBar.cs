@@ -488,6 +488,7 @@ namespace OLKI.Toolbox.Widgets
             {
                 Dimension = (uint)this.cboByteDime.SelectedIndex;
                 Dimension -= (uint)(Dimension >= FileSize.UnitPrefix_IEC.Length ? FileSize.UnitPrefix_IEC.Length : 0);
+                this.ByteDimension = (FileSize.Dimension)Dimension;
 
                 FileSize.ByteBase ByteBase = this.cboByteDime.SelectedIndex >= FileSize.UnitPrefix_IEC.Length ? FileSize.ByteBase.SI : FileSize.ByteBase.IEC;
 
@@ -512,6 +513,15 @@ namespace OLKI.Toolbox.Widgets
         }
 
         #region Controle events
+        private void cboByteDime_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                this._autoByteDimension = true;
+                this.SetProcessValues();
+            }
+        }
+
         private void cboByteDimension_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this._suppressControleEvents) return;
