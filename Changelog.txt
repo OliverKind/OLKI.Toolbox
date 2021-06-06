@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [1.1.2.4] - 2021-??-??
+## [1.1.2.4] - 2021-06-06
 ### Fixed
 - OLKI.Toolbox.UpdateApp.UpdateApp.UpdateApp.GetLastReleaseDataAsync: Fix thorwn exception if no update is available
 
