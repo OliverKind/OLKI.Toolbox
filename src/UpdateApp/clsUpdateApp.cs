@@ -118,7 +118,7 @@ namespace OLKI.Toolbox.UpdateApp
             }
             //Get Asyn Data
             if (!string.IsNullOrEmpty(changeLogPattern)) ReleaseData.ChangeLog = (await ChangeLogTask)[0].Content;
-            if (!string.IsNullOrEmpty(setupFilePattern)) ReleaseData.SetupAsset = await SetupFileTask;
+            if (!string.IsNullOrEmpty(setupFilePattern) && SetupFileTask != null) ReleaseData.SetupAsset = await SetupFileTask;
 
             return ReleaseData;
         }
