@@ -50,6 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\ColorAndPicture\Color\clsColor.cs" />
     <Compile Include="src\ColorAndPicture\Picture\Modify\clsBrightness.cs" />
     <Compile Include="src\ColorAndPicture\Picture\Modify\clsBrightnessAndContrast.cs" />
@@ -118,6 +123,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Stringtable.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\Widgets\AboutForm\frmAboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Widgets\AboutForm\frmAboutForm.Designer.cs">
+      <DependentUpon>frmAboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Widgets\AboutForm\frmLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Widgets\AboutForm\frmLicense.Designer.cs">
+      <DependentUpon>frmLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Widgets\clsTools.cs" />
     <Compile Include="src\Widgets\Invoke\clsComboBox.cs" />
     <Compile Include="src\Widgets\Invoke\clsFormInv.cs" />
@@ -161,6 +178,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\ColorAndPicture\Picture\Scan\StringTable.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringTable.Designer.cs</LastGenOutput>
@@ -194,6 +215,12 @@
     <EmbeddedResource Include="src\UpdateApp\Stringtable.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Stringtable.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Widgets\AboutForm\frmAboutForm.resx">
+      <DependentUpon>frmAboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Widgets\AboutForm\frmLicense.resx">
+      <DependentUpon>frmLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Widgets\widExtProgressBar.resx">
       <DependentUpon>widExtProgressBar.cs</DependentUpon>
