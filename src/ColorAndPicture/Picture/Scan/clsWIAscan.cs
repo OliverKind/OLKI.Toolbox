@@ -196,7 +196,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
         /// <param name="properties">Set of properties</param>
         /// <param name="propertyId">Id of the property to set</param>
         /// <param name="value">Value to set the property to</param>
-        private static void SetProperty(Properties properties, object propertyId, object value)
+        private static void SetProperty(WIA.Properties properties, object propertyId, object value)
         {
             properties.get_Item(ref propertyId).set_Value(ref value);
         }
