@@ -151,8 +151,10 @@ namespace OLKI.Toolbox.Widgets.AboutForm
         /// <param name="hostAssembly">Host Application for the AboutForm</param>
         /// <param name="imgApp">Application Icon to show or NULL</param>
         /// <param name="imgFile">Associated File Icon to show or NULL</param>
-        public AboutForm(Assembly hostAssembly , System.Drawing.Image imgApp, System.Drawing.Image imgFile)
+        public AboutForm(Assembly hostAssembly, System.Drawing.Image imgApp, System.Drawing.Image imgFile)
         {
+
+
             InitializeComponent();
             this._hostAssembly = hostAssembly;
 
@@ -162,6 +164,7 @@ namespace OLKI.Toolbox.Widgets.AboutForm
             this.lblCopyright.Text = string.Format(this.lblCopyright.Text, this.AssemblyCopyright);
             this.lblCompanyName.Text = string.Format(this.lblCompanyName.Text, this.AssemblyCompany);
             this.txtDescription.Text = this.AssemblyDescription;
+            this.txtCredits.Text = this.Credits;
 
             this.pbxLogoApplication.Image = imgApp;
             this.pbxLogoFile.Image = imgFile;
