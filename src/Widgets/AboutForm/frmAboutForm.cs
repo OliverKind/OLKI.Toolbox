@@ -158,12 +158,18 @@ namespace OLKI.Toolbox.Widgets.AboutForm
             InitializeComponent();
             this._hostAssembly = hostAssembly;
 
+            string DescriptionText = this.AssemblyDescription + "\r\n";
+            foreach (AssemblyName AssemblyInfo in this._hostAssembly.GetReferencedAssemblies())
+            {
+                DescriptionText += "\r\n" + AssemblyInfo.FullName;
+            }
+
             this.Text = string.Format(this.Text, this.AssemblyTitle);
             this.lblProductName.Text = string.Format(this.lblProductName.Text, this.AssemblyProduct);
             this.lblVersion.Text = string.Format(this.lblVersion.Text, this.AssemblyVersion);
             this.lblCopyright.Text = string.Format(this.lblCopyright.Text, this.AssemblyCopyright);
             this.lblCompanyName.Text = string.Format(this.lblCompanyName.Text, this.AssemblyCompany);
-            this.txtDescription.Text = this.AssemblyDescription;
+            this.txtDescription.Text = DescriptionText;
             this.txtCredits.Text = this.Credits;
 
             this.pbxLogoApplication.Image = imgApp;
