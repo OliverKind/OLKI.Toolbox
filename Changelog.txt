@@ -1,5 +1,10 @@
-# Change Log
-All notable changes to this project will be documented in this file.
+# OLKI.Toolbox
+## [1.2.0.5] - 2021-09-27
+### Added
+-  OLKI.Toolbox.Widgets.AboutForm
+
+### Fixed
+- OLKI.Toolbox.ColorAndPicture.Picture.Scan.SetProperty: Namespace collision
 
 ## [1.1.2.4] - 2021-06-06
 ### Fixed
