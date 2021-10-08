@@ -301,7 +301,7 @@ namespace OLKI.Toolbox.Common
 
             try
             {
-                return System.Convert.ToString(input.Element(elementName).Value);
+                return System.Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
             }
             catch (Exception ex)
             {
