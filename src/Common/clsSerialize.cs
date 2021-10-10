@@ -295,13 +295,25 @@ namespace OLKI.Toolbox.Common
         /// <param name="input">Specifies the XElement to geht the value from</param>
         /// <param name="elementName">Specifies the Name of the Value to get from specified XElement</param>
         /// <param name="valueIfNull">Specifies the value to return if the specified element can not found</param>
-        /// <returns>The value of the specified element as an integer type</returns>
+        /// <returns>The value of the specified element as an integer type, converts LineBreak \n from XElement to \n\r</returns>
         public static string GetFromXElement(XElement input, string elementName, string valueIfNull)
         {
+            return GetFromXElement(input, elementName, valueIfNull, true);
+        }
 
+        /// <summary>
+        /// Return the value as integer type of an specified element in an specified XElement or valueIfNull if the element was not found
+        /// </summary>
+        /// <param name="input">Specifies the XElement to geht the value from</param>
+        /// <param name="elementName">Specifies the Name of the Value to get from specified XElement</param>
+        /// <param name="valueIfNull">Specifies the value to return if the specified element can not found</param>
+        /// <param name="convertLineBreake">Convert \n from XElement to \n\r</param>
+        /// <returns>The value of the specified element as an integer type</returns>
+        public static string GetFromXElement(XElement input, string elementName, string valueIfNull, bool convertLineBreake)
+        {
             try
             {
-                return System.Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
+                return Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
             }
             catch (Exception ex)
             {
