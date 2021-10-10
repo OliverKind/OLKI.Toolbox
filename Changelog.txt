@@ -1,4 +1,14 @@
 # OLKI.Toolbox
+## [1.2.1.6] - 2021-10-10
+### Added
+- OLKI.Toolbox.Common.Serialize.GetFromXElement (string): Add convertLineBreake option
+
+Changed
+- Set required .NET-Framework to Version 4.8
+
+### Fixed
+- OLKI.Toolbox.Common.Serialize.GetFromXElement (string): Missing Line breakes while reading from XElement
+
 ## [1.2.0.5] - 2021-09-27
 ### Added
 -  OLKI.Toolbox.Widgets.AboutForm
