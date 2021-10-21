@@ -69,6 +69,7 @@
       <DependentUpon>StringTable.resx</DependentUpon>
     </Compile>
     <Compile Include="src\Common\clsConverter.cs" />
+    <Compile Include="src\Common\clsCSVreader.cs" />
     <Compile Include="src\Common\clsMatehmatics.cs" />
     <Compile Include="src\Common\clsRecentFiles.cs" />
     <Compile Include="src\Common\clsSerialize.cs" />
