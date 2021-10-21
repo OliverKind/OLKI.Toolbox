@@ -186,6 +186,18 @@ namespace OLKI.Toolbox.Widgets
             }
         }
         #endregion
+
+        /// <summary>
+        /// Add empty ListViewSubItems, depending on the Count of Columns 
+        /// </summary>
+        /// <param name="listViewItem">The ListViewItem to add sub items</param>
+        public void FillUpSubItems(ListViewItem listViewItem)
+        {
+            for (int i = 1; i < this.Columns.Count; i++)
+            {
+                listViewItem.SubItems.Add("");
+            }
+        }
     }
 
     /// <summary>
@@ -250,11 +262,11 @@ namespace OLKI.Toolbox.Widgets
                 {
                     switch (order)
                     {
-                        case System.Windows.Forms.SortOrder.Ascending:
+                        case SortOrder.Ascending:
                             lvColumn.fmt &= ~HDF_SORTDOWN;
                             lvColumn.fmt |= HDF_SORTUP;
                             break;
-                        case System.Windows.Forms.SortOrder.Descending:
+                        case SortOrder.Descending:
                             lvColumn.fmt &= ~HDF_SORTUP;
                             lvColumn.fmt |= HDF_SORTDOWN;
                             break;
