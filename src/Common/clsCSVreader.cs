@@ -32,7 +32,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace OLKI.Toolbox.Common
 {
@@ -42,54 +41,94 @@ namespace OLKI.Toolbox.Common
     public class CSVreader
     {
         #region Properties
-        public List<char> Seperator = new List<char> { ';', '\t' };
+        /// <summary>
+        /// Get or set a list with Seperator Chars. All Chars will used as seperator.
+        /// </summary>
+        public List<char> Seperators { get; set; } = new List<char> { ';', '\t' };
 
+        /// <summary>
+        /// The RAW CSV-File data
+        /// </summary>
         private string _rawCSVdata;
-        public string RawCSVdata
-        {
-            get
-            {
-                return this._rawCSVdata;
-            }
-        }
+        /// <summary>
+        /// Get the RAW CSV-File data
+        /// </summary>
+        public string RawCSVdata => this._rawCSVdata;
 
-        public int RowCount
-        {
-            get
-            {
-                return this._rows.Count;
-            }
-        }
+        /// <summary>
+        /// The Number of rows in the CSV-Data
+        /// </summary>
+        public int RowCount => this._rows.Count;
 
+        /// <summary>
+        /// CSV-Data rows
+        /// </summary>
         private readonly List<CSVrow> _rows = new List<CSVrow> { };
 
-        public List<CSVrow> CSVrows
-        {
-            get
-            {
-                return this._rows;
-            }
-        }
+        /// <summary>
+        /// Get the CSV-Data Rows
+        /// </summary>
+        public List<CSVrow> CSVrows => this._rows;
         #endregion
 
         #region Methodes
+        /// <summary>
+        /// Initial a new CSV-Reader class, with default seperators
+        /// </summary>
         public CSVreader() : this(null)
         {
 
         }
 
-        public CSVreader(List<char> seperator)
+        /// <summary>
+        /// Initial a new CSV-Reader class, with user defined seperators
+        /// </summary>
+        /// <param name="seperators">List with Seperator Chars. All Chars will used as seperator.</param>
+        public CSVreader(List<char> seperators)
         {
-            if (seperator != null) this.Seperator = seperator;
+            if (seperators != null) this.Seperators = seperators;
         }
 
-
+        /// <summary>
+        /// Read CSV-Data from a file, defined by file path
+        /// </summary>
+        /// <param name="path">A string that specifies the file path to read CSV-Data from</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
         public bool ReadCSVfromFile(string path)
         {
             return this.ReadCSVfromFile(path, out _);
         }
 
+        /// <summary>
+        /// Read CSV-Data from a file, defined by file path
+        /// </summary>
+        /// <param name="path">A string that specifies the file path to read CSV-Data from</param>
+        /// <param name="exception">Exception while reading CSV-Data</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
         public bool ReadCSVfromFile(string path, out Exception exception)
+        {
+            return this.ReadCSVfromFile(path, 0, out exception);
+        }
+
+        /// <summary>
+        /// Read CSV-Data from a file, defined by file path
+        /// </summary>
+        /// <param name="path">A string that specifies the file path to read CSV-Data from</param>
+        /// <param name="firstRow">First row in string with CSV-Data</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
+        public bool ReadCSVfromFile(string path, int firstRow)
+        {
+            return this.ReadCSVfromFile(path, 0, out _);
+        }
+
+        /// <summary>
+        /// Read CSV-Data from a file, defined by file path
+        /// </summary>
+        /// <param name="path">A string that specifies the file path to read CSV-Data from</param>
+        /// <param name="firstRow">First row in string with CSV-Data</param>
+        /// <param name="exception">Exception while reading CSV-Data</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
+        public bool ReadCSVfromFile(string path, int firstRow,out Exception exception)
         {
             string CsvString;
             try
@@ -101,24 +140,48 @@ namespace OLKI.Toolbox.Common
                 exception = ex;
                 return false;
             }
-            return this.ReadCSVdata(CsvString, 0, out exception);
+            return this.ReadCSVdata(CsvString, firstRow, out exception);
         }
 
+        /// <summary>
+        /// Read CSV-Data from a string
+        /// </summary>
+        /// <param name="csvString">A string that specifies the CSV-Data</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
         public bool ReadCSVdata(string csvString)
         {
             return this.ReadCSVdata(csvString, out _);
         }
 
+        /// <summary>
+        /// Read CSV-Data from a string
+        /// </summary>
+        /// <param name="csvString">A string that specifies the CSV-Data</param>
+        /// <param name="exception">Exception while reading CSV-Data</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
         public bool ReadCSVdata(string csvString, out Exception exception)
         {
             return this.ReadCSVdata(csvString, 0, out exception);
         }
 
+        /// <summary>
+        /// Read CSV-Data from a string
+        /// </summary>
+        /// <param name="csvString">A string that specifies the CSV-Data</param>
+        /// <param name="firstRow">First row in string with CSV-Data</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
         public bool ReadCSVdata(string csvString, int firstRow)
         {
             return this.ReadCSVdata(csvString, firstRow, out _);
         }
 
+        /// <summary>
+        /// Read CSV-Data from a string
+        /// </summary>
+        /// <param name="csvString">A string that specifies the CSV-Data</param>
+        /// <param name="firstRow">First row in string with CSV-Data</param>
+        /// <param name="exception">Exception while reading CSV-Data</param>
+        /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
         public bool ReadCSVdata(string csvString, int firstRow, out Exception exception)
         {
             exception = null;
@@ -134,19 +197,34 @@ namespace OLKI.Toolbox.Common
             {
                 if (!string.IsNullOrEmpty(CSVrawRows[i]))
                 {
-                    this._rows.Add(new CSVrow(CSVrawRows[i], this.Seperator));
+                    this._rows.Add(new CSVrow(CSVrawRows[i], this.Seperators));
                 }
             }
             return true;
         }
         #endregion
 
-
+        #region Subclasses
+        /// <summary>
+        /// A class that specifies a row with CSV-Data
+        /// </summary>
         public class CSVrow
         {
+            /// <summary>
+            /// Get the RAW CSV-Row data
+            /// </summary>
             public string RawDate { get; }
+
+            /// <summary>
+            /// CSV-Data Columns
+            /// </summary>
             public readonly List<string> Columns = new List<string> { };
 
+            /// <summary>
+            /// Read the CSV-Data from an RAW-String to an CSV-Row List
+            /// </summary>
+            /// <param name="rawData">RAW-CSV Data</param>
+            /// <param name="seperator">A list with Seperator Chars. All Chars will used as seperator.</param>
             internal CSVrow(string rawData, List<char> seperator)
             {
                 this.RawDate = rawData;
@@ -226,5 +304,6 @@ namespace OLKI.Toolbox.Common
                 }
             }
         }
+        #endregion
     }
 }
