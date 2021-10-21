@@ -57,6 +57,18 @@ namespace OLKI.Toolbox.Widgets
             base.ListViewItemSorter = this._columnSorter;
         }
 
+        /// <summary>
+        /// Add empty ListViewSubItems, depending on the Count of Columns 
+        /// </summary>
+        /// <param name="listViewItem">The ListViewItem to add sub items</param>
+        public void FillUpSubItems(ListViewItem listViewItem)
+        {
+            for (int i = 1; i < this.Columns.Count; i++)
+            {
+                listViewItem.SubItems.Add("");
+            }
+        }
+
         protected override void OnColumnClick(ColumnClickEventArgs e)
         {
             ListView myListView = this;
@@ -92,7 +104,7 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// Provides sorting of the columns
         /// </summary>
-        internal class ColumnSorter : IComparer
+        private class ColumnSorter : IComparer
         {
             #region Properties
             /// <summary>
@@ -185,101 +197,89 @@ namespace OLKI.Toolbox.Widgets
                 }
             }
         }
-        #endregion
 
         /// <summary>
-        /// Add empty ListViewSubItems, depending on the Count of Columns 
+        /// Extends the ListView with an sort arrow at the sorte
         /// </summary>
-        /// <param name="listViewItem">The ListViewItem to add sub items</param>
-        public void FillUpSubItems(ListViewItem listViewItem)
+        private static class ListViewExtensions
         {
-            for (int i = 1; i < this.Columns.Count; i++)
+            [StructLayout(LayoutKind.Sequential)]
+            public struct LVCOLUMN
             {
-                listViewItem.SubItems.Add("");
+                public int mask;
+                public int cx;
+                [MarshalAs(UnmanagedType.LPTStr)]
+                public string pszText;
+                public IntPtr hbm;
+                public int cchTextMax;
+                public int fmt;
+                public int iSubItem;
+                public int iImage;
+                public int iOrder;
             }
-        }
-    }
 
-    /// <summary>
-    /// Extends the ListView with an sort arrow at the sorte
-    /// </summary>
-    internal static class ListViewExtensions
-    {
-        [StructLayout(LayoutKind.Sequential)]
-        public struct LVCOLUMN
-        {
-            public int mask;
-            public int cx;
-            [MarshalAs(UnmanagedType.LPTStr)]
-            public string pszText;
-            public IntPtr hbm;
-            public int cchTextMax;
-            public int fmt;
-            public int iSubItem;
-            public int iImage;
-            public int iOrder;
-        }
+            const int HDI_FORMAT = 0x0004;
+            const int HDF_LEFT = 0x0000;
+            const int HDF_BITMAP_ON_RIGHT = 0x1000;
+            const int HDF_SORTUP = 0x0400;
+            const int HDF_SORTDOWN = 0x0200;
 
-        const int HDI_FORMAT = 0x0004;
-        const int HDF_LEFT = 0x0000;
-        const int HDF_BITMAP_ON_RIGHT = 0x1000;
-        const int HDF_SORTUP = 0x0400;
-        const int HDF_SORTDOWN = 0x0200;
+            const int LVM_FIRST = 0x1000;         // List messages
+            const int LVM_GETHEADER = LVM_FIRST + 31;
+            const int HDM_FIRST = 0x1200;         // Header messages
+            const int HDM_GETITEM = HDM_FIRST + 11;
+            const int HDM_SETITEM = HDM_FIRST + 12;
 
-        const int LVM_FIRST = 0x1000;         // List messages
-        const int LVM_GETHEADER = LVM_FIRST + 31;
-        const int HDM_FIRST = 0x1200;         // Header messages
-        const int HDM_GETITEM = HDM_FIRST + 11;
-        const int HDM_SETITEM = HDM_FIRST + 12;
+            [DllImport("user32.dll")]
+            private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-        [DllImport("user32.dll")]
-        private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+            [DllImport("user32.dll", EntryPoint = "SendMessage")]
+            private static extern IntPtr SendMessageLVCOLUMN(IntPtr hWnd, Int32 Msg, IntPtr wParam, ref LVCOLUMN lPLVCOLUMN);
 
-        [DllImport("user32.dll", EntryPoint = "SendMessage")]
-        private static extern IntPtr SendMessageLVCOLUMN(IntPtr hWnd, Int32 Msg, IntPtr wParam, ref LVCOLUMN lPLVCOLUMN);
-
-        /// <summary>
-        /// Set the arrow to the sorted column and removes the arrows from the all ohter columns
-        /// </summary>
-        /// <param name="listView">Specifies the ListView where the columns is defined</param>
-        /// <param name="columnIndex">Specifies the index of the columns to set the arrow</param>
-        /// <param name="order">Specifies the sort order of the columns</param>
-        public static void SetSortIcon(ListView listView, int columnIndex, SortOrder order)
-        {
-            IntPtr columnHeader = SendMessage(listView.Handle, LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero);
-
-            for (int columnNumber = 0; columnNumber <= listView.Columns.Count - 1; columnNumber++)
+            /// <summary>
+            /// Set the arrow to the sorted column and removes the arrows from the all ohter columns
+            /// </summary>
+            /// <param name="listView">Specifies the ListView where the columns is defined</param>
+            /// <param name="columnIndex">Specifies the index of the columns to set the arrow</param>
+            /// <param name="order">Specifies the sort order of the columns</param>
+            public static void SetSortIcon(ListView listView, int columnIndex, SortOrder order)
             {
-                IntPtr columnPtr = new IntPtr(columnNumber);
-                LVCOLUMN lvColumn = new LVCOLUMN
-                {
-                    mask = HDI_FORMAT
-                };
+                IntPtr columnHeader = SendMessage(listView.Handle, LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero);
 
-                SendMessageLVCOLUMN(columnHeader, HDM_GETITEM, columnPtr, ref lvColumn);
-
-                if (!(order == SortOrder.None) && columnNumber == columnIndex)
+                for (int columnNumber = 0; columnNumber <= listView.Columns.Count - 1; columnNumber++)
                 {
-                    switch (order)
+                    IntPtr columnPtr = new IntPtr(columnNumber);
+                    LVCOLUMN lvColumn = new LVCOLUMN
                     {
-                        case SortOrder.Ascending:
-                            lvColumn.fmt &= ~HDF_SORTDOWN;
-                            lvColumn.fmt |= HDF_SORTUP;
-                            break;
-                        case SortOrder.Descending:
-                            lvColumn.fmt &= ~HDF_SORTUP;
-                            lvColumn.fmt |= HDF_SORTDOWN;
-                            break;
-                    }
-                    lvColumn.fmt |= (HDF_LEFT | HDF_BITMAP_ON_RIGHT);
-                }
-                else
-                {
-                    lvColumn.fmt &= ~HDF_SORTDOWN & ~HDF_SORTUP & ~HDF_BITMAP_ON_RIGHT;
-                }
+                        mask = HDI_FORMAT
+                    };
 
-                SendMessageLVCOLUMN(columnHeader, HDM_SETITEM, columnPtr, ref lvColumn);
+                    SendMessageLVCOLUMN(columnHeader, HDM_GETITEM, columnPtr, ref lvColumn);
+
+                    if (!(order == SortOrder.None) && columnNumber == columnIndex)
+                    {
+                        switch (order)
+                        {
+                            case SortOrder.Ascending:
+                                lvColumn.fmt &= ~HDF_SORTDOWN;
+                                lvColumn.fmt |= HDF_SORTUP;
+                                break;
+                            case SortOrder.Descending:
+                                lvColumn.fmt &= ~HDF_SORTUP;
+                                lvColumn.fmt |= HDF_SORTDOWN;
+                                break;
+                        }
+                        lvColumn.fmt |= (HDF_LEFT | HDF_BITMAP_ON_RIGHT);
+                    }
+                    else
+                    {
+                        lvColumn.fmt &= ~HDF_SORTDOWN & ~HDF_SORTUP & ~HDF_BITMAP_ON_RIGHT;
+                    }
+
+                    SendMessageLVCOLUMN(columnHeader, HDM_SETITEM, columnPtr, ref lvColumn);
+                }
             }
         }
+        #endregion
     }
 }
