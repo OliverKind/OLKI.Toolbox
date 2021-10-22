@@ -167,6 +167,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Changelog.txt" />
+    <Content Include="licenses\CPOL-License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="licenses\LGPL-License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="licenses\MIT-License %28CroweMan%3b 22.06.2010%29.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="licenses\MIT-License %28octokit.net%3b 16.08.2017%29.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="WIA">
