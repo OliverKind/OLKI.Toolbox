@@ -1,9 +1,17 @@
 # OLKI.Toolbox
+## [2.0.0.7] - 2021-10-22
+### Added
+- OLKI.Toolbox.Common.CSVreader: Class that provides a reader for csv-Files
+- OLKI.Toolbox.Widgets.SortListView.FillUpSubItems: Fill up empty ListViewSubItems, depending on the Count of Columns
+
+### Changed
+- OLKI.Toolbox.Widgets.AboutForm: Add default License-Text
+
 ## [1.2.1.6] - 2021-10-10
 ### Added
 - OLKI.Toolbox.Common.Serialize.GetFromXElement (string): Add convertLineBreake option
 
-Changed
+### Changed
 - Set required .NET-Framework to Version 4.8
 
 ### Fixed
@@ -11,7 +19,7 @@ Changed
 
 ## [1.2.0.5] - 2021-09-27
 ### Added
--  OLKI.Toolbox.Widgets.AboutForm
+- OLKI.Toolbox.Widgets.AboutForm
 
 ### Fixed
 - OLKI.Toolbox.ColorAndPicture.Picture.Scan.SetProperty: Namespace collision
