@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblProductName = new System.Windows.Forms.Label();
             this.tblLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -120,7 +121,7 @@
             this.txtCredits.Size = new System.Drawing.Size(446, 194);
             this.txtCredits.TabIndex = 5;
             this.txtCredits.TabStop = false;
-            this.txtCredits.Text = "Credits";
+            this.txtCredits.Text = resources.GetString("txtCredits.Text");
             this.txtCredits.WordWrap = false;
             // 
             // pbxLogoApplication

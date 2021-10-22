@@ -117,4 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="txtCredits.Text" xml:space="preserve">
+    <value>{0}
+
+
+
+// Software von Drittanbietern:
+Bibliotheken:
+- octokit / octokit.net
+  Autoren: https://github.com/octokit/octokit.net/graphs/contributors
+  Quelle: https://github.com/octokit/octokit.net
+  Lizenz: The MIT License
+
+
+Widgets und Komponenten von Widgets:
+- Sort listview Columns and Set Sort Arrow Icon on Column Header
+  Autor und Veröffentlichung: sagar_253, 21 Mar 2014
+  Quelle: http://www.codeproject.com/Tips/734463/Sort-listview-Columns-and-Set-Sort-Arrow-Icon-on-C
+  Lizenz: The Code Project Open License (CPOL)
+  Anmerkung: Der Code wurde zur Verwendung als Steuerelement angepasst
+
+- C# CSV Reader and Writer
+  Autor und Veröffentlichung: CroweMan, 22 June 2010
+  Quelle: https://www.codeproject.com/Articles/86973/C-CSV-Reader-and-Writer
+  Lizenz: The MIT License
+  Anmerkung: Der Code wurde zur Verwendung als Steuerelement angepasst</value>
+  </data>
 </root>

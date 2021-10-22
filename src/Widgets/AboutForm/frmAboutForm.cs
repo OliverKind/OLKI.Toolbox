@@ -170,7 +170,6 @@ namespace OLKI.Toolbox.Widgets.AboutForm
             this.lblCopyright.Text = string.Format(this.lblCopyright.Text, this.AssemblyCopyright);
             this.lblCompanyName.Text = string.Format(this.lblCompanyName.Text, this.AssemblyCompany);
             this.txtDescription.Text = DescriptionText;
-            this.txtCredits.Text = this.Credits;
 
             this.pbxLogoApplication.Image = imgApp;
             this.pbxLogoFile.Image = imgFile;
@@ -182,7 +181,7 @@ namespace OLKI.Toolbox.Widgets.AboutForm
         /// <param name="owner">Any object that implements IWin32Window and represents the top-level window that will own this form.</param>
         public new void Show(IWin32Window owner)
         {
-            this.txtCredits.Text = Credits;
+            this.txtCredits.Text = string.Format(this.txtCredits.Text, new object[] { this.Credits });
             if (string.IsNullOrEmpty(this.LicenseDirectory) && string.IsNullOrEmpty(this.LicenseText))
             {
                 this.btnGoToLicenses.Enabled = false;
@@ -207,7 +206,7 @@ namespace OLKI.Toolbox.Widgets.AboutForm
         /// <returns>One of the DialogResult values.</returns>
         public new DialogResult ShowDialog(IWin32Window owner)
         {
-            this.txtCredits.Text = Credits;
+            this.txtCredits.Text = string.Format(this.txtCredits.Text, new object[] { this.Credits });
             if (string.IsNullOrEmpty(this.LicenseDirectory) && string.IsNullOrEmpty(this.LicenseText))
             {
                 this.btnGoToLicenses.Enabled = false;
