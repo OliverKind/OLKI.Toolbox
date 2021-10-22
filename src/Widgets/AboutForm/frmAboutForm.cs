@@ -33,13 +33,6 @@ namespace OLKI.Toolbox.Widgets.AboutForm
     /// </summary>
     public partial class AboutForm : Form
     {
-        #region Constants
-        /// <summary>
-        /// Specifies the name of the application version
-        /// </summary>
-        private const string VERSION_NAME = "Peter";
-        #endregion
-
         #region Properties
         /// <summary>
         /// Get the title information from assembly settiongs
@@ -141,7 +134,7 @@ namespace OLKI.Toolbox.Widgets.AboutForm
         /// <summary>
         /// Host Application Assembly for the AboutForm
         /// </summary>
-        private Assembly _hostAssembly;
+        private readonly Assembly _hostAssembly;
         #endregion
 
         #region Methods
