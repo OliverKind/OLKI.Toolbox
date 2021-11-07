@@ -37,7 +37,6 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
         /// <summary>
         /// Change the brightness of an image
         /// </summary>
-        /// <remarks>
         /// <param name="image">The original image to change the brightness</param>
         /// <param name="brightness">The value to change the brightness. Betwenn -255 and 255.</param>
         /// <returns>The image with modified brightness or NULL if an exception was thrown</returns>
