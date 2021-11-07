@@ -57,6 +57,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="src\ColorAndPicture\Color\clsColor.cs" />
+    <Compile Include="src\ColorAndPicture\Picture\Modify\clsRotate.cs" />
     <Compile Include="src\ColorAndPicture\Picture\Modify\clsBrightness.cs" />
     <Compile Include="src\ColorAndPicture\Picture\Modify\clsBrightnessAndContrast.cs" />
     <Compile Include="src\ColorAndPicture\Picture\Modify\clsContrast.cs" />
