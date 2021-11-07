@@ -24,8 +24,6 @@
 
 using System;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Threading.Tasks;
 
 namespace OLKI.Toolbox.ColorAndPicture.Picture
 {
