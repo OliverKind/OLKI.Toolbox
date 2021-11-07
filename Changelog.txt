@@ -1,4 +1,8 @@
 # OLKI.Toolbox
+## [3.0.0.8] - 2021-11-07
+### Added
+- OLKI.Toolbox.ColorAndPicture.Picture.Modify: Rotate image
+
 ## [2.0.0.7] - 2021-10-22
 ### Added
 - OLKI.Toolbox.Common.CSVreader: Class that provides a reader for csv-Files
