@@ -61,6 +61,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture
             try
             {
                 exception = null;
+                if (contrast == 0) return image;  //Nothing to do
                 unsafe
                 {
                     Bitmap TempBmp = (Bitmap)image.Clone();
