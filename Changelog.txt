@@ -1,4 +1,11 @@
 # OLKI.Toolbox
+## [4.0.0.9] - 2021-11-27
+### Added
+- OLKI.Toolbox.ColorAndPicture.Picture.Modify: Resize image
+
+### Changed
+- OLKI.Toolbox.ColorAndPicture.Picture.Modify: Return original image if no modification has to be done
+
 ## [3.0.0.8] - 2021-11-07
 ### Added
 - OLKI.Toolbox.ColorAndPicture.Picture.Modify: Rotate image
