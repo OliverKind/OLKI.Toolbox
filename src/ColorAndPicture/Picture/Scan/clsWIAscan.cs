@@ -39,7 +39,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
         /// <summary>
         /// Default scan format
         /// </summary>
-        const string SCAN_FORMAT_BMP = FormatID.wiaFormatJPEG;
+        const string DEFAULT_SCAN_FORMAT = FormatID.wiaFormatJPEG;
         /// <summary>
         /// Adress to set horizontal scan resolution
         /// </summary>
@@ -133,6 +133,16 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
             return Scan(deviceId, 0);
         }
         /// <summary>
+        /// Scan an single image, with default resolution
+        /// </summary>
+        /// <param name="deviceId">Scan device</param>
+        /// <param name="formatID">Scan Image-Format, get from WIA.FormatID</param>
+        /// <returns>Scanned image or NULL if an exception was thrown</returns>
+        public static Image Scan(string deviceId, string formatID)
+        {
+            return Scan(deviceId, 0, formatID);
+        }
+        /// <summary>
         /// Scan an single image, with defined resolution
         /// </summary>
         /// <param name="deviceId">Scan device</param>
@@ -141,6 +151,17 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
         public static Image Scan(string deviceId, uint resolution)
         {
             return Scan(deviceId, resolution, out _);
+        }
+        /// <summary>
+        /// Scan an single image, with defined resolution
+        /// </summary>
+        /// <param name="deviceId">Scan device</param>
+        /// <param name="resolution">Scan resolution</param>
+        /// <param name="formatID">Scan Image-Format, get from WIA.FormatID</param>
+        /// <returns>Scanned image or NULL if an exception was thrown</returns>
+        public static Image Scan(string deviceId, uint resolution, string formatID)
+        {
+            return Scan(deviceId, resolution, formatID, out _);
         }
         /// <summary>
         /// Scan an single image, with default resolution
@@ -153,6 +174,17 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
             return Scan(deviceId, 0, out exception);
         }
         /// <summary>
+        /// Scan an single image, with default resolution
+        /// </summary>
+        /// <param name="deviceId">Scan device</param>
+        /// <param name="formatID">Scan Image-Format, get from WIA.FormatID</param>
+        /// <param name="exception">Exception while scanning</param>
+        /// <returns>Scanned image or NULL if an exception was thrown</returns>
+        public static Image Scan(string deviceId, string formatID, out Exception exception)
+        {
+            return Scan(deviceId, 0, formatID, out exception);
+        }
+        /// <summary>
         /// Scan an single image, with defined resolution
         /// </summary>
         /// <param name="deviceId">Scan device</param>
@@ -160,6 +192,18 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
         /// <param name="exception">Exception while scanning</param>
         /// <returns>Scanned image or NULL if an exception was thrown</returns>
         public static Image Scan(string deviceId, uint resolution, out Exception exception)
+        {
+            return Scan(deviceId, resolution, DEFAULT_SCAN_FORMAT, out exception);
+        }
+        /// <summary>
+        /// Scan an single image, with defined resolution
+        /// </summary>
+        /// <param name="deviceId">Scan device</param>
+        /// <param name="resolution">Scan resolution</param>
+        /// <param name="formatID">Scan Image-Format, get from WIA.FormatID</param>
+        /// <param name="exception">Exception while scanning</param>
+        /// <returns>Scanned image or NULL if an exception was thrown</returns>
+        public static Image Scan(string deviceId, uint resolution, string formatID, out Exception exception)
         {
             exception = null;
 
@@ -179,7 +223,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
                 }
 
                 CommonDialog ScanDialog = new WIA.CommonDialog();
-                ImageFile ScanImage = (ImageFile)ScanDialog.ShowTransfer(DeviceItem, SCAN_FORMAT_BMP, true);
+                ImageFile ScanImage = (ImageFile)ScanDialog.ShowTransfer(DeviceItem, formatID, true);
 
                 return Image.FromStream(new MemoryStream((byte[])ScanImage.FileData.get_BinaryData()));
             }
