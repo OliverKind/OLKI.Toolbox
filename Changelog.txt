@@ -1,4 +1,8 @@
 # OLKI.Toolbox
+## [4.1.0.10] - 2021-12-14
+### Added
+- OLKI.Toolbox.ColorAndPicture.Picture.Scan: Add formatID-Option
+
 ## [4.0.0.9] - 2021-11-27
 ### Added
 - OLKI.Toolbox.ColorAndPicture.Picture.Modify: Resize image
