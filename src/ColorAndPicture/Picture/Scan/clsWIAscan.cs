@@ -222,7 +222,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
                     SetProperty(DeviceItem.Properties, WIA_VERTICAL_SCAN_RESOLUTION_DPI, resolution);
                 }
 
-                CommonDialog ScanDialog = new WIA.CommonDialog();
+                CommonDialog ScanDialog = new CommonDialog();
                 ImageFile ScanImage = (ImageFile)ScanDialog.ShowTransfer(DeviceItem, formatID, true);
 
                 return Image.FromStream(new MemoryStream((byte[])ScanImage.FileData.get_BinaryData()));
