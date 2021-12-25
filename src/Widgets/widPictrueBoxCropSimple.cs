@@ -55,8 +55,19 @@ namespace OLKI.Toolbox.Widgets
         {
             get
             {
-                if (!this.GetShowRectangle(this._cropAreaSelection)) return null;
-                return this._cropAreaSelection;
+                Rectangle FitNegativeArea = this._cropAreaSelection;
+                if (this._cropAreaSelection.Height < 0)
+                {
+                    FitNegativeArea.Height = Math.Abs(this._cropAreaSelection.Height);
+                    FitNegativeArea.Y = this._cropAreaSelection.Y - FitNegativeArea.Height;
+                }
+                if (this._cropAreaSelection.Width < 0)
+                {
+                    FitNegativeArea.Width = Math.Abs(this._cropAreaSelection.Width);
+                    FitNegativeArea.X = this._cropAreaSelection.X - FitNegativeArea.Width;
+                }
+                if (!this.GetShowRectangle(FitNegativeArea)) return null;
+                return FitNegativeArea;
             }
         }
 
@@ -70,7 +81,7 @@ namespace OLKI.Toolbox.Widgets
         {
             get
             {
-                if (!this.GetShowRectangle(this._cropAreaSelection)) return null;
+                if (!this.GetShowRectangle(this.CropAreaSelection)) return null;
 
                 Rectangle FitArea = this.CropAreaSelection.Value;
                 FitArea.Width = (int)Math.Round(FitArea.Width / this.ScaleFactor, 0);
@@ -296,7 +307,7 @@ namespace OLKI.Toolbox.Widgets
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (this._selectingArea && this.SizeMode == PictureBoxSizeMode.Zoom && this.CropMode) e.Graphics.DrawRectangle(Pens.Red, this._cropAreaSelection);
+            if (this._selectingArea && this.SizeMode == PictureBoxSizeMode.Zoom && this.CropMode && this.CropAreaSelection != null) e.Graphics.DrawRectangle(Pens.Red, (Rectangle)this.CropAreaSelection);
         }
 
         /// <summary>
