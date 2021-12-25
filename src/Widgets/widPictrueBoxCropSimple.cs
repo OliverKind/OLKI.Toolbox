@@ -272,6 +272,11 @@ namespace OLKI.Toolbox.Widgets
                 this._selectingArea = true;
                 this._cropAreaSelection = new Rectangle(new Point(e.X, e.Y), new Size(0, 0));
             }
+            if (e.Button == MouseButtons.Right)
+            {
+                this._cropAreaSelection = new Rectangle(new Point(0, 0), new Size(0, 0)); ;
+                this.Refresh();
+            }
             base.OnMouseDown(e);
         }
 
