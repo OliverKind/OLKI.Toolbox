@@ -200,6 +200,15 @@ namespace OLKI.Toolbox.Widgets
         [DisplayName("Initial Crop Area size")]
         [Description("Initial Size of the Crop Area")]
         public Size InitialCropSize { get; set; } = new Size(100, 100);
+
+        /// <summary>
+        /// Get or set if the Crop Mode should been left, if the image is set
+        /// </summary>
+        [Category("_Crop")]
+        [DefaultValue(true)]
+        [DisplayName("Leave Crop Mode if Image is set")]
+        [Description("Should the Crop Mode been left, if the image is set")]
+        public bool LeaveCropModeIfImageSet { get; set; } = true;
         #endregion
 
         #region Crop - Additional
@@ -283,6 +292,19 @@ namespace OLKI.Toolbox.Widgets
             }
         }
         #endregion
+
+        public new Image Image
+        {
+            get
+            {
+                return base.Image;
+            }
+            set
+            {
+                base.Image = value;
+                if (this.LeaveCropModeIfImageSet) this.CropMode = false;
+            }
+        }
 
         /// <summary>
         /// Encapsulates the information needed when creating the control. Remove flickering.
