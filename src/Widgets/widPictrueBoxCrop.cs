@@ -57,6 +57,7 @@ namespace OLKI.Toolbox.Widgets
         /// Get or set if the Crop Area can be created or removed with mouse click
         /// </summary>
         [Category("_Crop")]
+        [DefaultValue(true)]
         [DisplayName("Add and remove Crop Area with mouse")]
         [Description("Can the Crop Area be created or removed with mouse click")]
         public bool AddRemoveCropAreaWithMouseClick { get; set; } = true;
@@ -170,11 +171,12 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// PictureBox is in crop mode
         /// </summary>
-        private bool _cropMode = true;
+        private bool _cropMode = false;
         /// <summary>
         /// Get or set if the PictureBox is in crop mode
         /// </summary>
         [Category("_Crop")]
+        [DefaultValue(false)]
         [DisplayName("Crop mode active")]
         [Description("PictureBox is in crop mode")]
         public bool CropMode
