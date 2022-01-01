@@ -151,6 +151,9 @@
     <Compile Include="src\Widgets\widNumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="src\Widgets\widPictrueBoxCrop.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="src\Widgets\widPictrueBoxCropSimple.cs">
       <SubType>Component</SubType>
     </Compile>

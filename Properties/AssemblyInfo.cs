@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("OLKI-Software")]
 [assembly: AssemblyProduct("OLKI.Toolbox")]
-[assembly: AssemblyCopyright("Copyright ©  2021 - Oliver Kind")]
+[assembly: AssemblyCopyright("Copyright ©  2022 - Oliver Kind")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder Standardwerte für die Build- und Revisionsnummern verwenden,
 // indem Sie "*" wie unten gezeigt eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.1.0.10")]
-[assembly: AssemblyFileVersion("4.1.0.10")]
+[assembly: AssemblyVersion("5.0.0.11")]
+[assembly: AssemblyFileVersion("5.0.0.11")]

@@ -1,4 +1,12 @@
 # OLKI.Toolbox
+## [5.0.0.11] - 2022-01-01
+### Added
+- OLKI.Toolbox.Widgets.PictrueBoxCrop: A PictureBox to crop images
+
+### Changed
+- OLKI.Toolbox.Widgets.PictrueBoxCropSimple: Allow selecting crop area with negative width and height
+- OLKI.Toolbox.Widgets.PictrueBoxCropSimple: Remove Crop Area on right cklick
+
 ## [4.1.0.10] - 2021-12-14
 ### Added
 - OLKI.Toolbox.ColorAndPicture.Picture.Scan: Add formatID-Option
