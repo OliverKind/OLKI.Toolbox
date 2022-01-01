@@ -59,7 +59,7 @@ namespace OLKI.Toolbox.Widgets
         [Category("_Crop")]
         [DisplayName("Add and remove Crop Area with mouse")]
         [Description("Can the Crop Area be created or removed with mouse click")]
-        private bool AddRemoveCropAreaWithMouseClick { get; set; } = true;
+        public bool AddRemoveCropAreaWithMouseClick { get; set; } = true;
 
         /// <summary>
         /// Get the selected Crop Area
