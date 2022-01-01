@@ -257,6 +257,9 @@ namespace OLKI.Toolbox.Widgets
         #endregion
 
         #region Methodes
+        /// <summary>
+        /// Initial a new PictureBox to crop images
+        /// </summary>
         public PictrueBoxCropSimple()
         {
         }
