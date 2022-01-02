@@ -71,7 +71,7 @@ namespace OLKI.Toolbox.Widgets
         [Category("_Crop")]
         [DisplayName("Selected Crop Area Frame")]
         [Description("The selected area to crop")]
-        internal RectangleCreator CropAreaSelectionFrame { get; private set; } = new RectangleCreator();
+        public RectangleCreator CropAreaSelectionFrame { get; private set; } = new RectangleCreator();
 
         /// <summary>
         /// Get the selected Crop Area
@@ -422,7 +422,7 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// Class to provide a rectangle to create the crop are
         /// </summary>
-        internal class RectangleCreator : Control
+        public class RectangleCreator : Control
         {
             #region Constants
             private const int WM_NCHITTEST = 0x84;
@@ -453,6 +453,14 @@ namespace OLKI.Toolbox.Widgets
                     this._rectanglePen = value;
                 }
             }
+
+            /// <summary>
+            /// Width of the border to selct with mouse
+            /// </summary>
+            [Category("_Drawing")]
+            [DisplayName("Selection Width")]
+            [Description("Width of the border to selct with mouse")]
+            public int SelectionWidth { get; set; } = 10;
             #endregion
 
             #region Methodes
@@ -481,7 +489,6 @@ namespace OLKI.Toolbox.Widgets
 
             protected override void WndProc(ref Message m)
             {
-                int SELECTION_WIDTH = 10;
                 if (m.Msg == WM_SETCURSOR)  //Setting cursor to SizeAll
                 {
                     if ((m.LParam.ToInt32() & 0xffff) == 0x2)  //Move
@@ -501,35 +508,35 @@ namespace OLKI.Toolbox.Widgets
                 {
                     var pos = PointToClient(new Point(m.LParam.ToInt32() & 0xffff,
                         m.LParam.ToInt32() >> 16));
-                    if (pos.X <= ClientRectangle.Left + SELECTION_WIDTH && pos.Y <= ClientRectangle.Top + SELECTION_WIDTH)
+                    if (pos.X <= ClientRectangle.Left + this.SelectionWidth && pos.Y <= ClientRectangle.Top + this.SelectionWidth)
                     {
                         m.Result = new IntPtr(13); //TopLEft
                     }
-                    else if (pos.X >= ClientRectangle.Right - SELECTION_WIDTH && pos.Y <= ClientRectangle.Top + SELECTION_WIDTH)
+                    else if (pos.X >= ClientRectangle.Right - this.SelectionWidth && pos.Y <= ClientRectangle.Top + this.SelectionWidth)
                     {
                         m.Result = new IntPtr(14); //TopRight
                     }
-                    else if (pos.X <= ClientRectangle.Left + SELECTION_WIDTH && pos.Y >= ClientRectangle.Bottom - SELECTION_WIDTH)
+                    else if (pos.X <= ClientRectangle.Left + this.SelectionWidth && pos.Y >= ClientRectangle.Bottom - this.SelectionWidth)
                     {
                         m.Result = new IntPtr(16); //BottomLeft
                     }
-                    else if (pos.X >= ClientRectangle.Right - SELECTION_WIDTH && pos.Y >= ClientRectangle.Bottom - SELECTION_WIDTH)
+                    else if (pos.X >= ClientRectangle.Right - this.SelectionWidth && pos.Y >= ClientRectangle.Bottom - this.SelectionWidth)
                     {
                         m.Result = new IntPtr(17); //BottomRight
                     }
-                    else if (pos.X <= ClientRectangle.Left + SELECTION_WIDTH)
+                    else if (pos.X <= ClientRectangle.Left + this.SelectionWidth)
                     {
                         m.Result = new IntPtr(10); //Left
                     }
-                    else if (pos.Y <= ClientRectangle.Top + SELECTION_WIDTH)
+                    else if (pos.Y <= ClientRectangle.Top + this.SelectionWidth)
                     {
                         m.Result = new IntPtr(12); //Top
                     }
-                    else if (pos.X >= ClientRectangle.Right - SELECTION_WIDTH)
+                    else if (pos.X >= ClientRectangle.Right - this.SelectionWidth)
                     {
                         m.Result = new IntPtr(11); //Right
                     }
-                    else if (pos.Y >= ClientRectangle.Bottom - SELECTION_WIDTH)
+                    else if (pos.Y >= ClientRectangle.Bottom - this.SelectionWidth)
                     {
                         m.Result = new IntPtr(15); //Bottom
                     }
