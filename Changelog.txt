@@ -1,4 +1,8 @@
 # OLKI.Toolbox
+## [5.1.0.12] - 2022-01-07
+### Changed
+- OLKI.Toolbox.Widgets.PictrueBoxCrop: Set several Properties to public
+
 ## [5.0.0.11] - 2022-01-01
 ### Added
 - OLKI.Toolbox.Widgets.PictrueBoxCrop: A PictureBox to crop images
