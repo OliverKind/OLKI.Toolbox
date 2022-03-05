@@ -480,9 +480,12 @@ namespace OLKI.Toolbox.Widgets
                 }
                 this.ByteDimension = (FileSize.Dimension)Dimension;
 
-                this._suppressControleEvents = true;
-                ComboBoxInv.SelectedIndex(this.cboByteDime, (int)Dimension + (this.AutoByteBase == FileSize.ByteBase.IEC ? 0 : FileSize.UnitPrefix_IEC.Length));
-                this._suppressControleEvents = false;
+                if (!this.cboByteDime.DroppedDown)
+                {
+                    this._suppressControleEvents = true;
+                    ComboBoxInv.SelectedIndex(this.cboByteDime, (int)Dimension + (this.AutoByteBase == FileSize.ByteBase.IEC ? 0 : FileSize.UnitPrefix_IEC.Length));
+                    this._suppressControleEvents = false;
+                }
             }
             else
             {
