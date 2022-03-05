@@ -1,4 +1,11 @@
 # OLKI.Toolbox
+## [5.1.1.13] - 2022-03-05
+### Changed
+- OLKI.Toolbox.ColorAndPicture.Picture.Scan: Add exception handling, while connecting to scan device
+
+#Fixed
+- OLKI.Toolbox.Widgets.ExtProgressBar: Flickering of Dimension DropDown ComboBox
+
 ## [5.1.0.12] - 2022-01-07
 ### Changed
 - OLKI.Toolbox.Widgets.PictrueBoxCrop: Set several Properties to public
