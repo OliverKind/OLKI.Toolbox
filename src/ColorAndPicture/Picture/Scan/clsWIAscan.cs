@@ -208,7 +208,7 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
             exception = null;
 
             // Connect do scanner
-            Device Device = Connect(deviceId);
+            Device Device = Connect(deviceId, out exception);
             if (Device == null) return null;
 
             // Scan first page
@@ -252,11 +252,31 @@ namespace OLKI.Toolbox.ColorAndPicture.Picture.Scan
         /// <returns>DeviceInfo of the connected scan device or NULL if the connection failed</returns>
         private static Device Connect(string deviceId)
         {
-            foreach (DeviceInfo DeviceInfo in new DeviceManager().DeviceInfos)
+            return Connect(deviceId, out _);
+        }
+
+        /// <summary>
+        /// Connect to an defined scan device and return the DeviceInfo or NULL if the connection failed
+        /// </summary>
+        /// <param name="deviceId">Id of the device to connect to</param>
+        /// <param name="exception">Exception while connecting to Device</param>
+        /// <returns>DeviceInfo of the connected scan device or NULL if the connection failed</returns>
+        private static Device Connect(string deviceId, out Exception exception)
+        {
+            exception = null;
+            try
             {
-                if (DeviceInfo.DeviceID == deviceId) return DeviceInfo.Connect();
+                foreach (DeviceInfo DeviceInfo in new DeviceManager().DeviceInfos)
+                {
+                    if (DeviceInfo.DeviceID == deviceId) return DeviceInfo.Connect();
+                }
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                exception = ex;
+                return null;
+            }
         }
     }
 }
