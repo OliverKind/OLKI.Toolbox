@@ -81,10 +81,11 @@
       <DependentUpon>clsSerialize.StringTable.resx</DependentUpon>
     </Compile>
     <Compile Include="src\DirectroyAndFile\clsDirectory.cs" />
+    <Compile Include="src\DirectroyAndFile\clsFileCheckSum.cs" />
     <Compile Include="src\DirectroyAndFile\clsFile.cs" />
     <Compile Include="src\DirectroyAndFile\clsFileAssociation.cs" />
     <Compile Include="src\DirectroyAndFile\clsFileSize.cs" />
-    <Compile Include="src\DirectroyAndFile\clsHAndleAttributes.cs" />
+    <Compile Include="src\DirectroyAndFile\clsHandleAttributes.cs" />
     <Compile Include="src\DirectroyAndFile\clsPath.cs" />
     <Compile Include="src\DirectroyAndFile\HandleExistingFiles\clsHandleExistingFiles.cs" />
     <Compile Include="src\DirectroyAndFile\HandleExistingFiles\frmHandleExistingFilesForm.cs">

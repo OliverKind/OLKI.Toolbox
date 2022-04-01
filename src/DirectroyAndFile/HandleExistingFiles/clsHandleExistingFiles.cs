@@ -89,11 +89,21 @@ namespace OLKI.Toolbox.DirectoryAndFile
             /// <summary>
             /// Skip the file and proceed to next file
             /// </summary>
-            Skipp
+            Skipp,
+            /// <summary>
+            /// Overwrite the exising file if the length of the source and target file is different
+            /// </summary>
+            OverwriteIfDifferentChecksum
         }
         #endregion
 
         #region Methodes
+        /// <summary>
+        /// Delegate for paren Form, to show dialog in modal mode
+        /// </summary>
+        /// <param name="parent">Parent form to show dialog in modal mode</param>
+        private delegate void InvokeDelegate(Form parent);
+
         /// <summary>
         /// Gets how to handle existing files. Show form to ask how to handle, if necessary
         /// </summary>
@@ -119,11 +129,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <param name="defaultAddText">Default text to add to existing files</param>
         /// <param name="defaultRemember">Default state of remember action CheckBox</param>
         /// <param name="exception">Exception while handle existing file</param>
-        /// <param name="parentForm">Parent form to show dialog in modal mode</param>
+        /// <param name="parent">Parent form to show dialog in modal mode</param>
         /// <returns>Should the exisiting file been overwritten, was renamend or occourded an exception</returns>
-
-        private delegate void InvokeDelegate(Form parent);
-
         public static CheckResult GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem defaultAction, string defaultAddText, bool defaultRemember, out Exception exception, Form parent)
         {
             exception = null;
@@ -167,7 +174,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         }
 
         /// <summary>
-        /// Gets how if the existing file should been overwritten, by selected action
+        /// Gets how a existing file has been handled, by selected action
         /// </summary>
         /// <param name="sourceFile">Source file to copy</param>
         /// <param name="targetFile">Target file to copy the data to</param>
@@ -188,6 +195,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
                     throw new ArgumentException("HandleExistingFiles->GetOverwriteByAction->Invalid value", nameof(action));
                 case HowToHandleExistingItem.OverwriteAll:
                     return TargetOverwrite();
+                case HowToHandleExistingItem.OverwriteIfDifferentChecksum:
+                    return SourceDifferentChecksum(sourceFile, targetFile);
                 case HowToHandleExistingItem.OverwriteIfDifferentLength:
                     return SourceDifferentLength(sourceFile, targetFile);
                 case HowToHandleExistingItem.OverwriteIfDifferentLengthOrNewer:
@@ -240,7 +249,18 @@ namespace OLKI.Toolbox.DirectoryAndFile
         }
 
         /// <summary>
-        /// Returns ouverwrite if source file has a different length
+        /// Returns ouverwrite if source file has a different Checksum
+        /// </summary>
+        /// <param name="sourceFile">Source file to copy</param>
+        /// <param name="targetFile">Target file to copy the data to</param>
+        /// <returns>Overwrite if source file has a different Checksum</returns>
+        public static ExistingFile SourceDifferentChecksum(FileInfo sourceFile, FileInfo targetFile)
+        {
+            return FileCheckSum.SHA256(sourceFile.FullName) != FileCheckSum.SHA256(targetFile.FullName) ? ExistingFile.Overwrite : ExistingFile.Skip;
+        }
+
+        /// <summary>
+        /// Returns ouverwrite if source file has a different Length
         /// </summary>
         /// <param name="sourceFile">Source file to copy</param>
         /// <param name="targetFile">Target file to copy the data to</param>

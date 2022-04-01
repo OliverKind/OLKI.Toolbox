@@ -32,6 +32,7 @@
             this.lblActionDoubleFile = new System.Windows.Forms.Label();
             this.rabAction_OverwriteAll = new System.Windows.Forms.RadioButton();
             this.grbAction = new System.Windows.Forms.GroupBox();
+            this.rabAction_OverwriteIfDifferentChecksum = new System.Windows.Forms.RadioButton();
             this.cboAction_AddText_Template = new System.Windows.Forms.ComboBox();
             this.btnAction_AddText_Transfair = new System.Windows.Forms.Button();
             this.rabAction_AskAnyTime = new System.Windows.Forms.RadioButton();
@@ -76,6 +77,7 @@
             // 
             // grbAction
             // 
+            this.grbAction.Controls.Add(this.rabAction_OverwriteIfDifferentChecksum);
             this.grbAction.Controls.Add(this.cboAction_AddText_Template);
             this.grbAction.Controls.Add(this.btnAction_AddText_Transfair);
             this.grbAction.Controls.Add(this.rabAction_AskAnyTime);
@@ -88,10 +90,21 @@
             this.grbAction.Controls.Add(this.rabAction_OverwriteAll);
             this.grbAction.Location = new System.Drawing.Point(538, 25);
             this.grbAction.Name = "grbAction";
-            this.grbAction.Size = new System.Drawing.Size(514, 180);
+            this.grbAction.Size = new System.Drawing.Size(514, 203);
             this.grbAction.TabIndex = 4;
             this.grbAction.TabStop = false;
             this.grbAction.Text = "Aktion:";
+            // 
+            // rabAction_OverwriteIfDifferentChecksum
+            // 
+            this.rabAction_OverwriteIfDifferentChecksum.AutoSize = true;
+            this.rabAction_OverwriteIfDifferentChecksum.Location = new System.Drawing.Point(6, 111);
+            this.rabAction_OverwriteIfDifferentChecksum.Name = "rabAction_OverwriteIfDifferentChecksum";
+            this.rabAction_OverwriteIfDifferentChecksum.Size = new System.Drawing.Size(272, 17);
+            this.rabAction_OverwriteIfDifferentChecksum.TabIndex = 8;
+            this.rabAction_OverwriteIfDifferentChecksum.Text = "Überschreiben falls Datei Prüfsumme unterschiedlich";
+            this.rabAction_OverwriteIfDifferentChecksum.UseVisualStyleBackColor = true;
+            this.rabAction_OverwriteIfDifferentChecksum.CheckedChanged += new System.EventHandler(this.rabActionXXX_CheckedChanged);
             // 
             // cboAction_AddText_Template
             // 
@@ -102,14 +115,14 @@
             "Datei Datum und Uhrzeit der letzten Änderung - {{$LastWriteTime}}",
             "Datei Datum und Uhrzeit des letzten Zugriffs - {{$LastAccessTime}}",
             "Aktuelles Datum und Uhrzeit - {{$Now}}"});
-            this.cboAction_AddText_Template.Location = new System.Drawing.Point(432, 111);
+            this.cboAction_AddText_Template.Location = new System.Drawing.Point(432, 134);
             this.cboAction_AddText_Template.Name = "cboAction_AddText_Template";
             this.cboAction_AddText_Template.Size = new System.Drawing.Size(76, 21);
             this.cboAction_AddText_Template.TabIndex = 7;
             // 
             // btnAction_AddText_Transfair
             // 
-            this.btnAction_AddText_Transfair.Location = new System.Drawing.Point(396, 112);
+            this.btnAction_AddText_Transfair.Location = new System.Drawing.Point(396, 135);
             this.btnAction_AddText_Transfair.Name = "btnAction_AddText_Transfair";
             this.btnAction_AddText_Transfair.Size = new System.Drawing.Size(30, 20);
             this.btnAction_AddText_Transfair.TabIndex = 6;
@@ -120,7 +133,7 @@
             // rabAction_AskAnyTime
             // 
             this.rabAction_AskAnyTime.AutoSize = true;
-            this.rabAction_AskAnyTime.Location = new System.Drawing.Point(6, 157);
+            this.rabAction_AskAnyTime.Location = new System.Drawing.Point(6, 180);
             this.rabAction_AskAnyTime.Name = "rabAction_AskAnyTime";
             this.rabAction_AskAnyTime.Size = new System.Drawing.Size(81, 17);
             this.rabAction_AskAnyTime.TabIndex = 9;
@@ -131,7 +144,7 @@
             // rabAction_Skipp
             // 
             this.rabAction_Skipp.AutoSize = true;
-            this.rabAction_Skipp.Location = new System.Drawing.Point(6, 134);
+            this.rabAction_Skipp.Location = new System.Drawing.Point(6, 157);
             this.rabAction_Skipp.Name = "rabAction_Skipp";
             this.rabAction_Skipp.Size = new System.Drawing.Size(88, 17);
             this.rabAction_Skipp.TabIndex = 8;
@@ -141,7 +154,7 @@
             // 
             // txtAction_AddText_Text
             // 
-            this.txtAction_AddText_Text.Location = new System.Drawing.Point(213, 112);
+            this.txtAction_AddText_Text.Location = new System.Drawing.Point(213, 135);
             this.txtAction_AddText_Text.Name = "txtAction_AddText_Text";
             this.txtAction_AddText_Text.Size = new System.Drawing.Size(176, 20);
             this.txtAction_AddText_Text.TabIndex = 5;
@@ -150,7 +163,7 @@
             // rabAction_AddText
             // 
             this.rabAction_AddText.AutoSize = true;
-            this.rabAction_AddText.Location = new System.Drawing.Point(6, 111);
+            this.rabAction_AddText.Location = new System.Drawing.Point(6, 134);
             this.rabAction_AddText.Name = "rabAction_AddText";
             this.rabAction_AddText.Size = new System.Drawing.Size(201, 17);
             this.rabAction_AddText.TabIndex = 4;
@@ -194,7 +207,7 @@
             // chkForAllFollowing
             // 
             this.chkForAllFollowing.AutoSize = true;
-            this.chkForAllFollowing.Location = new System.Drawing.Point(544, 211);
+            this.chkForAllFollowing.Location = new System.Drawing.Point(538, 234);
             this.chkForAllFollowing.Name = "chkForAllFollowing";
             this.chkForAllFollowing.Size = new System.Drawing.Size(255, 17);
             this.chkForAllFollowing.TabIndex = 5;
@@ -327,5 +340,6 @@
         private System.Windows.Forms.RadioButton rabAction_OverwriteIfDifferentLength;
         private System.Windows.Forms.RadioButton rabAction_OverwriteIfNewer;
         private System.Windows.Forms.RadioButton rabAction_AskAnyTime;
+        private System.Windows.Forms.RadioButton rabAction_OverwriteIfDifferentChecksum;
     }
 }
