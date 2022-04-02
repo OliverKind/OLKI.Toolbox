@@ -172,6 +172,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="Changelog.txt" />
     <Content Include="licenses\CPOL-License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
