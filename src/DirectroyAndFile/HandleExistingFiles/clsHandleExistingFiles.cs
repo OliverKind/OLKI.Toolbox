@@ -23,6 +23,7 @@
  * */
 
 using System;
+using System.Security.Cryptography;
 using System.IO;
 using System.Windows.Forms;
 
@@ -117,7 +118,24 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <returns>Should the exisiting file been overwritten, was renamend or occourded an exception</returns>
         public static CheckResult GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem defaultAction, string defaultAddText, bool defaultRemember, out Exception exception)
         {
-            return GetOverwriteByAction(sourceFile, targetFile, dateFormat, defaultAction, defaultAddText, defaultRemember, out exception, null);
+            return GetOverwriteByAction(sourceFile, targetFile,
+                dateFormat, defaultAction, defaultAddText, defaultRemember, out exception, SHA256.Create());
+        }
+        /// <summary>
+        /// Gets how to handle existing files. Show form to ask how to handle, if necessary
+        /// </summary>
+        /// <param name="sourceFile">Source file to copy</param>
+        /// <param name="targetFile">Target file to copy the data to</param>
+        /// <param name="dateFormat">Date format for adding date text to exisiting file</param>
+        /// <param name="defaultAction">Pre defined action, how to handle exisitng files</param>
+        /// <param name="defaultAddText">Default text to add to existing files</param>
+        /// <param name="defaultRemember">Default state of remember action CheckBox</param>
+        /// <param name="exception">Exception while handle existing file</param>
+        /// <param name="sha256">SHA256-Creator</param>
+        /// <returns>Should the exisiting file been overwritten, was renamend or occourded an exception</returns>
+        public static CheckResult GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem defaultAction, string defaultAddText, bool defaultRemember, out Exception exception, SHA256 sha256)
+        {
+            return GetOverwriteByAction(sourceFile, targetFile, dateFormat, defaultAction, defaultAddText, defaultRemember, out exception, null, sha256);
         }
         /// <summary>
         /// Gets how to handle existing files. Show form to ask how to handle, if necessary
@@ -132,6 +150,23 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <param name="parent">Parent form to show dialog in modal mode</param>
         /// <returns>Should the exisiting file been overwritten, was renamend or occourded an exception</returns>
         public static CheckResult GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem defaultAction, string defaultAddText, bool defaultRemember, out Exception exception, Form parent)
+        {
+            return GetOverwriteByAction(sourceFile, targetFile, dateFormat, defaultAction, defaultAddText, defaultRemember, out exception, parent, SHA256.Create());
+        }
+        /// <summary>
+        /// Gets how to handle existing files. Show form to ask how to handle, if necessary
+        /// </summary>
+        /// <param name="sourceFile">Source file to copy</param>
+        /// <param name="targetFile">Target file to copy the data to</param>
+        /// <param name="dateFormat">Date format for adding date text to exisiting file</param>
+        /// <param name="defaultAction">Pre defined action, how to handle exisitng files</param>
+        /// <param name="defaultAddText">Default text to add to existing files</param>
+        /// <param name="defaultRemember">Default state of remember action CheckBox</param>
+        /// <param name="exception">Exception while handle existing file</param>
+        /// <param name="parent">Parent form to show dialog in modal mode</param>
+        /// <param name="sha256">SHA256-Creator</param>
+        /// <returns>Should the exisiting file been overwritten, was renamend or occourded an exception</returns>
+        public static CheckResult GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem defaultAction, string defaultAddText, bool defaultRemember, out Exception exception, Form parent, SHA256 sha256)
         {
             exception = null;
             CheckResult CheckResult = new CheckResult
@@ -169,10 +204,9 @@ namespace OLKI.Toolbox.DirectoryAndFile
                 if (FormResult == DialogResult.Cancel) return CheckResult;
             }
 
-            CheckResult.OverwriteFile = GetOverwriteByAction(sourceFile, targetFile, dateFormat, CheckResult.SelectedAction, CheckResult.AddText, out exception);
+            CheckResult.OverwriteFile = GetOverwriteByAction(sourceFile, targetFile, dateFormat, CheckResult.SelectedAction, CheckResult.AddText, out exception, sha256);
             return CheckResult;
         }
-
         /// <summary>
         /// Gets how a existing file has been handled, by selected action
         /// </summary>
@@ -183,7 +217,22 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <param name="addText">Text to add to existing files</param>
         /// <param name="exception">Exception while handle existing file</param>
         /// <returns>Should the exisiting file been overwritten, was renamend or occourded an exception</returns>
-        private static ExistingFile GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem action, string addText, out Exception exception)
+        public static ExistingFile GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem action, string addText, out Exception exception)
+        {
+            return GetOverwriteByAction(sourceFile, targetFile, dateFormat, action, addText, out exception, SHA256.Create());
+        }
+        /// <summary>
+        /// Gets how a existing file has been handled, by selected action
+        /// </summary>
+        /// <param name="sourceFile">Source file to copy</param>
+        /// <param name="targetFile">Target file to copy the data to</param>
+        /// <param name="dateFormat">Date format for adding date text to exisiting file</param>
+        /// <param name="action">Action, how to handle exisitng files</param>
+        /// <param name="addText">Text to add to existing files</param>
+        /// <param name="exception">Exception while handle existing file</param>
+        /// <param name="sha256">SHA256-Creator</param>
+        /// <returns>Should the exisiting file been overwritten, was renamend or occourded an exception</returns>
+        public static ExistingFile GetOverwriteByAction(FileInfo sourceFile, FileInfo targetFile, string dateFormat, HowToHandleExistingItem action, string addText, out Exception exception, SHA256 sha256)
         {
             exception = null;
 
@@ -196,7 +245,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
                 case HowToHandleExistingItem.OverwriteAll:
                     return TargetOverwrite();
                 case HowToHandleExistingItem.OverwriteIfDifferentChecksum:
-                    return SourceDifferentChecksum(sourceFile, targetFile);
+                    return SourceDifferentChecksum(sourceFile, targetFile, sha256);
                 case HowToHandleExistingItem.OverwriteIfDifferentLength:
                     return SourceDifferentLength(sourceFile, targetFile);
                 case HowToHandleExistingItem.OverwriteIfDifferentLengthOrNewer:
@@ -256,8 +305,20 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <returns>Overwrite if source file has a different Checksum</returns>
         public static ExistingFile SourceDifferentChecksum(FileInfo sourceFile, FileInfo targetFile)
         {
-            return FileCheckSum.SHA256(sourceFile.FullName) != FileCheckSum.SHA256(targetFile.FullName) ? ExistingFile.Overwrite : ExistingFile.Skip;
+            return SourceDifferentChecksum(sourceFile, targetFile, SHA256.Create());
         }
+        /// <summary>
+        /// Returns ouverwrite if source file has a different Checksum
+        /// </summary>
+        /// <param name="sourceFile">Source file to copy</param>
+        /// <param name="targetFile">Target file to copy the data to</param>
+        /// <param name="sha256">SHA256-Creator</param>
+        /// <returns>Overwrite if source file has a different Checksum</returns>
+        public static ExistingFile SourceDifferentChecksum(FileInfo sourceFile, FileInfo targetFile, SHA256 sha256)
+        {
+            return FileCheckSum.SHA256(sourceFile.FullName, sha256) != FileCheckSum.SHA256(targetFile.FullName, sha256) ? ExistingFile.Overwrite : ExistingFile.Skip;
+        }
+
 
         /// <summary>
         /// Returns ouverwrite if source file has a different Length
