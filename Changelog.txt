@@ -1,4 +1,11 @@
 # OLKI.Toolbox
+## [5.2.0.14] - 2022-04-04
+### Added
+- OLKI.Toolbox.DirectoryAndFile.FileCheckSum: Add creating a SHA256 Checksum
+
+### Changed
+- OLKI.Toolbox.DirectoryAndFile.HandleExistingFiles: Add checking for a different SHA256 Checksum
+
 ## [5.1.1.13] - 2022-03-05
 ### Changed
 - OLKI.Toolbox.ColorAndPicture.Picture.Scan: Add exception handling, while connecting to scan device
