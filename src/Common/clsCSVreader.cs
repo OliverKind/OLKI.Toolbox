@@ -118,7 +118,7 @@ namespace OLKI.Toolbox.Common
         /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
         public bool ReadCSVfromFile(string path, int firstRow)
         {
-            return this.ReadCSVfromFile(path, 0, out _);
+            return this.ReadCSVfromFile(path, firstRow, out _);
         }
 
         /// <summary>
