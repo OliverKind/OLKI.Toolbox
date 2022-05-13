@@ -1,4 +1,8 @@
 # OLKI.Toolbox
+## [5.2.1.15] - 2022-05-13
+#Fixed
+- OLKI.Toolbox.Common.CSVreader.ReadCSVfromFile: firstRow not Working
+
 ## [5.2.0.14] - 2022-04-04
 ### Added
 - OLKI.Toolbox.DirectoryAndFile.FileCheckSum: Add creating a SHA256 Checksum
