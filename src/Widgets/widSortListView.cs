@@ -174,8 +174,6 @@ namespace OLKI.Toolbox.Widgets
 
         protected override void OnColumnClick(ColumnClickEventArgs e)
         {
-            ListView myListView = this;
-
             // Determine if clicked column is already the column that is being sorted.
             if (e.Column == this._columnSorter.SortColumn)
             {
@@ -197,8 +195,8 @@ namespace OLKI.Toolbox.Widgets
             }
 
             // Perform the sort with these new sort options.
-            myListView.Sort();
-            ListViewExtensions.SetSortIcon(myListView, this._columnSorter.SortColumn, this._columnSorter.Order);
+            this.Sort();
+            ListViewExtensions.SetSortIcon(this, this._columnSorter.SortColumn, this._columnSorter.Order);
             base.OnColumnClick(e);
         }
         #endregion
