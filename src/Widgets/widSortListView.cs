@@ -29,9 +29,11 @@
  * */
 
 using System;
+using System.ComponentModel;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace OLKI.Toolbox.Widgets
 {
@@ -45,6 +47,17 @@ namespace OLKI.Toolbox.Widgets
         /// Specifies the column sorter
         /// </summary>
         private readonly ColumnSorter _columnSorter = null;
+        #endregion
+
+        #region Properties
+        /// <summary>
+        /// Get or set if Itmes can be manually sorted, using Drag and Drop
+        /// </summary>
+        [Category("Extendet")]
+        [DefaultValue(false)]
+        [DisplayName("AllowDragAndDropSort")]
+        [Description("If option is activ, Items can be sorted manually using Drag&Drop")]
+        public bool AllowDragAndDropSort { get; set; } = false;
         #endregion
 
         #region Methodes
@@ -66,6 +79,96 @@ namespace OLKI.Toolbox.Widgets
             for (int i = 1; i < this.Columns.Count; i++)
             {
                 listViewItem.SubItems.Add("");
+            }
+        }
+
+        protected override void OnDragDrop(DragEventArgs e)
+        {
+            if (this.AllowDragAndDropSort)
+            {
+                // Retrieve the index of the insertion mark;
+                int TargetIndex = this.InsertionMark.Index;
+
+                // If the insertion mark is not visible, exit the method.
+                if (TargetIndex == -1) return;
+
+                // If the insertion mark is to the right of the item with
+                // the corresponding index, increment the target index.
+                if (this.InsertionMark.AppearsAfterItem) TargetIndex++;
+
+                // Retrieve the dragged item.
+                ListViewItem DraggedItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+
+                // Insert a copy of the dragged item at the target index.
+                // A copy must be inserted before the original item is removed
+                // to preserve item index values.
+                this.Items.Insert(TargetIndex, (ListViewItem)DraggedItem.Clone());
+
+                // Remove the original copy of the dragged item.
+                this.Items.Remove(DraggedItem);
+            }
+            base.OnDragDrop(e);
+        }
+
+        protected override void OnDragEnter(DragEventArgs e)
+        {
+            if (this.AllowDragAndDropSort)
+            {
+                e.Effect = e.AllowedEffect;
+            }
+            base.OnDragEnter(e);
+        }
+
+        protected override void OnDragLeave(EventArgs e)
+        {
+            if (this.AllowDragAndDropSort)
+            {
+                this.InsertionMark.Index = -1;
+            }
+            base.OnDragLeave(e);
+        }
+
+        protected override void OnDragOver(DragEventArgs e)
+        {
+            if (this.AllowDragAndDropSort)
+            {
+                // Retrieve the client coordinates of the mouse pointer.
+                Point TargetPoint = this.PointToClient(new Point(e.X, e.Y));
+
+                // Retrieve the index of the item closest to the mouse pointer.
+                int TargetIndex = this.InsertionMark.NearestIndex(TargetPoint);
+
+                // Confirm that the mouse pointer is not over the dragged item.
+                if (TargetIndex > -1)
+                {
+                    // Determine whether the mouse pointer is to the left or
+                    // the right of the midpoint of the closest item and set
+                    // the InsertionMark.AppearsAfterItem property accordingly.
+                    Rectangle ItemBounds = this.GetItemRect(TargetIndex);
+                    if (TargetPoint.X > ItemBounds.Left + (ItemBounds.Width / 2))
+                    {
+                        this.InsertionMark.AppearsAfterItem = true;
+                    }
+                    else
+                    {
+                        this.InsertionMark.AppearsAfterItem = false;
+                    }
+                }
+
+                // Set the location of the insertion mark. If the mouse is
+                // over the dragged item, the targetIndex value is -1 and
+                // the insertion mark disappears.
+                this.InsertionMark.Index = TargetIndex;
+            }
+            base.OnDragOver(e);
+        }
+
+        protected override void OnItemDrag(ItemDragEventArgs e)
+        {
+            if (this.AllowDragAndDropSort)
+            {
+                this.DoDragDrop(e.Item, DragDropEffects.Move);
+                base.OnItemDrag(e);
             }
         }
 
