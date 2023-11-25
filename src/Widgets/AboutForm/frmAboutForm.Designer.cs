@@ -97,6 +97,7 @@
             this.btnGoToLicenses.Size = new System.Drawing.Size(75, 20);
             this.btnGoToLicenses.TabIndex = 8;
             this.btnGoToLicenses.Text = "&Lizenzen";
+            this.btnGoToLicenses.Click += new System.EventHandler(this.btnGoToLicenses_Click);
             // 
             // btnClose
             // 
@@ -106,6 +107,7 @@
             this.btnClose.Size = new System.Drawing.Size(75, 20);
             this.btnClose.TabIndex = 9;
             this.btnClose.Text = "&OK";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // chkCheckUpdatesOnStartup
             // 
@@ -167,8 +169,10 @@
             // 
             // AboutForm
             // 
+            this.AcceptButton = this.btnClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(604, 480);
             this.Controls.Add(this.lblCompanyName);
             this.Controls.Add(this.lblCopyright);
