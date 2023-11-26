@@ -33,6 +33,18 @@ namespace OLKI.Toolbox.Widgets.AboutForm
     /// </summary>
     public partial class AboutForm : Form
     {
+        #region Events
+        /// <summary>
+        /// Raised if Check for Update was clicked
+        /// </summary>
+        public event LinkLabelLinkClickedEventHandler CheckForUpdate;
+
+        /// <summary>
+        /// Raised if Update on Startup was changed
+        /// </summary>
+        public event EventHandler UpdateOnStartupChanged;
+        #endregion
+
         #region Properties
         /// <summary>
         /// Get the title information from assembly settiongs
@@ -128,6 +140,26 @@ namespace OLKI.Toolbox.Widgets.AboutForm
         /// Set the License Text to show if the LicenceButton is Clicked and LicenseDirectory is not set
         /// </summary>
         public string LicenseText { private get; set; } = "";
+
+        /// <summary>
+        /// Get or Set if Update on Startup is checked
+        /// </summary>
+        public bool UpdateOnStartup
+        {
+            get
+            {
+                return this.chkCheckUpdatesOnStartup.Checked;
+            }
+            set
+            {
+                this.chkCheckUpdatesOnStartup.Checked = value;
+            }
+        }
+
+        /// <summary>
+        /// Set if update Controles should been shown
+        /// </summary>
+        public bool ShowUpdateControles { private get; set; } = false;
         #endregion
 
         #region Members
@@ -180,6 +212,11 @@ namespace OLKI.Toolbox.Widgets.AboutForm
                 this.btnGoToLicenses.Enabled = false;
                 this.btnGoToLicenses.Visible = false;
             }
+            if (this.ShowUpdateControles)
+            {
+                this.chkCheckUpdatesOnStartup.Visible = true;
+                this.lblCheckForUpdate.Visible = true;
+            }
             base.Show(owner);
         }
 
@@ -205,8 +242,14 @@ namespace OLKI.Toolbox.Widgets.AboutForm
                 this.btnGoToLicenses.Enabled = false;
                 this.btnGoToLicenses.Visible = false;
             }
+            if (this.ShowUpdateControles)
+            {
+                this.chkCheckUpdatesOnStartup.Visible = true;
+                this.lblCheckForUpdate.Visible = true;
+            }
             return base.ShowDialog(owner);
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -228,6 +271,16 @@ namespace OLKI.Toolbox.Widgets.AboutForm
             }
 
             throw new ArgumentException("No license directory and no license text or both is defined");
+        }
+
+        private void chkCheckUpdatesOnStartup_CheckedChanged(object sender, EventArgs e)
+        {
+            this.UpdateOnStartupChanged?.Invoke(this, e);
+        }
+
+        private void lblCheckForUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.CheckForUpdate?.Invoke(this, e);
         }
         #endregion
     }

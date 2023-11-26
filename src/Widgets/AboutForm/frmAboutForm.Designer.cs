@@ -35,7 +35,7 @@
             this.btnGoToLicenses = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.chkCheckUpdatesOnStartup = new System.Windows.Forms.CheckBox();
-            this.lblCheckUpdates = new System.Windows.Forms.LinkLabel();
+            this.lblCheckForUpdate = new System.Windows.Forms.LinkLabel();
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblCopyright = new System.Windows.Forms.Label();
@@ -119,17 +119,19 @@
             this.chkCheckUpdatesOnStartup.Text = "Beim Start prüfen";
             this.chkCheckUpdatesOnStartup.UseVisualStyleBackColor = true;
             this.chkCheckUpdatesOnStartup.Visible = false;
+            this.chkCheckUpdatesOnStartup.CheckedChanged += new System.EventHandler(this.chkCheckUpdatesOnStartup_CheckedChanged);
             // 
-            // lblCheckUpdates
+            // lblCheckForUpdate
             // 
-            this.lblCheckUpdates.AutoSize = true;
-            this.lblCheckUpdates.Location = new System.Drawing.Point(394, 38);
-            this.lblCheckUpdates.Name = "lblCheckUpdates";
-            this.lblCheckUpdates.Size = new System.Drawing.Size(85, 13);
-            this.lblCheckUpdates.TabIndex = 2;
-            this.lblCheckUpdates.TabStop = true;
-            this.lblCheckUpdates.Text = "Updates suchen";
-            this.lblCheckUpdates.Visible = false;
+            this.lblCheckForUpdate.AutoSize = true;
+            this.lblCheckForUpdate.Location = new System.Drawing.Point(399, 38);
+            this.lblCheckForUpdate.Name = "lblCheckForUpdate";
+            this.lblCheckForUpdate.Size = new System.Drawing.Size(80, 13);
+            this.lblCheckForUpdate.TabIndex = 2;
+            this.lblCheckForUpdate.TabStop = true;
+            this.lblCheckForUpdate.Text = "Update suchen";
+            this.lblCheckForUpdate.Visible = false;
+            this.lblCheckForUpdate.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCheckForUpdate_LinkClicked);
             // 
             // lblProductName
             // 
@@ -144,7 +146,7 @@
             // 
             this.lblVersion.Location = new System.Drawing.Point(146, 38);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(242, 17);
+            this.lblVersion.Size = new System.Drawing.Size(247, 17);
             this.lblVersion.TabIndex = 1;
             this.lblVersion.Text = "Version: {0} ";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -178,7 +180,7 @@
             this.Controls.Add(this.lblCopyright);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblProductName);
-            this.Controls.Add(this.lblCheckUpdates);
+            this.Controls.Add(this.lblCheckForUpdate);
             this.Controls.Add(this.chkCheckUpdatesOnStartup);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnGoToLicenses);
@@ -210,7 +212,7 @@
         private System.Windows.Forms.Button btnGoToLicenses;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.CheckBox chkCheckUpdatesOnStartup;
-        private System.Windows.Forms.LinkLabel lblCheckUpdates;
+        private System.Windows.Forms.LinkLabel lblCheckForUpdate;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblCopyright;
