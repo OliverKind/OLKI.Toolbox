@@ -161,4 +161,7 @@
 
 {1}</value>
   </data>
+  <data name="0x0007" xml:space="preserve">
+    <value>Der Dateiname ist kürzer als ein Zeichen.</value>
+  </data>
 </root>

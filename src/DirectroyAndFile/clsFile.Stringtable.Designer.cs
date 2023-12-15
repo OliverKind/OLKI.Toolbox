@@ -19,7 +19,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class clsFile_Stringtable {
@@ -173,6 +173,15 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         internal static string _0x0006m {
             get {
                 return ResourceManager.GetString("0x0006m", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Der Dateiname ist kürzer als ein Zeichen. ähnelt.
+        /// </summary>
+        internal static string _0x0007 {
+            get {
+                return ResourceManager.GetString("0x0007", resourceCulture);
             }
         }
     }

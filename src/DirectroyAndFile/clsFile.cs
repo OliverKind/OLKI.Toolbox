@@ -195,6 +195,75 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
         }
         #endregion
+
+        #region Other
+        /// <summary>
+        /// Shorten the filename if the resulting file path is longer than 260 chars (including the terminator)
+        /// </summary>
+        /// <param name="fullName">Path to the file, to check the length</param>
+        /// <param name="maxLength">Target file path length</param>
+        /// <param name="exception">Exception while creating new file name</param>
+        /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
+        public static string ShortenFilenameToMaxPathLength(string fullName, out Exception exception)
+        {
+            return ShortenFilenameToMaxPathLength(fullName, 260, out exception);
+        }
+        /// <summary>
+        /// Shorten the filename if the resulting file path is longer than the given limit.
+        /// </summary>
+        /// <param name="fullName">Path to the file, to check the length</param>
+        /// <param name="maxLength">Target file path length</param>
+        /// <param name="exception">Exception while creating new file name</param>
+        /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
+        public static string ShortenFilenameToMaxPathLength(string fullName, int maxLength, out Exception exception)
+        {
+            return ShortenFilenameToMaxPathLength(new FileInfo(fullName), maxLength, out exception);
+        }
+        /// <summary>
+        /// Shorten the filename if the resulting file path is longer than 260 chars (including the terminator)
+        /// </summary>
+        /// <param name="fileInfo">FileInfo of the file to shorten fie filename, if necessary</param>
+        /// <param name="exception">Exception while creating new file name</param>
+        /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
+        public static string ShortenFilenameToMaxPathLength(FileInfo fileInfo, out Exception exception)
+        {
+            return ShortenFilenameToMaxPathLength(fileInfo, 260, out exception);
+        }
+        /// <summary>
+        /// Shorten the filename if the resulting file path is longer than the given limit.
+        /// </summary>
+        /// <param name="fileInfo">FileInfo of the file to shorten fie filename, if necessary</param>
+        /// <param name="maxLength">Target file path length</param>
+        /// <param name="exception">Exception while creating new file name</param>
+        /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
+        public static string ShortenFilenameToMaxPathLength(FileInfo fileInfo, int maxLength, out Exception exception)
+        {
+            exception = null;
+            try
+            {
+                int MaxL = maxLength - 1;  //Remove 1 for the invisible termination cahracter <NUL>
+                int DirL = fileInfo.Directory.FullName.Length + 1; //Add one for the missing Backslash
+                int FilL = fileInfo.Name.Length - fileInfo.Extension.Length;
+                int ExtL = fileInfo.Extension.Length;
+                int SubL = DirL + FilL + ExtL - MaxL;
+
+                if (fileInfo.FullName.Length <= MaxL) return fileInfo.FullName;
+                if (FilL - SubL <= 0)
+                {
+                    exception = new Exception(clsFile_Stringtable._0x0007);
+                    return string.Empty;
+                }
+
+                string ShortName = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length - SubL);
+                return string.Format(@"{0}\{1}{2}", fileInfo.Directory.FullName, ShortName, fileInfo.Extension);
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+                return string.Empty;
+            }
+        }
+        #endregion
         #endregion
     }
 }
