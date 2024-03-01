@@ -34,6 +34,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Security.Cryptography;
 
 namespace OLKI.Toolbox.Widgets
 {
@@ -47,6 +48,11 @@ namespace OLKI.Toolbox.Widgets
         /// Specifies the column sorter
         /// </summary>
         private readonly ColumnSorter _columnSorter = null;
+
+        /// <summary>
+        /// Get the column sorter
+        /// </summary>
+        public ColumnSorter Sorter { get { return _columnSorter; } }
         #endregion
 
         #region Properties
@@ -199,13 +205,33 @@ namespace OLKI.Toolbox.Widgets
             ListViewExtensions.SetSortIcon(this, this._columnSorter.SortColumn, this._columnSorter.Order);
             base.OnColumnClick(e);
         }
+
+        /// <summary>
+        /// Manual sort
+        /// </summary>
+        /// <param name="column"></param>
+        /// <param name="order"></param>
+        public void Sort(int column, SortOrder order)
+        {
+            try
+            {
+                this._columnSorter.SortColumn = column;
+                this._columnSorter.Order = order;
+                this.Sort();
+                ListViewExtensions.SetSortIcon(this, this._columnSorter.SortColumn, this._columnSorter.Order);
+            }
+            catch (Exception ex)
+            {
+                _ = ex;
+            }
+        }
         #endregion
 
         #region SubClasses
         /// <summary>
         /// Provides sorting of the columns
         /// </summary>
-        private class ColumnSorter : IComparer
+        public class ColumnSorter : IComparer
         {
             #region Properties
             /// <summary>
@@ -215,9 +241,9 @@ namespace OLKI.Toolbox.Widgets
             /// <summary>
             /// Get or set the columns to sort
             /// </summary>
-            internal int SortColumn
+            public int SortColumn
             {
-                set
+                internal set
                 {
                     this._sortColumn = value;
                 }
@@ -234,9 +260,9 @@ namespace OLKI.Toolbox.Widgets
             /// <summary>
             /// Get or set the sort order of the column
             /// </summary>
-            internal SortOrder Order
+            public SortOrder Order
             {
-                set
+                internal set
                 {
                     this._sortOrder = value;
                 }
