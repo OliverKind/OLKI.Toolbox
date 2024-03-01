@@ -1,4 +1,8 @@
 # OLKI.Toolbox
+## [5.5.0.19] - 2024-03-01
+### Added
+- OLKI.Toolbox.Widgets.SortListView: Add Method to Sort with options (Column and Order)
+
 ## [5.4.0.18] - 2023-12-23
 ### Added
 - OLKI.Toolbox.DirectoryAndFile.File: Added ShortenFilenameToMaxPathLength
