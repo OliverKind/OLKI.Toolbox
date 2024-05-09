@@ -147,7 +147,7 @@ namespace OLKI.Toolbox.Common
         /// <returns>An object with data from the specified deserialized file or false if an exception occours</returns>
         public static object XMLToObject(object toDeserialize, string ptah)
         {
-            return OLKI.Toolbox.Common.Serialize.XMLToObject(toDeserialize, ptah, DEFUALT_XML_TO_OBJECT_SHOW_ERROR_MESSAGE);
+            return XMLToObject(toDeserialize, ptah, DEFUALT_XML_TO_OBJECT_SHOW_ERROR_MESSAGE);
         }
         /// <summary>
         /// Deserialize  an specified XML file to an specified object
@@ -196,7 +196,7 @@ namespace OLKI.Toolbox.Common
 
             try
             {
-                return System.Convert.ToBoolean(input.Element(elementName).Value);
+                return Convert.ToBoolean(input.Element(elementName).Value);
             }
             catch (Exception ex)
             {
@@ -217,7 +217,7 @@ namespace OLKI.Toolbox.Common
 
             try
             {
-                return System.Convert.ToDecimal(input.Element(elementName).Value, new System.Globalization.CultureInfo("en-US"));
+                return Convert.ToDecimal(input.Element(elementName).Value, new System.Globalization.CultureInfo("en-US"));
             }
             catch (Exception ex)
             {
@@ -238,7 +238,7 @@ namespace OLKI.Toolbox.Common
 
             try
             {
-                return System.Convert.ToDouble(input.Element(elementName).Value, new System.Globalization.CultureInfo("en-US"));
+                return Convert.ToDouble(input.Element(elementName).Value, new System.Globalization.CultureInfo("en-US"));
             }
             catch (Exception ex)
             {
@@ -259,7 +259,7 @@ namespace OLKI.Toolbox.Common
 
             try
             {
-                return System.Convert.ToInt32(input.Element(elementName).Value);
+                return Convert.ToInt32(input.Element(elementName).Value);
             }
             catch (Exception ex)
             {
@@ -280,7 +280,7 @@ namespace OLKI.Toolbox.Common
 
             try
             {
-                return System.Convert.ToInt64(input.Element(elementName).Value);
+                return Convert.ToInt64(input.Element(elementName).Value);
             }
             catch (Exception ex)
             {
