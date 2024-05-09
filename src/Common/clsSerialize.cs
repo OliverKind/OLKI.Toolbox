@@ -313,7 +313,8 @@ namespace OLKI.Toolbox.Common
         {
             try
             {
-                return Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
+                if (convertLineBreake) return Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
+                return Convert.ToString(input.Element(elementName).Value);
             }
             catch (Exception ex)
             {
