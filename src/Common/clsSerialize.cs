@@ -24,6 +24,7 @@
 
 using OLKI.Toolbox.src.Common;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -197,6 +198,27 @@ namespace OLKI.Toolbox.Common
             try
             {
                 return Convert.ToBoolean(input.Element(elementName).Value);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.Print(ex.Message);
+                return valueIfNull;
+            }
+        }
+
+        /// <summary>
+        /// Return the value as Color type of an specified element in an specified XElement or valueIfNull if the element was not found
+        /// </summary>
+        /// <param name="input">Specifies the XElement to geht the value from</param>
+        /// <param name="elementName">Specifies the Name of the Value to get from specified XElement</param>
+        /// <param name="valueIfNull">Specifies the value to return if the specified element can not found</param>
+        /// <returns>The value of the specified element as an Color type</returns>
+        public static Color GetFromXElement(XElement input, string elementName, Color valueIfNull)
+        {
+
+            try
+            {
+                return ColorTranslator.FromHtml(input.Element(elementName).Value);
             }
             catch (Exception ex)
             {
