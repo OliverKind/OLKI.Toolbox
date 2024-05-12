@@ -329,13 +329,13 @@ namespace OLKI.Toolbox.Common
         /// <param name="input">Specifies the XElement to geht the value from</param>
         /// <param name="elementName">Specifies the Name of the Value to get from specified XElement</param>
         /// <param name="valueIfNull">Specifies the value to return if the specified element can not found</param>
-        /// <param name="convertLineBreake">Convert \n from XElement to \n\r</param>
+        /// <param name="convertLineBrake">Convert \n from XElement to \n\r</param>
         /// <returns>The value of the specified element as an integer type</returns>
-        public static string GetFromXElement(XElement input, string elementName, string valueIfNull, bool convertLineBreake)
+        public static string GetFromXElement(XElement input, string elementName, string valueIfNull, bool convertLineBrake)
         {
             try
             {
-                if (convertLineBreake) return Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
+                if (convertLineBrake) return Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
                 return Convert.ToString(input.Element(elementName).Value);
             }
             catch (Exception ex)
