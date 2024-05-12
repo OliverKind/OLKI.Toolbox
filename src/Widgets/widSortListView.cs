@@ -252,10 +252,28 @@ namespace OLKI.Toolbox.Widgets
         /// </summary>
         /// <param name="column"></param>
         /// <param name="order"></param>
+        public void Sort(int column, int order)
+        {
+            try
+            {
+                if (column == -1 || order == -1) return;
+                this.Sort(column, (SortOrder)order);
+            }
+            catch (Exception ex)
+            {
+                _ = ex;
+            }
+        }
+        /// <summary>
+        /// Manual sort
+        /// </summary>
+        /// <param name="column"></param>
+        /// <param name="order"></param>
         public void Sort(int column, SortOrder order)
         {
             try
             {
+                if (column == -1) return;
                 this._columnSorter.SortColumn = column;
                 this._columnSorter.Order = order;
                 this.Sort();
