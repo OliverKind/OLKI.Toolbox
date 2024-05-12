@@ -34,7 +34,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Security.Cryptography;
+using System.Collections.Generic;
 
 namespace OLKI.Toolbox.Widgets
 {
@@ -64,6 +64,47 @@ namespace OLKI.Toolbox.Widgets
         [DisplayName("AllowDragAndDropSort")]
         [Description("If option is activ, Items can be sorted manually using Drag&Drop")]
         public bool AllowDragAndDropSort { get; set; } = false;
+
+        /// <summary>
+        /// Get or set a list with the widths of all Columns
+        /// </summary>
+        [Category("Extendet")]
+        [DisplayName("ColumnWidths")]
+        [Description("A a list with the widths of all Columns")]
+        public List<int> ColumnWidths
+        {
+            get
+            {
+                try
+                {
+                    List<int> Widths = new List<int>();
+                    for (int i = 0; i < this.Columns.Count; i++)
+                    {
+                        Widths.Add(this.Columns[i].Width);
+                    }
+                    return Widths;
+                }
+                catch (Exception ex)
+                {
+                    _ = ex;
+                    return new List<int>();
+                }
+            }
+            set
+            {
+                try
+                {
+                    for (int i = 0; i < this.Columns.Count; i++)
+                    {
+                        if (value.Count > i && value[i] > -1) this.Columns[i].Width = value[i];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _ = ex;
+                }
+            }
+        }
         #endregion
 
         #region Methodes
