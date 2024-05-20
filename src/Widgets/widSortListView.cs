@@ -66,6 +66,15 @@ namespace OLKI.Toolbox.Widgets
         public bool AllowDragAndDropSort { get; set; } = false;
 
         /// <summary>
+        /// Get or set if the changing the column Width is allowed
+        /// </summary>
+        [Category("Extendet")]
+        [DefaultValue(true)]
+        [DisplayName("AllowColumnWidthChange")]
+        [Description("Is changing the Column Width is allowed")]
+        public bool AllowColumnWidthChange { get; set; } = true;
+
+        /// <summary>
         /// Get or set a list with the widths of all Columns
         /// </summary>
         [Category("Extendet")]
@@ -127,6 +136,16 @@ namespace OLKI.Toolbox.Widgets
             {
                 listViewItem.SubItems.Add("");
             }
+        }
+
+        protected override void OnColumnWidthChanging(ColumnWidthChangingEventArgs e)
+        {
+            if (!this.AllowColumnWidthChange)
+            {
+                e.Cancel = true;
+                e.NewWidth = this.Columns[e.ColumnIndex].Width;
+            }
+            base.OnColumnWidthChanging(e);
         }
 
         protected override void OnDragDrop(DragEventArgs e)
