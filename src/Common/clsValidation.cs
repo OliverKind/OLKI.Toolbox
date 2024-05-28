@@ -35,27 +35,40 @@ namespace OLKI.Toolbox.Common
     {
         #region Methods
         /// <summary>
+        /// Get if the given stirng is a valid Date
+        /// </summary>
+        /// <param name="date">String to check if it is a valid Date</param>
+        /// <returns></returns>
+        public static bool IsValidDate(string date)
+        {
+            if (string.IsNullOrEmpty(Regex.Replace(date, @"[^0-9]", ""))) return false;
+            if (DateTime.TryParse(date, out DateTime TempDate) == false) return false;
+            return true;
+        }
+
+        /// <summary>
         /// Get if the given stirng is a valid E-Mail Adress
         /// </summary>
-        /// <param name="eMail">Uri to check if it is a valid E-Mail Adress</param>
+        /// <param name="eMailString">String to check if it is a valid E-Mail Adress</param>
         /// <returns>True if the given string is a valid E-Mail Adress, otherwise false</returns>
-        public static bool IsValidEMail(string eMail)
+        /// <see cref="https://learn.microsoft.com/en-us/dotnet/standard/base-types/how-to-verify-that-strings-are-in-valid-email-format"/>
+        public static bool IsValidEMail(string eMailString)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(eMail)) return false;
+                if (string.IsNullOrWhiteSpace(eMailString)) return false;
                 // Normalize the domain
-                eMail = Regex.Replace(eMail, @"(@)(.+)$", DomainMapper, RegexOptions.None, TimeSpan.FromMilliseconds(200));
+                eMailString = Regex.Replace(eMailString, @"(@)(.+)$", DomainMapper, RegexOptions.None, TimeSpan.FromMilliseconds(200));
                 // Examines the domain part of the email and normalizes it.
-                string DomainMapper(Match match)
+                string DomainMapper(Match Match)
                 {
                     // Use IdnMapping class to convert Unicode domain names.
-                    IdnMapping idn = new IdnMapping();
+                    IdnMapping IdnMapping = new IdnMapping();
                     // Pull out and process domain name (throws ArgumentException on invalid)
-                    string domainName = idn.GetAscii(match.Groups[2].Value);
-                    return match.Groups[1].Value + domainName;
+                    string DomainName = IdnMapping.GetAscii(Match.Groups[2].Value);
+                    return Match.Groups[1].Value + DomainName;
                 }
-                return Regex.IsMatch(eMail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+                return Regex.IsMatch(eMailString, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
             }
             catch (Exception ex)
             {
@@ -67,14 +80,14 @@ namespace OLKI.Toolbox.Common
         /// <summary>
         /// Get if the given stirng is a valid Uri
         /// </summary>
-        /// <param name="uri">Uri to check if it is a valid Uri</param>
+        /// <param name="uriString">String to check if it is a valid Uri</param>
         /// <returns>True if the given string is a valid Uri, otherwise false</returns>
-        public static bool IsValidUri(string uri)
+        public static bool IsValidUri(string uriString)
         {
             try
             {
                 Uri Uri = null;
-                return uri.Length > 0 && Uri.TryCreate(uri, UriKind.Absolute, out Uri);
+                return uriString.Length > 0 && Uri.TryCreate(uriString, UriKind.Absolute, out Uri);
             }
             catch (Exception ex)
             {
