@@ -84,10 +84,21 @@ namespace OLKI.Toolbox.Common
         /// <returns>True if the given string is a valid Uri, otherwise false</returns>
         public static bool IsValidUri(string uriString)
         {
+            return IsValidUri(uriString, out _);
+        }
+
+        /// <summary>
+        /// Get if the given stirng is a valid Uri
+        /// </summary>
+        /// <param name="uriString">String to check if it is a valid Uri</param>
+        /// <param name="uri">Uri formated</param>
+        /// <returns>True if the given string is a valid Uri, otherwise false</returns>
+        public static bool IsValidUri(string uriString, out Uri uri)
+        {
+            uri = null;
             try
             {
-                Uri Uri = null;
-                return uriString.Length > 0 && Uri.TryCreate(uriString, UriKind.Absolute, out Uri);
+                return uriString.Length > 0 && Uri.TryCreate(uriString, UriKind.Absolute, out uri);
             }
             catch (Exception ex)
             {
