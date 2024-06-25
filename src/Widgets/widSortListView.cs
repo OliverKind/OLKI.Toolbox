@@ -77,6 +77,7 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// Get or set a list with the widths of all Columns
         /// </summary>
+        [Browsable(false)]
         [Category("Extendet")]
         [DisplayName("ColumnWidths")]
         [Description("A a list with the widths of all Columns")]
