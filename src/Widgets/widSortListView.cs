@@ -88,6 +88,7 @@ namespace OLKI.Toolbox.Widgets
                 try
                 {
                     List<int> Widths = new List<int>();
+                    if (this.Columns == null || this.Columns.Count == 0) new List<int>();
                     for (int i = 0; i < this.Columns.Count; i++)
                     {
                         Widths.Add(this.Columns[i].Width);
@@ -104,6 +105,7 @@ namespace OLKI.Toolbox.Widgets
             {
                 try
                 {
+                    if (value == null || value.Count == 0) return;
                     for (int i = 0; i < this.Columns.Count; i++)
                     {
                         if (value.Count > i && value[i] > -1) this.Columns[i].Width = value[i];
