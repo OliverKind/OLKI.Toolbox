@@ -141,6 +141,21 @@ namespace OLKI.Toolbox.Widgets
             }
         }
 
+        /// <summary>
+        /// Ensure the last ListViewItem is visible on screen
+        /// </summary>
+        public void LastItemVisible()
+        {
+            try
+            {
+                if (this.Items.Count > 0) this.Items[this.Items.Count - 1].EnsureVisible();
+            }
+            catch (Exception ex)
+            {
+                _ = ex;
+            }
+        }
+
         protected override void OnColumnWidthChanging(ColumnWidthChangingEventArgs e)
         {
             if (!this.AllowColumnWidthChange)
