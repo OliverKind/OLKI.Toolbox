@@ -38,11 +38,11 @@ namespace OLKI.Toolbox.Common
         /// Get if the given stirng is a valid Date
         /// </summary>
         /// <param name="date">String to check if it is a valid Date</param>
-        /// <returns></returns>
+        /// <returns>True if the given Date is a valid date</returns>
         public static bool IsValidDate(string date)
         {
-            if (string.IsNullOrEmpty(Regex.Replace(date, @"[^0-9]", ""))) return false;
-            if (DateTime.TryParse(date, out _) == false) return false;
+            if (string.IsNullOrEmpty(Regex.Replace(date, @"[^0-9]", ""))) return false; //Return False if the given string, after removing all non numerical chars, is empty
+            if (DateTime.TryParse(date, out _) == false) return false; //Return False if the date can not validated
             return true;
         }
 
