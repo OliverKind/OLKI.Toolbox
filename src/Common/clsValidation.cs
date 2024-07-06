@@ -41,8 +41,20 @@ namespace OLKI.Toolbox.Common
         /// <returns>True if the given Date is a valid date</returns>
         public static bool IsValidDate(string date)
         {
-            if (string.IsNullOrEmpty(Regex.Replace(date, @"[^0-9]", ""))) return false; //Return False if the given string, after removing all non numerical chars, is empty
-            if (DateTime.TryParse(date, out _) == false) return false; //Return False if the date can not validated
+            return IsValidDate(date, false);
+        }
+        /// <summary>
+        /// Get if the given stirng is a valid Date
+        /// </summary>
+        /// <param name="date">String to check if it is a valid Date</param>
+        /// <param name="allowEmpty">Allow empty strings a valid, after removing all non numerical characters</param>
+        /// <returns>True if the given Date is a valid date</returns>
+        public static bool IsValidDate(string date, bool allowEmpty)
+        {
+            string NumString = Regex.Replace(date, @"[^0-9]", "");          //Remove all nun numerical chars
+            if (allowEmpty && string.IsNullOrEmpty(NumString)) return true; //Return true if the given string, after removing all non numerical chars, is empty
+            if (string.IsNullOrEmpty(NumString)) return false;              //Return False if the given string, after removing all non numerical chars, is empty
+            if (DateTime.TryParse(date, out _) == false) return false;      //Return False if the date can not validated
             return true;
         }
 
