@@ -35,6 +35,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OLKI.Toolbox.Widgets
 {
@@ -282,6 +283,35 @@ namespace OLKI.Toolbox.Widgets
             this.Sort();
             ListViewExtensions.SetSortIcon(this, this._columnSorter.SortColumn, this._columnSorter.Order);
             base.OnColumnClick(e);
+        }
+
+        /// <summary>
+        /// Select the ListViewItem with the defined Id, the Id has to be set als Tag.
+        /// All other ListViewItems will be deselected
+        /// </summary>
+        /// <param name="id"></param>
+        public void SelectedItemByIdTag(int id)
+        {
+            this.SelectedItemByIdTag(new int[] { id });
+        }
+        /// <summary>
+        /// Select the ListViewItem with the defined Id's, the Id's has to be set als Tag.
+        /// All other ListViewItems will be deselected
+        /// </summary>
+        /// <param name="id"></param>
+        public void SelectedItemByIdTag(int[] id)
+        {
+            try
+            {
+                foreach (ListViewItem ListViewItem in this.Items)
+                {
+                    ListViewItem.Selected = id.Contains((int)ListViewItem.Tag);
+                }
+            }
+            catch (Exception ex)
+            {
+                _ = ex;
+            }
         }
 
         /// <summary>
