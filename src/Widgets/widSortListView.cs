@@ -290,16 +290,16 @@ namespace OLKI.Toolbox.Widgets
         /// All other ListViewItems will be deselected
         /// </summary>
         /// <param name="id"></param>
-        public void SelectedItemByIdTag(int id)
+        public void SelectItemByIdTag(int id)
         {
-            this.SelectedItemByIdTag(new int[] { id });
+            this.SelectItemByIdTag(new int[] { id });
         }
         /// <summary>
         /// Select the ListViewItem with the defined Id's, the Id's has to be set als Tag.
         /// All other ListViewItems will be deselected
         /// </summary>
         /// <param name="id"></param>
-        public void SelectedItemByIdTag(int[] id)
+        public void SelectItemByIdTag(int[] id)
         {
             try
             {
