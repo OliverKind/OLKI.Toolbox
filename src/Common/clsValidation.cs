@@ -42,7 +42,7 @@ namespace OLKI.Toolbox.Common
         public static bool IsValidDate(string date)
         {
             if (string.IsNullOrEmpty(Regex.Replace(date, @"[^0-9]", ""))) return false;
-            if (DateTime.TryParse(date, out DateTime TempDate) == false) return false;
+            if (DateTime.TryParse(date, out _) == false) return false;
             return true;
         }
 
