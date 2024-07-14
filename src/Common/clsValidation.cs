@@ -24,6 +24,7 @@
 
 using System;
 using System.Globalization;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace OLKI.Toolbox.Common
@@ -81,6 +82,36 @@ namespace OLKI.Toolbox.Common
 
             parsedDateOut = ParsedDate;
             return true;
+        }
+
+        /// <summary>
+        /// Get if the path is valid
+        /// </summary>
+        /// <param name="path">Path to validate</param>
+        /// <returns>True if the path is valid and not empty</returns>
+        public static bool IsValidDirectory(string path)
+        {
+            return IsValidDirectory(path, false);
+        }
+        /// <summary>
+        /// Get if the path is valid
+        /// </summary>
+        /// <param name="path">Path to validate</param>
+        /// <param name="emptyIsValid">Should an empty Path be valid</param>
+        /// <returns>True if the path is valid or empty, if wanted</returns>
+        public static bool IsValidDirectory(string path, bool emptyIsValid)
+        {
+            if (string.IsNullOrEmpty(path) && emptyIsValid) return true;
+            if (string.IsNullOrEmpty(path) && !emptyIsValid) return false;
+            try
+            {
+                return new DirectoryInfo(path).Exists;
+            }
+            catch (Exception ex)
+            {
+                _ = ex;
+            }
+            return false;
         }
 
         /// <summary>
