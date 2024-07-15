@@ -194,10 +194,11 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an boolean type</returns>
         public static bool GetFromXElement(XElement input, string elementName, bool valueIfNull)
         {
-
             try
             {
-                return Convert.ToBoolean(input.Element(elementName).Value);
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                return Convert.ToBoolean(XElement.Value);
             }
             catch (Exception ex)
             {
@@ -215,10 +216,11 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an Color type</returns>
         public static Color GetFromXElement(XElement input, string elementName, Color valueIfNull)
         {
-
             try
             {
-                return ColorTranslator.FromHtml(input.Element(elementName).Value);
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                return ColorTranslator.FromHtml(XElement.Value);
             }
             catch (Exception ex)
             {
@@ -236,10 +238,11 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an double type</returns>
         public static decimal GetFromXElement(XElement input, string elementName, decimal valueIfNull)
         {
-
             try
             {
-                return Convert.ToDecimal(input.Element(elementName).Value, new System.Globalization.CultureInfo("en-US"));
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                return Convert.ToDecimal(XElement.Value, new System.Globalization.CultureInfo("en-US"));
             }
             catch (Exception ex)
             {
@@ -257,10 +260,11 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an double type</returns>
         public static double GetFromXElement(XElement input, string elementName, double valueIfNull)
         {
-
             try
             {
-                return Convert.ToDouble(input.Element(elementName).Value, new System.Globalization.CultureInfo("en-US"));
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                return Convert.ToDouble(XElement.Value, new System.Globalization.CultureInfo("en-US"));
             }
             catch (Exception ex)
             {
@@ -278,10 +282,11 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an integer type</returns>
         public static int GetFromXElement(XElement input, string elementName, int valueIfNull)
         {
-
             try
             {
-                return Convert.ToInt32(input.Element(elementName).Value);
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                return Convert.ToInt32(XElement.Value);
             }
             catch (Exception ex)
             {
@@ -299,10 +304,11 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an long type</returns>
         public static long GetFromXElement(XElement input, string elementName, long valueIfNull)
         {
-
             try
             {
-                return Convert.ToInt64(input.Element(elementName).Value);
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                return Convert.ToInt64(XElement.Value);
             }
             catch (Exception ex)
             {
@@ -335,12 +341,14 @@ namespace OLKI.Toolbox.Common
         {
             try
             {
-                if (convertLineBrake) return Convert.ToString(input.Element(elementName).Value).Replace("\n", "\r\n");
-                return Convert.ToString(input.Element(elementName).Value);
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                if (convertLineBrake) return Convert.ToString(XElement.Value).Replace("\n", "\r\n");
+                return Convert.ToString(XElement.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\"", new object[] { ex.Message, elementName }));
                 return valueIfNull;
             }
         }
@@ -354,14 +362,15 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an integer type</returns>
         public static XElement GetFromXElement(XElement input, string elementName, XElement valueIfNull)
         {
-
             try
             {
-                return input.Element(elementName);
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                return XElement;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\"", new object[] { ex.Message, elementName }));
                 return valueIfNull;
             }
         }
@@ -378,14 +387,18 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an boolean type</returns>
         public static bool GetFromXElementAttribute(XElement input, string elementName, string attributeName, bool valueIfNull)
         {
-
             try
             {
-                return Convert.ToBoolean(input.Element(elementName).Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                XAttribute XAttribute = XElement.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToBoolean(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\" <-- AttributeName: \"{2}\"", new object[] { ex.Message, elementName , attributeName}));
                 return valueIfNull;
             }
         }
@@ -399,14 +412,16 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an boolean type</returns>
         public static bool GetFromXElementAttribute(XElement input, string attributeName, bool valueIfNull)
         {
-
             try
             {
-                return Convert.ToBoolean(input.Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XAttribute XAttribute = input.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToBoolean(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- AttributeName: \"{1}\"", new object[] { ex.Message, attributeName }));
                 return valueIfNull;
             }
         }
@@ -421,14 +436,18 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an double type</returns>
         public static double GetFromXElementAttribute(XElement input, string elementName, string attributeName, double valueIfNull)
         {
-
             try
             {
-                return Convert.ToDouble(input.Element(elementName).Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                XAttribute XAttribute = XElement.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToDouble(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\" <-- AttributeName: \"{2}\"", new object[] { ex.Message, elementName, attributeName }));
                 return valueIfNull;
             }
         }
@@ -442,14 +461,16 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an double type</returns>
         public static double GetFromXElementAttribute(XElement input, string attributeName, double valueIfNull)
         {
-
             try
             {
-                return Convert.ToDouble(input.Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XAttribute XAttribute = input.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToDouble(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- AttributeName: \"{1}\"", new object[] { ex.Message, attributeName }));
                 return valueIfNull;
             }
         }
@@ -464,14 +485,18 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an integer type</returns>
         public static int GetFromXElementAttribute(XElement input, string elementName, string attributeName, int valueIfNull)
         {
-
             try
             {
-                return Convert.ToInt32(input.Element(elementName).Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                XAttribute XAttribute = XElement.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToInt32(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\" <-- AttributeName: \"{2}\"", new object[] { ex.Message, elementName, attributeName }));
                 return valueIfNull;
             }
         }
@@ -485,14 +510,16 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an integer type</returns>
         public static int GetFromXElementAttribute(XElement input, string attributeName, int valueIfNull)
         {
-
             try
             {
-                return Convert.ToInt32(input.Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XAttribute XAttribute = input.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToInt32(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- AttributeName: \"{1}\"", new object[] { ex.Message, attributeName }));
                 return valueIfNull;
             }
         }
@@ -507,14 +534,18 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an long type</returns>
         public static long GetFromXElementAttribute(XElement input, string elementName, string attributeName, long valueIfNull)
         {
-
             try
             {
-                return Convert.ToInt64(input.Element(elementName).Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                XAttribute XAttribute = XElement.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToInt64(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\" <-- AttributeName: \"{2}\"", new object[] { ex.Message, elementName, attributeName }));
                 return valueIfNull;
             }
         }
@@ -528,14 +559,16 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an long type</returns>
         public static long GetFromXElementAttribute(XElement input, string attributeName, long valueIfNull)
         {
-
             try
             {
-                return Convert.ToInt64(input.Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XAttribute XAttribute = input.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToInt64(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- AttributeName: \"{1}\"", new object[] { ex.Message, attributeName }));
                 return valueIfNull;
             }
         }
@@ -550,14 +583,18 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an integer type</returns>
         public static string GetFromXElementAttribute(XElement input, string elementName, string attributeName, string valueIfNull)
         {
-
             try
             {
-                return Convert.ToString(input.Element(elementName).Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XElement XElement = input.Element(elementName);
+                if (XElement == null) return valueIfNull;
+                XAttribute XAttribute = XElement.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToString(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\" <-- AttributeName: \"{2}\"", new object[] { ex.Message, elementName, attributeName }));
                 return valueIfNull;
             }
         }
@@ -571,14 +608,16 @@ namespace OLKI.Toolbox.Common
         /// <returns>The value of the specified element as an integer type</returns>
         public static string GetFromXElementAttribute(XElement input, string attributeName, string valueIfNull)
         {
-
             try
             {
-                return Convert.ToString(input.Attribute(attributeName).Value);
+                if (input == null) return valueIfNull;
+                XAttribute XAttribute = input.Attribute(attributeName);
+                if (XAttribute == null) return valueIfNull;
+                return Convert.ToString(XAttribute.Value);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(ex.Message);
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- AttributeName: \"{1}\"", new object[] { ex.Message, attributeName }));
                 return valueIfNull;
             }
         }
