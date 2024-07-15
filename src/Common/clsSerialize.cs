@@ -398,7 +398,7 @@ namespace OLKI.Toolbox.Common
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\" <-- AttributeName: \"{2}\"", new object[] { ex.Message, elementName , attributeName}));
+                System.Diagnostics.Debug.Print(string.Format("{0} <-- ElementName: \"{1}\" <-- AttributeName: \"{2}\"", new object[] { ex.Message, elementName, attributeName }));
                 return valueIfNull;
             }
         }
