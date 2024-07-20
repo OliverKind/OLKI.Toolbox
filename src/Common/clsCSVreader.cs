@@ -128,7 +128,7 @@ namespace OLKI.Toolbox.Common
         /// <param name="firstRow">First row in string with CSV-Data</param>
         /// <param name="exception">Exception while reading CSV-Data</param>
         /// <returns>True if the reading of CSV-Data was successful, otherwise false</returns>
-        public bool ReadCSVfromFile(string path, int firstRow,out Exception exception)
+        public bool ReadCSVfromFile(string path, int firstRow, out Exception exception)
         {
             string CsvString;
             try
@@ -185,22 +185,29 @@ namespace OLKI.Toolbox.Common
         public bool ReadCSVdata(string csvString, int firstRow, out Exception exception)
         {
             exception = null;
-            this._rawCSVdata = csvString;
-
-            this._rawCSVdata = this._rawCSVdata.Replace("\r\n", "\n");
-            this._rawCSVdata = this._rawCSVdata.Replace("\r", "\n");
-
-            this._rows.Clear();
-            List<string> CSVrawRows = this._rawCSVdata.Split('\n').ToList();
-
-            for (int i = firstRow; i < CSVrawRows.Count; i++)
+            try
             {
-                if (!string.IsNullOrEmpty(CSVrawRows[i]))
+                this._rawCSVdata = csvString;
+                this._rawCSVdata = this._rawCSVdata.Replace("\r\n", "\n");
+                this._rawCSVdata = this._rawCSVdata.Replace("\r", "\n");
+
+                this._rows.Clear();
+                List<string> CSVrawRows = this._rawCSVdata.Split('\n').ToList();
+
+                for (int i = firstRow; i < CSVrawRows.Count; i++)
                 {
-                    this._rows.Add(new CSVrow(CSVrawRows[i], this.Seperators));
+                    if (!string.IsNullOrEmpty(CSVrawRows[i]))
+                    {
+                        this._rows.Add(new CSVrow(CSVrawRows[i], this.Seperators));
+                    }
                 }
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
         }
         #endregion
 
