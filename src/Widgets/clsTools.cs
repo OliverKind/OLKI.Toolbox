@@ -91,6 +91,15 @@ namespace OLKI.Toolbox.Widgets
             {
                 if (comboBox.Items.Count > 0 && comboBox.Items.Count >index) comboBox.SelectedIndex = index;
             }
+
+            /// <summary>
+            /// Set the selected intex of the ComboBox to the lst Item, if the ComboBox has Items
+            /// </summary>
+            /// <param name="comboBox">ComboBox to set the Index to the last Index</param>
+            public static void SetToLastIndex(System.Windows.Forms.ComboBox comboBox)
+            {
+                if (comboBox.Items.Count > 0) comboBox.SelectedIndex = comboBox.Items.Count - 1;
+            }
             #endregion
         }
     }
