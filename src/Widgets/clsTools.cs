@@ -75,9 +75,9 @@ namespace OLKI.Toolbox.Widgets
             }
 
             /// <summary>
-            /// Set the selected intex of the ComboBox to the first Item, if the ComboBox has Items
+            /// Set the selected intex of the ComboBox to the first Index, if the ComboBox has Items
             /// </summary>
-            /// <param name="comboBox">ComboBox to set the Index to the first item</param>
+            /// <param name="comboBox">ComboBox to set the Index to the first Index</param>
             public static void SetToFirstIndex(System.Windows.Forms.ComboBox comboBox) {
                 if (comboBox.Items.Count > 0) comboBox.SelectedIndex = 0;
             }
@@ -85,7 +85,7 @@ namespace OLKI.Toolbox.Widgets
             /// <summary>
             /// Set the selected intex of the ComboBox to the defined Index, if the ComboBox has the Index
             /// </summary>
-            /// <param name="comboBox">ComboBox to set the Index to the first item</param>
+            /// <param name="comboBox">ComboBox to set the Index to the defined Index</param>
             /// <param name="index">Index to set</param>
             public static void SetToIndex(System.Windows.Forms.ComboBox comboBox, int index)
             {
