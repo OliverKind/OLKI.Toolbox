@@ -27,7 +27,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace OLKI.Toolbox.src.Widgets
+namespace OLKI.Toolbox.Widgets
 {
     /// <summary>
     /// A MaskedTextBox that check if an given Date is valid
@@ -81,7 +81,7 @@ namespace OLKI.Toolbox.src.Widgets
             }
             else
             {
-                this._errorProvider.SetError(this, widDateInputAndValidator_Striingtable._0x0001);
+                this._errorProvider.SetError(this,  src.Widgets.widDateInputAndValidator_Striingtable._0x0001);
             }
             base.OnTextChanged(e);
         }
