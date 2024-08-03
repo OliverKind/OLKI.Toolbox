@@ -62,6 +62,25 @@ namespace OLKI.Toolbox.Widgets
                 this.Text = Date.ToString();
             }
         }
+
+        /// <summary>
+        /// Get or set the ErrorBlinkStyle
+        /// </summary>
+        [Category("Extendet")]
+        [DefaultValue(ErrorBlinkStyle.BlinkIfDifferentError)]
+        [DisplayName("ErrorBlinkStyle")]
+        [Description("Specifies constants indicating when the error icon, supplied by the ErrorProvider, should blink to alert the user that an error has occurred.")]
+        public ErrorBlinkStyle ErrorBlinkStyle
+        {
+            get
+            {
+                return this._errorProvider.BlinkStyle;
+            }
+            set
+            {
+                this._errorProvider.BlinkStyle = value;
+            }
+        }
         #endregion
 
         #region Methodes
@@ -70,7 +89,6 @@ namespace OLKI.Toolbox.Widgets
         /// </summary>
         public DateInputAndValidator()
         {
-            this._errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
         }
 
         protected override void OnTextChanged(EventArgs e)
@@ -81,7 +99,7 @@ namespace OLKI.Toolbox.Widgets
             }
             else
             {
-                this._errorProvider.SetError(this,  src.Widgets.widDateInputAndValidator_Striingtable._0x0001);
+                this._errorProvider.SetError(this, src.Widgets.widDateInputAndValidator_Striingtable._0x0001);
             }
             base.OnTextChanged(e);
         }
