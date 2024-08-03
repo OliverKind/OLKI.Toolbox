@@ -49,11 +49,6 @@ namespace OLKI.Toolbox.Widgets
         /// Specifies the column sorter
         /// </summary>
         private readonly ColumnSorter _columnSorter = null;
-
-        /// <summary>
-        /// Get the column sorter
-        /// </summary>
-        public ColumnSorter Sorter { get { return _columnSorter; } }
         #endregion
 
         #region Properties
@@ -79,9 +74,6 @@ namespace OLKI.Toolbox.Widgets
         /// Get or set a list with the widths of all Columns
         /// </summary>
         [Browsable(false)]
-        [Category("Extendet")]
-        [DisplayName("ColumnWidths")]
-        [Description("A a list with the widths of all Columns")]
         public List<int> ColumnWidths
         {
             get
@@ -118,6 +110,12 @@ namespace OLKI.Toolbox.Widgets
                 }
             }
         }
+
+        /// <summary>
+        /// Get the column sorter
+        /// </summary>
+        [Browsable(false)]
+        public ColumnSorter Sorter { get => this._columnSorter; }
         #endregion
 
         #region Methodes
