@@ -315,8 +315,26 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// Manual sort
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="order"></param>
+        /// <param name="sorting">String how to sort. First Column, second Order, seperated by ;. As example 5;2</param>
+        public void Sort(string sorting)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(sorting)) return;
+                List<int> Order = sorting.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToList();
+                if (Order.Count != 2) return;
+                this.Sort((int)Order[0], (int)Order[1]);
+            }
+            catch (Exception ex)
+            {
+                _ = ex;
+            }
+        }
+        /// <summary>
+        /// Manual sort
+        /// </summary>
+        /// <param name="column">Column to sort</param>
+        /// <param name="order">Sortorder</param>
         public void Sort(int column, int order)
         {
             try
@@ -332,8 +350,8 @@ namespace OLKI.Toolbox.Widgets
         /// <summary>
         /// Manual sort
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="order"></param>
+        /// <param name="column">Column to sort</param>
+        /// <param name="order">Sortorder</param>
         public void Sort(int column, SortOrder order)
         {
             try
