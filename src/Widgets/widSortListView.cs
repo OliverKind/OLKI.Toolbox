@@ -321,9 +321,24 @@ namespace OLKI.Toolbox.Widgets
             try
             {
                 if (string.IsNullOrEmpty(sorting)) return;
-                List<int> Order = sorting.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToList();
-                if (Order.Count != 2) return;
-                this.Sort((int)Order[0], (int)Order[1]);
+                List<int> Sorting = sorting.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s)).ToList();
+                this.Sort(Sorting);
+            }
+            catch (Exception ex)
+            {
+                _ = ex;
+            }
+        }
+        /// <summary>
+        /// Manual sort
+        /// </summary>
+        /// <param name="sorting">List how to sort. First Column, second Order.</param>
+        public void Sort(List<int> sorting)
+        {
+            try
+            {
+                if (sorting == null || sorting.Count != 2) return;
+                this.Sort((int)sorting[0], (int)sorting[1]);
             }
             catch (Exception ex)
             {
