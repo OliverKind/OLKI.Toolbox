@@ -5,7 +5,7 @@
  * License:        LGPL
  * 
  * Desctiption:
- * Class that provides tool to valid something
+ * Class that provides tools to valid something
  * 
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -32,7 +32,7 @@ namespace OLKI.Toolbox.Common
     /// <summary>
     /// Class that provides tool to valid something
     /// </summary>
-    public class Validation
+    public static class Validation
     {
         #region Methods
         /// <summary>
