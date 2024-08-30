@@ -42,7 +42,12 @@ namespace OLKI.Toolbox.Common
     {
         #region Properties
         /// <summary>
-        /// Get or set a list with Seperator Chars. All Chars will used as seperator.
+        /// Get or set a List with Chars they indicate a line as Comment line
+        /// </summary>
+        public List<char> CommentIndicator { get; set; } = new List<char> { };
+
+        /// <summary>
+        /// Get or set a List with Seperator Chars. All Chars will used as seperator.
         /// </summary>
         public List<char> Seperators { get; set; } = new List<char> { ';', '\t' };
 
@@ -196,7 +201,7 @@ namespace OLKI.Toolbox.Common
 
                 for (int i = firstRow; i < CSVrawRows.Count; i++)
                 {
-                    if (!string.IsNullOrEmpty(CSVrawRows[i]))
+                    if (!string.IsNullOrEmpty(CSVrawRows[i]) && (CommentIndicator.Count == 0 || !CommentIndicator.Contains(CSVrawRows[i].Substring(0, 1).ToCharArray()[0])))
                     {
                         this._rows.Add(new CSVrow(CSVrawRows[i], this.Seperators));
                     }
