@@ -81,6 +81,11 @@ namespace OLKI.Toolbox.Widgets
                 this._errorProvider.BlinkStyle = value;
             }
         }
+
+        /// <summary>
+        /// Get if the given Date is valid
+        /// </summary>
+        public bool IsValidDate { get; private set; } = false;
         #endregion
 
         #region Methodes
@@ -89,6 +94,7 @@ namespace OLKI.Toolbox.Widgets
         /// </summary>
         public DateInputAndValidator()
         {
+            this.OnTextChanged(new EventArgs());
         }
 
         protected override void OnTextChanged(EventArgs e)
@@ -96,10 +102,12 @@ namespace OLKI.Toolbox.Widgets
             if (Validation.IsValidDate(this.Text, true, out this._date))
             {
                 this._errorProvider.SetError(this, "");
+                this.IsValidDate = true;
             }
             else
             {
                 this._errorProvider.SetError(this, src.Widgets.widDateInputAndValidator_Striingtable._0x0001);
+                this.IsValidDate = true;
             }
             base.OnTextChanged(e);
         }
