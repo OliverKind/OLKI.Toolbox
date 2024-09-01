@@ -40,7 +40,7 @@ namespace OLKI.Toolbox.UpdateApp
         /// Get or set the AssetDate for the latest Application version
         /// </summary>
         public ReleaseAsset SetupAsset { get; set; }
-         
+
         /// <summary>
         /// Get or set Version Information
         /// </summary>

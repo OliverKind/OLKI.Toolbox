@@ -100,7 +100,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             {
                 if (showMessageIfNoAccess)
                 {
-                    MessageBox.Show(string.Format(   clsDirectory_Stringtable._0x0007m, new object[] { path, ex.Message }), src.DirectroyAndFile.clsDirectory_Stringtable._0x0007c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0007m, new object[] { path, ex.Message }), src.DirectroyAndFile.clsDirectory_Stringtable._0x0007c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

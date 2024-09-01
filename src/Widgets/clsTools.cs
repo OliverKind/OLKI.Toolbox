@@ -78,7 +78,8 @@ namespace OLKI.Toolbox.Widgets
             /// Set the selected intex of the ComboBox to the first Index, if the ComboBox has Items
             /// </summary>
             /// <param name="comboBox">ComboBox to set the Index to the first Index</param>
-            public static void SetToFirstIndex(System.Windows.Forms.ComboBox comboBox) {
+            public static void SetToFirstIndex(System.Windows.Forms.ComboBox comboBox)
+            {
                 if (comboBox.Items.Count > 0) comboBox.SelectedIndex = 0;
             }
 
@@ -89,7 +90,7 @@ namespace OLKI.Toolbox.Widgets
             /// <param name="index">Index to set</param>
             public static void SetToIndex(System.Windows.Forms.ComboBox comboBox, int index)
             {
-                if (comboBox.Items.Count > 0 && comboBox.Items.Count >index) comboBox.SelectedIndex = index;
+                if (comboBox.Items.Count > 0 && comboBox.Items.Count > index) comboBox.SelectedIndex = index;
             }
 
             /// <summary>
