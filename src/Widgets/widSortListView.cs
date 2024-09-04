@@ -155,6 +155,34 @@ namespace OLKI.Toolbox.Widgets
             }
         }
 
+        protected override void OnColumnClick(ColumnClickEventArgs e)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == this._columnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (this._columnSorter.Order == SortOrder.Ascending)
+                {
+                    this._columnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    this._columnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                this._columnSorter.SortColumn = e.Column;
+                this._columnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            this.Sort();
+            ListViewExtensions.SetSortIcon(this, this._columnSorter.SortColumn, this._columnSorter.Order);
+            base.OnColumnClick(e);
+        }
+
         protected override void OnColumnWidthChanging(ColumnWidthChangingEventArgs e)
         {
             if (!this.AllowColumnWidthChange)
@@ -253,34 +281,6 @@ namespace OLKI.Toolbox.Widgets
                 this.DoDragDrop(e.Item, DragDropEffects.Move);
                 base.OnItemDrag(e);
             }
-        }
-
-        protected override void OnColumnClick(ColumnClickEventArgs e)
-        {
-            // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == this._columnSorter.SortColumn)
-            {
-                // Reverse the current sort direction for this column.
-                if (this._columnSorter.Order == SortOrder.Ascending)
-                {
-                    this._columnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    this._columnSorter.Order = SortOrder.Ascending;
-                }
-            }
-            else
-            {
-                // Set the column number that is to be sorted; default to ascending.
-                this._columnSorter.SortColumn = e.Column;
-                this._columnSorter.Order = SortOrder.Ascending;
-            }
-
-            // Perform the sort with these new sort options.
-            this.Sort();
-            ListViewExtensions.SetSortIcon(this, this._columnSorter.SortColumn, this._columnSorter.Order);
-            base.OnColumnClick(e);
         }
 
         /// <summary>
