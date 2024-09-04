@@ -313,6 +313,19 @@ namespace OLKI.Toolbox.Widgets
         }
 
         /// <summary>
+        /// Set SelectState to all ListViewItems
+        /// </summary>
+        /// <param name="SelectState">Select state to set</param>
+        public void SetAllSelections(bool SelectState)
+        {
+            if (this.Items == null || this.Items.Count == 0) return;
+            foreach (ListViewItem ListViewItem in this.Items)
+            {
+                ListViewItem.Selected = SelectState;
+            }
+        }
+
+        /// <summary>
         /// Manual sort
         /// </summary>
         /// <param name="sorting">String how to sort. First Column, second Order, seperated by ;. As example 5;2</param>
