@@ -41,6 +41,7 @@ namespace OLKI.Toolbox.Common
         /// <returns>True if needle Text is inside the haystack Text or if the search Text is empty, otherweise False, or False if the Haystack is emptý</returns>
         public static bool FullText(string haystack, string needle)
         {
+            if (string.IsNullOrEmpty(needle)) return true;
             needle = needle.Trim();
             if (string.IsNullOrEmpty(needle)) return true;
             if (string.IsNullOrEmpty(haystack)) return false;
@@ -72,6 +73,7 @@ namespace OLKI.Toolbox.Common
         /// <returns>True if needle Text is inside the haystack Text or if the search Text is empty, otherweise False, or False if the Haystack is emptý</returns>
         public static bool List(List<string> haystack, string needle)
         {
+            if (string.IsNullOrEmpty(needle)) return true;
             needle = needle.Trim();
             if (string.IsNullOrEmpty(needle)) return true;
             foreach (string HaystackItem in haystack)
