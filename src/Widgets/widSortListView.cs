@@ -53,6 +53,15 @@ namespace OLKI.Toolbox.Widgets
 
         #region Properties
         /// <summary>
+        /// Get or set a Key Combination to select all items
+        /// </summary>
+        [Category("Extendet")]
+        [DefaultValue(Keys.None)]
+        [DisplayName("Select all, Key combination")]
+        [Description("A Key combination to select all items.")]
+        public Keys SelectAllKeys { get; set; } = Keys.None;
+
+        /// <summary>
         /// Get or set if Itmes can be manually sorted, using Drag and Drop
         /// </summary>
         [Category("Extendet")]
@@ -281,6 +290,19 @@ namespace OLKI.Toolbox.Widgets
                 this.DoDragDrop(e.Item, DragDropEffects.Move);
                 base.OnItemDrag(e);
             }
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            //Select all items
+            if (this.SelectAllKeys != Keys.None && e.KeyData == this.SelectAllKeys && e.KeyData != Keys.None && this.Items != null && this.Items.Count > 0)
+            {
+                foreach (ListViewItem ListViewItem in this.Items)
+                {
+                    ListViewItem.Selected = true;
+                }
+            }
+            base.OnKeyDown(e);
         }
 
         /// <summary>
