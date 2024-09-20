@@ -59,7 +59,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         public static readonly string[] UnitPrefix_SI = new string[7] { "Byte", "KB", "MB", "GB", "TB", "PB", "EB" };
         #endregion
 
-        #region Methods
+        #region Enums
         /// <summary>
         /// The Byte base for sice conversion 
         /// </summary>
@@ -90,7 +90,9 @@ namespace OLKI.Toolbox.DirectoryAndFile
             Peta = 5,
             Exa = 6
         }
+        #endregion
 
+        #region Methods
         #region Convert
         /// <summary>
         /// Converts the length of a specified file to the highest or maximum posible dimension, with 2 decimals and the unit
