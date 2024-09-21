@@ -288,7 +288,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             if (!System.IO.Directory.Exists(path))
             {
                 // If the directroy didn't exists, ask if the driectroy should been created
-                if (askForCreateFolder && MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0002m, new object[] { path }), src.DirectroyAndFile.clsDirectory_Stringtable._0x0002c, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                if (askForCreateFolder && MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0002m, new object[] { path }), clsDirectory_Stringtable._0x0002c, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 {
                     // Create the directroy, using template specified directroy
                     if (Create(path, templatePath))
@@ -300,7 +300,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0001m, new object[] { path, ex.Message }), src.DirectroyAndFile.clsDirectory_Stringtable._0x0001c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0001m, new object[] { path, ex.Message }), clsDirectory_Stringtable._0x0001c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
                     }
@@ -322,7 +322,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(string.Format(src.DirectroyAndFile.clsDirectory_Stringtable._0x0001m, new object[] { path, ex.Message }), src.DirectroyAndFile.clsDirectory_Stringtable._0x0001c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0001m, new object[] { path, ex.Message }), clsDirectory_Stringtable._0x0001c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
