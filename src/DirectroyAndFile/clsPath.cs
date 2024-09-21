@@ -40,6 +40,21 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <returns>The corrected path</returns>
         public static string Repair(string path)
         {
+            return Repair(path, "");
+        }
+        /// <summary>
+        /// Repairs the specified path by removing wrong escape sequences and emend wrong path seperators. Convertes \\ to \ and / to \
+        /// </summary>
+        /// <param name="path">A string that specifies the path to repair</param>
+        /// <param name="invalidReplacement">Char to replace invalic characters</param>
+        /// <returns>The corrected path</returns>
+        public static string Repair(string path, string invalidReplacement)
+        {
+
+            foreach (char c in System.IO.Path.GetInvalidPathChars())
+            {
+                path = path.Replace(c.ToString(), invalidReplacement);
+            }
             path = path.Replace(@"/", @"\");
             path = path.Replace(@"\\", @"\");
             return path;
