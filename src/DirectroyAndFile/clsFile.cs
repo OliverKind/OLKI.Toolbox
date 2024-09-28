@@ -169,12 +169,36 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// Opens the specified file and returns the content as string
         /// </summary>
         /// <param name="path">A string that specifies the file top open</param>
+        /// <param name="showExceptionMessage">Should an Exception Message shown, if open failed</param>
+        /// <param name="exception">Exception while open the file</param>
+        /// <returns>The content of the specified file as string or the specified string if file can not be opened</returns>
+        public static string OpenToString(string path, bool showExceptionMessage, out Exception exception)
+        {
+            return OpenToString(path, DEFUALT_OPEN_FILE_TO_STRING_VALUE_IF_FILE_NOT_EXISTS, showExceptionMessage, out exception);
+        }
+        /// <summary>
+        /// Opens the specified file and returns the content as string
+        /// </summary>
+        /// <param name="path">A string that specifies the file top open</param>
         /// <param name="valueIfFileNotExists">A string that specifies the string to return if the file can not be opened</param>
         /// <returns>The content of the specified file as string or the specified string if file can not be opened</returns>
         public static string OpenToString(string path, string valueIfFileNotExists)
         {
+            return OpenToString(path, valueIfFileNotExists, true, out _);
+        }
+        /// <summary>
+        /// Opens the specified file and returns the content as string
+        /// </summary>
+        /// <param name="path">A string that specifies the file top open</param>
+        /// <param name="valueIfFileNotExists">A string that specifies the string to return if the file can not be opened</param>
+        /// <param name="showExceptionMessage">Should an Exception Message shown, if open failed</param>
+        /// <param name="exception">Exception while open the file</param>
+        /// <returns>The content of the specified file as string or the specified string if file can not be opened</returns>
+        public static string OpenToString(string path, string valueIfFileNotExists, bool showExceptionMessage, out Exception exception)
+        {
             try
             {
+                exception = null;
                 string FileString = string.Empty;
                 using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
@@ -190,7 +214,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(clsFile_Stringtable._0x0006m, new object[] { path, ex.Message }), clsFile_Stringtable._0x0006c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exception = ex;
+                if (showExceptionMessage) MessageBox.Show(string.Format(clsFile_Stringtable._0x0006m, new object[] { path, ex.Message }), clsFile_Stringtable._0x0006c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return valueIfFileNotExists;
             }
         }
