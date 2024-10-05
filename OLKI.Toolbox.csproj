@@ -73,6 +73,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringTable.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\Common\clsSearch.cs" />
+    <Compile Include="src\Common\clsValidation.cs" />
     <Compile Include="src\Common\clsConverter.cs" />
     <Compile Include="src\Common\clsCSVreader.cs" />
     <Compile Include="src\Common\clsMatehmatics.cs" />
@@ -152,6 +154,14 @@
     <Compile Include="src\Widgets\Invoke\clsProgressBarInv.cs" />
     <Compile Include="src\Widgets\Invoke\clsTabPageInv.cs" />
     <Compile Include="src\Widgets\Invoke\clsTextBoxInv.cs" />
+    <Compile Include="src\Widgets\widDateInputAndValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\Widgets\widDateInputAndValidator.Striingtable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>widDateInputAndValidator.Striingtable.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\Widgets\widNumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -254,6 +264,11 @@
     <None Include="CONTRIBUTING.md" />
     <None Include="LICENSE" />
     <None Include="README.md" />
+    <EmbeddedResource Include="src\Widgets\widDateInputAndValidator.Striingtable.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>widDateInputAndValidator.Striingtable.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

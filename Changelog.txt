@@ -1,4 +1,24 @@
 # OLKI.Toolbox
+## [6.0.0.20] - 2024-10-05
+### Added
+- OLKI.Toolbox.Common.CSVreader: Option to use Comment Lines
+- OLKI.Toolbox.Common.GetFromXElement: Color overload
+- OLKI.Toolbox.Common.Validate
+- OLKI.Toolbox.DirectoryAndFile.Repair: Check for invalid Chars
+- OLKI.Toolbox.Widgets.DateInputAndValidator
+- OLKI.Toolbox.Widgets.SortListView: Add select all Key combination
+- OLKI.Toolbox.Widgets.SortListView: Allow disable of changing Column width
+- OLKI.Toolbox.Widgets.SortListView: Ensure last ListViewItem is visibl
+- OLKI.Toolbox.Widgets.SortListView: Get and Set width for all columns
+- OLKI.Toolbox.Widgets.SortListView: Set Select state to all Items
+- OLKI.Toolbox.Widgets.Tools.ComboBox: SetToIndex
+
+### Changed
+- OLKI.Toolbox.Widgets.SortListView.Sort: Stability improvement
+
+### Fixed
+- OLKI.Toolbox.Common.GetFromXElement: convertLineBrake Option not working
+
 ## [5.5.0.19] - 2024-03-01
 ### Added
 - OLKI.Toolbox.Widgets.SortListView: Add Method to Sort with options (Column and Order)
