@@ -53,6 +53,19 @@ namespace OLKI.Toolbox.Common
         /// Search if the one of the needle Elements is inside the list of haystack Numbers
         /// </summary>
         /// <param name="haystack">A list wiht Numbers to search in</param>
+        /// <param name="needle">Number to search for</param>
+        /// <returns>True if needle Number is inside the haystack Numbers or if the search Numbers is empty, otherweise False, or False if the Haystack is emptý</returns>
+        public static bool List(List<int> haystack, int needle)
+        {
+            if (needle == 0 ) return true;
+                if (haystack.Contains(needle)) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Search if the one of the needle Elements is inside the list of haystack Numbers
+        /// </summary>
+        /// <param name="haystack">A list wiht Numbers to search in</param>
         /// <param name="needle">Numbers to search for</param>
         /// <returns>True if needle Numbers is inside the haystack Numbers or if the search Numbers is empty, otherweise False, or False if the Haystack is emptý</returns>
         public static bool List(List<int> haystack, List<int> needle)
