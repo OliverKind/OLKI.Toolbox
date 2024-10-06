@@ -19,7 +19,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class clsFileAssociation_Stringtable {
@@ -61,7 +61,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Finden von Dateizuordnungen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler biem Finden von Dateizuordnungen. ähnelt.
         /// </summary>
         internal static string _0x0001c {
             get {
@@ -119,7 +119,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Zuordnen des Dateityps zur Anwendung ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Zuordnen des Dateityps zur Anwendung. ähnelt.
         /// </summary>
         internal static string _0x0004c {
             get {
@@ -141,7 +141,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler Zuordnen des Dateityps zur Anwendung ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler Zuordnen des Dateityps zur Anwendung. ähnelt.
         /// </summary>
         internal static string _0x0005c {
             get {
@@ -163,7 +163,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dateityp der Anwendung erfoglreich zugeordnet ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dateityp der Anwendung erfoglreich zugeordnet. ähnelt.
         /// </summary>
         internal static string _0x0006c {
             get {

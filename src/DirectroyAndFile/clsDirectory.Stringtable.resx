@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="0x0001c" xml:space="preserve">
-    <value>Ordner öffnen</value>
+    <value>Fehler biem Ordner öffnen.</value>
   </data>
   <data name="0x0001m" xml:space="preserve">
     <value>Der Ordner "{0}" konnte nicht geöffnet und gelesen werden.
@@ -126,14 +126,14 @@
 {1}</value>
   </data>
   <data name="0x0002c" xml:space="preserve">
-    <value>Ordner öffnen</value>
+    <value>FEhler beim Ordner öffnen.</value>
   </data>
   <data name="0x0002m" xml:space="preserve">
     <value>Der Ordner "{0}" existiert nicht.
 Möchten Sie ihn jetzt anlegen?</value>
   </data>
   <data name="0x0003c" xml:space="preserve">
-    <value>Ordner löschen</value>
+    <value>Fehler beim Ordner löschen.</value>
   </data>
   <data name="0x0003m" xml:space="preserve">
     <value>Der Ordner "{0}" konnte nicht gelöscht werden.
@@ -141,13 +141,13 @@ Möchten Sie ihn jetzt anlegen?</value>
 {1}</value>
   </data>
   <data name="0x0004c" xml:space="preserve">
-    <value>Ordner löschen</value>
+    <value>Ordner löschen?</value>
   </data>
   <data name="0x0004m" xml:space="preserve">
     <value>Sind Sie sich sicher das Sie den Ordner "{0}" unwiederruflich löschen möchten?</value>
   </data>
   <data name="0x0005c" xml:space="preserve">
-    <value>Ordner erstellen</value>
+    <value>Fehler beim Ordner erstellen.</value>
   </data>
   <data name="0x0005m" xml:space="preserve">
     <value>Der Ordner "{0}" konnte nicht erstellt werden.
@@ -155,7 +155,7 @@ Möchten Sie ihn jetzt anlegen?</value>
 {1}</value>
   </data>
   <data name="0x0006c" xml:space="preserve">
-    <value>Ordner kopieren</value>
+    <value>Fehler Ordner kopieren.</value>
   </data>
   <data name="0x0006m" xml:space="preserve">
     <value>Beim Kopieren des Ordners "{0}" nach "{1}" ist ein Fehler aufgetreten.
@@ -163,7 +163,7 @@ Möchten Sie ihn jetzt anlegen?</value>
 {2}</value>
   </data>
   <data name="0x0007c" xml:space="preserve">
-    <value>Zugriff auf Ordner</value>
+    <value>Zugriff auf Ordner verweigert.</value>
   </data>
   <data name="0x0007m" xml:space="preserve">
     <value>Der Zugriff auf den Ordner "{0}" wurde verweigert.

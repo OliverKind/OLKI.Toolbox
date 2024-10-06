@@ -61,7 +61,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Datei kopieren ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler biem Datei kopieren. ähnelt.
         /// </summary>
         internal static string _0x0001c {
             get {
@@ -81,7 +81,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Datei kopieren ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Datei kopieren. ähnelt.
         /// </summary>
         internal static string _0x0002c {
             get {
@@ -99,7 +99,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Datei erstellen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler biem Datei erstellen. ähnelt.
         /// </summary>
         internal static string _0x0003c {
             get {
@@ -119,7 +119,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Datei löschen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Datei löschen? ähnelt.
         /// </summary>
         internal static string _0x0004c {
             get {
@@ -137,7 +137,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Datei löschen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Datei löschen. ähnelt.
         /// </summary>
         internal static string _0x0005c {
             get {
@@ -157,7 +157,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Datei öffnen und lesen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehöer beim Datei öffnen und lesen. ähnelt.
         /// </summary>
         internal static string _0x0006c {
             get {
