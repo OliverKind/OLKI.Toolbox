@@ -1,4 +1,11 @@
 # OLKI.Toolbox
+## [6.1.0.21] - 2024-10-??
+### Added
+- Several Exception options
+
+### Changed
+- Several comments and strings
+
 ## [6.0.0.20] - 2024-10-05
 ### Added
 - OLKI.Toolbox.Common.CSVreader: Option to use Comment Lines
