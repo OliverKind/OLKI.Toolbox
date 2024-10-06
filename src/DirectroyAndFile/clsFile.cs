@@ -40,11 +40,11 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// </summary>
         private const bool DEFUALT_COPY_OVERWRITE = false;
         /// <summary>
-        /// Specifies the defaukt value if a security question should been shown before deleting a file by File_Delete
+        /// Specifies the defaukt value if a security question should been shown before deleting a File by File_Delete
         /// </summary>
         private const bool DEFUALT_DELETE_SHOW_SECURITY_QUESTION = true;
         /// <summary>
-        /// Specifies the defaukt value to return if the specified file does not exists by File_OpenToString
+        /// Specifies the defaukt value to return if the specified File does not exists by File_OpenToString
         /// </summary>
         private const string DEFUALT_OPEN_FILE_TO_STRING_VALUE_IF_FILE_NOT_EXISTS = "";
         #endregion
@@ -52,26 +52,52 @@ namespace OLKI.Toolbox.DirectoryAndFile
         #region Methods
         #region Copy
         /// <summary>
-        /// Copies the specified file to the specified destination and ask to overwrite if the destination file already exists
+        /// Copies the specified File to the specified destination and ask to overwrite if the destination File already exists
         /// </summary>
-        /// <param name="sourcePath">A string that specifies the source file path</param>
-        /// <param name="destPath">A string that specifies the destination file path</param>
+        /// <param name="sourcePath">A string that specifies the source File path</param>
+        /// <param name="destPath">A string that specifies the destination File path</param>
         /// <returns>True if copy was successful and false if not</returns>
         public static bool Copy(string sourcePath, string destPath)
         {
-            return Copy(sourcePath, destPath, DEFUALT_COPY_OVERWRITE);
+            return Copy(sourcePath, destPath, true, out _);
         }
         /// <summary>
-        /// Copies the specified file to the specified destination
+        /// Copies the specified File to the specified destination and ask to overwrite if the destination File already exists
         /// </summary>
-        /// <param name="sourcePath">A string that specifies the source file path</param>
-        /// <param name="destPath">A string that specifies the destination file path</param>
-        /// <param name="overwrite">Set true to overwrite an existing file without question</param>
+        /// <param name="sourcePath">A string that specifies the source File path</param>
+        /// <param name="destPath">A string that specifies the destination File path</param>
+        /// <param name="showExceptionMessage">Should an Exception Message shown, if copy failed</param>
+        /// <param name="exception">Exception while copy the File</param>
+        /// <returns>True if copy was successful and false if not</returns>
+        public static bool Copy(string sourcePath, string destPath, bool showExceptionMessage, out Exception exception)
+        {
+            return Copy(sourcePath, destPath, DEFUALT_COPY_OVERWRITE, showExceptionMessage, out exception);
+        }
+        /// <summary>
+        /// Copies the specified File to the specified destination
+        /// </summary>
+        /// <param name="sourcePath">A string that specifies the source File path</param>
+        /// <param name="destPath">A string that specifies the destination File path</param>
+        /// <param name="overwrite">Set true to overwrite an existing File without question</param>
         /// <returns>True if copy was successful and false if not</returns>
         public static bool Copy(string sourcePath, string destPath, bool overwrite)
         {
+            return Copy(sourcePath, destPath, overwrite, true, out _);
+        }
+        /// <summary>
+        /// Copies the specified File to the specified destination
+        /// </summary>
+        /// <param name="sourcePath">A string that specifies the source File path</param>
+        /// <param name="destPath">A string that specifies the destination File path</param>
+        /// <param name="overwrite">Set true to overwrite an existing File without question</param>
+        /// <param name="showExceptionMessage">Should an Exception Message shown, if copy failed</param>
+        /// <param name="exception">Exception while copy the File</param>
+        /// <returns>True if copy was successful and false if not</returns>
+        public static bool Copy(string sourcePath, string destPath, bool overwrite, bool showExceptionMessage, out Exception exception)
+        {
             try
             {
+                exception = null;
                 if (!overwrite && System.IO.File.Exists(destPath))
                 {
                     if (MessageBox.Show(string.Format(clsFile_Stringtable._0x0002m, new object[] { destPath }), clsFile_Stringtable._0x0002c, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -88,7 +114,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(clsFile_Stringtable._0x0001m, new object[] { sourcePath, destPath, ex.Message }), clsFile_Stringtable._0x0001c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exception = ex;
+                if (showExceptionMessage) MessageBox.Show(string.Format(clsFile_Stringtable._0x0001m, new object[] { sourcePath, destPath, ex.Message }), clsFile_Stringtable._0x0001c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -96,15 +123,28 @@ namespace OLKI.Toolbox.DirectoryAndFile
 
         #region Create
         /// <summary>
-        /// Creates an empty file with the specified name in the specified directory
+        /// Creates an empty File with the specified name in the specified directory
         /// </summary>
-        /// <param name="directoryPath">A string that specifies the directory where the file shoukd be created</param>
-        /// <param name="fileName">A string that specifies the file name of the file to create</param>
-        /// <returns>True if creation of the specified file was successful and false if not</returns>
+        /// <param name="directoryPath">A string that specifies the Directory where the File shoukd be created</param>
+        /// <param name="fileName">A string that specifies the File name of the File to create</param>
+        /// <returns>True if creation of the specified File was successful and false if not</returns>
         public static bool Create(string directoryPath, string fileName)
+        {
+            return Create(directoryPath, fileName, true, out _);
+        }
+        /// <summary>
+        /// Creates an empty File with the specified name in the specified directory
+        /// </summary>
+        /// <param name="directoryPath">A string that specifies the Directory where the File shoukd be created</param>
+        /// <param name="fileName">A string that specifies the File name of the File to create</param>
+        /// <param name="showExceptionMessage">Should an Exception Message shown, if create failed</param>
+        /// <param name="exception">Exception while create the File</param>
+        /// <returns>True if creation of the specified File was successful and false if not</returns>
+        public static bool Create(string directoryPath, string fileName, bool showExceptionMessage, out Exception exception)
         {
             try
             {
+                exception = null;
                 directoryPath = Path.Repair(directoryPath);
                 System.IO.Directory.CreateDirectory(directoryPath);
                 using (StreamWriter sw = System.IO.File.CreateText(directoryPath + fileName))
@@ -115,7 +155,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(clsFile_Stringtable._0x0003m, new object[] { directoryPath + fileName, ex.Message }), clsFile_Stringtable._0x0003c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exception = ex;
+                if (showExceptionMessage) MessageBox.Show(string.Format(clsFile_Stringtable._0x0003m, new object[] { directoryPath + fileName, ex.Message }), clsFile_Stringtable._0x0003c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -123,24 +164,48 @@ namespace OLKI.Toolbox.DirectoryAndFile
 
         #region Delete
         /// <summary>
-        /// Delete the specified file an shows a security question
+        /// Delete the specified File an shows a security question
         /// </summary>
-        /// <param name="path">A string that specifies the file to delete</param>
-        /// <returns>True if deleting of the specified file was successful and false if not</returns>
+        /// <param name="path">A string that specifies the File to delete</param>
+        /// <returns>True if deleting of the specified File was successful and false if not</returns>
         public static bool Delete(string path)
         {
-            return Delete(path, DEFUALT_DELETE_SHOW_SECURITY_QUESTION);
+            return Delete(path, true, out _);
         }
         /// <summary>
-        /// Delete the specified file an shows a security question if specified
+        /// Delete the specified File an shows a security question
         /// </summary>
-        /// <param name="path">A string that specifies the file to delete</param>
-        /// <param name="showSecurityQuestion">Specifies if a security question should been shown before the file will be deleted</param>
-        /// <returns>True if deleting of the specified file was successful and false if not</returns>
+        /// <param name="path">A string that specifies the File to delete</param>
+        /// <param name="showExceptionMessage">Should an Exception Message shown, if delte failed</param>
+        /// <param name="exception">Exception while delete the File</param>
+        /// <returns>True if deleting of the specified File was successful and false if not</returns>
+        public static bool Delete(string path, bool showExceptionMessage, out Exception exception)
+        {
+            return Delete(path, DEFUALT_DELETE_SHOW_SECURITY_QUESTION, showExceptionMessage, out exception);
+        }
+        /// <summary>
+        /// Delete the specified File an shows a security question if specified
+        /// </summary>
+        /// <param name="path">A string that specifies the File to delete</param>
+        /// <param name="showSecurityQuestion">Specifies if a security question should been shown before the File will be deleted</param>
+        /// <returns>True if deleting of the specified File was successful and false if not</returns>
         public static bool Delete(string path, bool showSecurityQuestion)
+        {
+            return Delete(path, showSecurityQuestion, true, out _);
+        }
+        /// <summary>
+        /// Delete the specified File an shows a security question if specified
+        /// </summary>
+        /// <param name="path">A string that specifies the File to delete</param>
+        /// <param name="showSecurityQuestion">Specifies if a security question should been shown before the File will be deleted</param>
+        /// <param name="showExceptionMessage">Should an Exception Message shown, if delte failed</param>
+        /// <param name="exception">Exception while delete the File</param>
+        /// <returns>True if deleting of the specified File was successful and false if not</returns>
+        public static bool Delete(string path, bool showSecurityQuestion, bool showExceptionMessage, out Exception exception)
         {
             try
             {
+                exception = null;
                 if ((!showSecurityQuestion || MessageBox.Show(string.Format(clsFile_Stringtable._0x0004m, new object[] { path }), clsFile_Stringtable._0x0004c, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes) && System.IO.File.Exists(path))
                 {
                     System.IO.File.Delete(path);
@@ -149,7 +214,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(clsFile_Stringtable._0x0005m, new object[] { path, ex.Message }), clsFile_Stringtable._0x0005c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                exception = ex;
+                if (showExceptionMessage) MessageBox.Show(string.Format(clsFile_Stringtable._0x0005m, new object[] { path, ex.Message }), clsFile_Stringtable._0x0005c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -157,43 +223,43 @@ namespace OLKI.Toolbox.DirectoryAndFile
 
         #region OpenToString
         /// <summary>
-        /// Opens the specified file and returns the content as string. If the file can not open an empty string will returned
+        /// Opens the specified File and returns the content as string. If the File can not open an empty string will returned
         /// </summary>
-        /// <param name="path">A string that specifies the file top open</param>
-        /// <returns>The content of the specified file as string or an empty string if file can not be opened</returns>
+        /// <param name="path">A string that specifies the File top open</param>
+        /// <returns>The content of the specified File as string or an empty string if File can not be opened</returns>
         public static string OpenToString(string path)
         {
-            return OpenToString(path, DEFUALT_OPEN_FILE_TO_STRING_VALUE_IF_FILE_NOT_EXISTS);
+            return OpenToString(path, true, out _);
         }
         /// <summary>
-        /// Opens the specified file and returns the content as string
+        /// Opens the specified File and returns the content as string
         /// </summary>
-        /// <param name="path">A string that specifies the file top open</param>
+        /// <param name="path">A string that specifies the File top open</param>
         /// <param name="showExceptionMessage">Should an Exception Message shown, if open failed</param>
-        /// <param name="exception">Exception while open the file</param>
-        /// <returns>The content of the specified file as string or the specified string if file can not be opened</returns>
+        /// <param name="exception">Exception while open the File</param>
+        /// <returns>The content of the specified File as string or the specified string if File can not be opened</returns>
         public static string OpenToString(string path, bool showExceptionMessage, out Exception exception)
         {
             return OpenToString(path, DEFUALT_OPEN_FILE_TO_STRING_VALUE_IF_FILE_NOT_EXISTS, showExceptionMessage, out exception);
         }
         /// <summary>
-        /// Opens the specified file and returns the content as string
+        /// Opens the specified File and returns the content as string
         /// </summary>
-        /// <param name="path">A string that specifies the file top open</param>
-        /// <param name="valueIfFileNotExists">A string that specifies the string to return if the file can not be opened</param>
-        /// <returns>The content of the specified file as string or the specified string if file can not be opened</returns>
+        /// <param name="path">A string that specifies the File top open</param>
+        /// <param name="valueIfFileNotExists">A string that specifies the string to return if the File can not be opened</param>
+        /// <returns>The content of the specified File as string or the specified string if File can not be opened</returns>
         public static string OpenToString(string path, string valueIfFileNotExists)
         {
             return OpenToString(path, valueIfFileNotExists, true, out _);
         }
         /// <summary>
-        /// Opens the specified file and returns the content as string
+        /// Opens the specified File and returns the content as string
         /// </summary>
-        /// <param name="path">A string that specifies the file top open</param>
-        /// <param name="valueIfFileNotExists">A string that specifies the string to return if the file can not be opened</param>
+        /// <param name="path">A string that specifies the File top open</param>
+        /// <param name="valueIfFileNotExists">A string that specifies the string to return if the File can not be opened</param>
         /// <param name="showExceptionMessage">Should an Exception Message shown, if open failed</param>
-        /// <param name="exception">Exception while open the file</param>
-        /// <returns>The content of the specified file as string or the specified string if file can not be opened</returns>
+        /// <param name="exception">Exception while open the File</param>
+        /// <returns>The content of the specified File as string or the specified string if File can not be opened</returns>
         public static string OpenToString(string path, string valueIfFileNotExists, bool showExceptionMessage, out Exception exception)
         {
             try
@@ -223,43 +289,42 @@ namespace OLKI.Toolbox.DirectoryAndFile
 
         #region Other
         /// <summary>
-        /// Shorten the filename if the resulting file path is longer than 260 chars (including the terminator)
+        /// Shorten the filename if the resulting File path is longer than 260 chars (including the terminator)
         /// </summary>
         /// <param name="fullName">Path to the file, to check the length</param>
-        /// <param name="maxLength">Target file path length</param>
-        /// <param name="exception">Exception while creating new file name</param>
+        /// <param name="exception">Exception while creating new File name</param>
         /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
         public static string ShortenFilenameToMaxPathLength(string fullName, out Exception exception)
         {
             return ShortenFilenameToMaxPathLength(fullName, 260, out exception);
         }
         /// <summary>
-        /// Shorten the filename if the resulting file path is longer than the given limit.
+        /// Shorten the filename if the resulting File path is longer than the given limit.
         /// </summary>
         /// <param name="fullName">Path to the file, to check the length</param>
-        /// <param name="maxLength">Target file path length</param>
-        /// <param name="exception">Exception while creating new file name</param>
+        /// <param name="maxLength">Target File path length</param>
+        /// <param name="exception">Exception while creating new File name</param>
         /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
         public static string ShortenFilenameToMaxPathLength(string fullName, int maxLength, out Exception exception)
         {
             return ShortenFilenameToMaxPathLength(new FileInfo(fullName), maxLength, out exception);
         }
         /// <summary>
-        /// Shorten the filename if the resulting file path is longer than 260 chars (including the terminator)
+        /// Shorten the filename if the resulting File path is longer than 260 chars (including the terminator)
         /// </summary>
-        /// <param name="fileInfo">FileInfo of the file to shorten fie filename, if necessary</param>
-        /// <param name="exception">Exception while creating new file name</param>
+        /// <param name="fileInfo">FileInfo of the File to shorten fie filename, if necessary</param>
+        /// <param name="exception">Exception while creating new File name</param>
         /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
         public static string ShortenFilenameToMaxPathLength(FileInfo fileInfo, out Exception exception)
         {
             return ShortenFilenameToMaxPathLength(fileInfo, 260, out exception);
         }
         /// <summary>
-        /// Shorten the filename if the resulting file path is longer than the given limit.
+        /// Shorten the filename if the resulting File path is longer than the given limit.
         /// </summary>
-        /// <param name="fileInfo">FileInfo of the file to shorten fie filename, if necessary</param>
-        /// <param name="maxLength">Target file path length</param>
-        /// <param name="exception">Exception while creating new file name</param>
+        /// <param name="fileInfo">FileInfo of the File to shorten fie filename, if necessary</param>
+        /// <param name="maxLength">Target File path length</param>
+        /// <param name="exception">Exception while creating new File name</param>
         /// <returns>The full path with the shorten filename or an empty sting if an exception occurs</returns>
         public static string ShortenFilenameToMaxPathLength(FileInfo fileInfo, int maxLength, out Exception exception)
         {

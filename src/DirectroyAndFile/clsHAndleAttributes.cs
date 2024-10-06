@@ -5,7 +5,7 @@
  * License:        LGPL
  * 
  * Desctiption:
- * Class that provides tool to handle directroy and file attributes
+ * Class that provides tool to handle directroy and File attributes
  * 
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -28,7 +28,7 @@ using System.IO;
 namespace OLKI.Toolbox.DirectoryAndFile
 {
     /// <summary>
-    /// Provides tools to hande directory and file attributes
+    /// Provides tools to hande Directory and File attributes
     /// </summary>
     public static class HandleAttributes
     {
@@ -97,7 +97,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             /// Set attributes to specified directroy
             /// </summary>
             /// <param name="directory">Directroy to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the directory</param>
+            /// <param name="attributes">Attributes to set to the Directory</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(DirectoryInfo directory, FileAttributes attributes)
             {
@@ -108,7 +108,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             /// Set attributes to specified directroy and provide exception informations, if attributes can not be removed
             /// </summary>
             /// <param name="directory">Directroy to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the directory</param>
+            /// <param name="attributes">Attributes to set to the Directory</param>
             /// <param name="exception">Exception informations if attribute can not be set, otherwile NULL</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(DirectoryInfo directory, FileAttributes attributes, out Exception exception)
@@ -120,7 +120,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             /// Set attributes to specified directroy
             /// </summary>
             /// <param name="directory">Directroy to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the directory</param>
+            /// <param name="attributes">Attributes to set to the Directory</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(string directory, FileAttributes attributes)
             {
@@ -131,7 +131,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             /// Set attributes to specified directroy and provide exception informations, if attributes can not be removed
             /// </summary>
             /// <param name="directory">Directroy to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the directory</param>
+            /// <param name="attributes">Attributes to set to the Directory</param>
             /// <param name="exception">Exception informations if attribute can not be set, otherwile NULL</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(string directory, FileAttributes attributes, out Exception exception)
@@ -153,7 +153,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         }
 
         /// <summary>
-        /// Handle file attributes
+        /// Handle File attributes
         /// </summary>
         public static class File
         {
@@ -170,7 +170,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
 
             /// <summary>
-            /// Remove attributes from specified file and provide exception informations, if attributes can not be removed
+            /// Remove attributes from specified File and provide exception informations, if attributes can not be removed
             /// </summary>
             /// <param name="file">File to remove the attributes from</param>
             /// <param name="exception">Exception informations if attribute can not be removed, otherwile NULL</param>
@@ -191,7 +191,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
 
             /// <summary>
-            /// Remove attributes from specified file and provide exception informations, if attributes can not be removed
+            /// Remove attributes from specified File and provide exception informations, if attributes can not be removed
             /// </summary>
             /// <param name="file">File to remove the attributes from</param>
             /// <param name="exception">Exception informations if attribute can not be removed, otherwile NULL</param>
@@ -217,7 +217,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             /// Set attributes to specified file
             /// </summary>
             /// <param name="file">File to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the directory</param>
+            /// <param name="attributes">Attributes to set to the Directory</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(FileInfo file, FileAttributes attributes)
             {
@@ -225,10 +225,10 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
 
             /// <summary>
-            /// Set attributes to specified file and provide exception informations, if attributes can not be removed
+            /// Set attributes to specified File and provide exception informations, if attributes can not be removed
             /// </summary>
             /// <param name="file">File to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the file</param>
+            /// <param name="attributes">Attributes to set to the File</param>
             /// <param name="exception">Exception informations if attribute can not be set, otherwile NULL</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(FileInfo file, FileAttributes attributes, out Exception exception)
@@ -240,7 +240,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             /// Set attributes to specified file
             /// </summary>
             /// <param name="file">File to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the directory</param>
+            /// <param name="attributes">Attributes to set to the Directory</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(string file, FileAttributes attributes)
             {
@@ -248,10 +248,10 @@ namespace OLKI.Toolbox.DirectoryAndFile
             }
 
             /// <summary>
-            /// Set attributes to specified file and provide exception informations, if attributes can not be removed
+            /// Set attributes to specified File and provide exception informations, if attributes can not be removed
             /// </summary>
             /// <param name="file">File to set the attributes</param>
-            /// <param name="attributes">Attributes to set to the file</param>
+            /// <param name="attributes">Attributes to set to the File</param>
             /// <param name="exception">Exception informations if attribute can not be set, otherwile NULL</param>
             /// <returns>True if attributes where set sucessfully</returns>
             public static bool Set(string file, FileAttributes attributes, out Exception exception)

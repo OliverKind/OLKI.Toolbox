@@ -5,7 +5,7 @@
  * License:        LGPL
  * 
  * Desctiption:
- * Class that provides tool to handle file assiciations
+ * Class that provides tool to handle File assiciations
  * 
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -30,7 +30,7 @@ using System.Windows.Forms;
 namespace OLKI.Toolbox.DirectoryAndFile
 {
     /// <summary>
-    /// Class that provides tool to handle file assiciations
+    /// Class that provides tool to handle File assiciations
     /// </summary>
     public static class FileAssociation
     {
@@ -40,7 +40,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// </summary>
         private const UserType DEFAULT_FILE_ASSOCIATION_USER_TYPE = UserType.CurrentUser;
         /// <summary>
-        /// Specifies the defaukt value if a messagebox should be shown, if a file is associated to the specified applicaiton
+        /// Specifies the defaukt value if a messagebox should be shown, if a File is associated to the specified applicaiton
         /// </summary>
         private const bool DEFAULT_FILE_ASSOCIATION_SHOW_MESSAGE_IF_FILE_IS_ASSOCIATED = true;
         #endregion
@@ -65,10 +65,10 @@ namespace OLKI.Toolbox.DirectoryAndFile
         #region Methods
         #region FindApplication
         /// <summary>
-        /// Find the applications it is associated by windows default to a file. Don't throw an exception if ther is no file association.
+        /// Find the applications it is associated by windows default to a file. Don't throw an exception if ther is no File association.
         /// </summary>
-        /// <param name="extension">The extension or A string that specifies the file to find the associated application</param>
-        /// <returns>Execution path to the application, they is associated to the file or an empty string if no application is association</returns>
+        /// <param name="extension">The extension or A string that specifies the File to find the associated application</param>
+        /// <returns>Execution path to the application, they is associated to the File or an empty string if no application is association</returns>
         public static string FindApplication(string extension)
         {
             return FindApplication(extension, false);
@@ -77,9 +77,9 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Find the applications it is associated by windows default to a file
         /// </summary>
-        /// <param name="extension">The extension or A string that specifies the file to find the associated application</param>
+        /// <param name="extension">The extension or A string that specifies the File to find the associated application</param>
         /// <param name="throwExceptionIfNoAssociation">Specifies if an exception should been thrown if ther is no filce assiciation</param>
-        /// <returns>Execution path to the application, they is associated to the file or an empty string if no application is association</returns>
+        /// <returns>Execution path to the application, they is associated to the File or an empty string if no application is association</returns>
         public static string FindApplication(string extension, bool throwExceptionIfNoAssociation)
         {
             try
@@ -123,8 +123,8 @@ namespace OLKI.Toolbox.DirectoryAndFile
         /// <summary>
         /// Matches if the specified application executable is associated with the specified file
         /// </summary>
-        /// <param name="appPath">A string that specifies a application which where the specified file shold be associated with</param>
-        /// <param name="filePathOrExtension">A string that specifies a file name or only the extension</param>
+        /// <param name="appPath">A string that specifies a application which where the specified File shold be associated with</param>
+        /// <param name="filePathOrExtension">A string that specifies a File name or only the extension</param>
         /// <returns>True if the defined application is associated wit  h the defined file</returns>
         public static bool CheckMatchWithApplication(string appPath, string filePathOrExtension)
         {
@@ -142,53 +142,53 @@ namespace OLKI.Toolbox.DirectoryAndFile
 
         #region CheckMatchWithApplicationAndSet
         /// <summary>
-        /// Matches if the specified file is associated to the specified application executable is and set the file association of the spicified file to the specified application executable, if requested, if the specified is not associated to the specified application
+        /// Matches if the specified File is associated to the specified application executable is and set the File association of the spicified File to the specified application executable, if requested, if the specified is not associated to the specified application
         /// </summary>
-        /// <param name="appPath">A string that specifies a application which where the specified file shold be associated with</param>
-        /// <param name="filePath">A string that specifies a file name. This file should be a document.</param>
-        /// <param name="applicationFiletype">The file type of the application, as example "txt.text"</param>
-        /// <param name="description">The description of the file type, as example "Textwriter Textfile"</param>
-        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified file type. This value can be NULL.</param>
+        /// <param name="appPath">A string that specifies a application which where the specified File shold be associated with</param>
+        /// <param name="filePath">A string that specifies a File name. This File should be a document.</param>
+        /// <param name="applicationFiletype">The File type of the application, as example "txt.text"</param>
+        /// <param name="description">The description of the File type, as example "Textwriter Textfile"</param>
+        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified File type. This value can be NULL.</param>
         public static void CheckMatchWithApplicationAndSet(string appPath, string filePath, string applicationFiletype, string description, string iconPath)
         {
             CheckMatchWithApplicationAndSet(appPath, filePath, applicationFiletype, description, iconPath, DEFAULT_FILE_ASSOCIATION_SHOW_MESSAGE_IF_FILE_IS_ASSOCIATED);
         }
         /// <summary>
-        /// Matches if the specified file is associated to the specified application executable is and set the file association of the spicified file to the specified application executable, if requested, if the specified is not associated to the specified application
+        /// Matches if the specified File is associated to the specified application executable is and set the File association of the spicified File to the specified application executable, if requested, if the specified is not associated to the specified application
         /// </summary>
-        /// <param name="appPath">A string that specifies a application which where the specified file shold be associated with</param>
-        /// <param name="filePath">A string that specifies a file name. This file should be a document.</param>
-        /// <param name="applicationFiletype">The file type of the application, as example "txt.text"</param>
-        /// <param name="description">The description of the file type, as example "Textwriter Textfile"</param>
-        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified file type. This value can be NULL.</param>
-        /// <param name="showMessageIfConnected">A boolean value it specifies if an message shold been shown if the specified file is associated to specified application</param>
+        /// <param name="appPath">A string that specifies a application which where the specified File shold be associated with</param>
+        /// <param name="filePath">A string that specifies a File name. This File should be a document.</param>
+        /// <param name="applicationFiletype">The File type of the application, as example "txt.text"</param>
+        /// <param name="description">The description of the File type, as example "Textwriter Textfile"</param>
+        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified File type. This value can be NULL.</param>
+        /// <param name="showMessageIfConnected">A boolean value it specifies if an message shold been shown if the specified File is associated to specified application</param>
         public static void CheckMatchWithApplicationAndSet(string appPath, string filePath, string applicationFiletype, string description, string iconPath, bool showMessageIfConnected)
         {
             CheckMatchWithApplicationAndSet(appPath, filePath, System.IO.Path.GetExtension(filePath), applicationFiletype, description, iconPath, showMessageIfConnected);
         }
         /// <summary>
-        /// Matches if the specified file is associated to the specified application executable is and set the file association of the spicified file to the specified application executable, if requested, if the specified is not associated to the specified application
+        /// Matches if the specified File is associated to the specified application executable is and set the File association of the spicified File to the specified application executable, if requested, if the specified is not associated to the specified application
         /// </summary>
-        /// <param name="appPath">A string that specifies a application which where the specified file shold be associated with</param>
-        /// <param name="filePath">A string that specifies a file name. This file should be a document.</param>
-        /// <param name="extension">The extension of the file to associate, as example ".txt"</param>
-        /// <param name="applicationFiletype">The file type of the application, as example "txt.text"</param>
-        /// <param name="description">The description of the file type, as example "Textwriter Textfile"</param>
-        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified file type. This value can be NULL.</param>
+        /// <param name="appPath">A string that specifies a application which where the specified File shold be associated with</param>
+        /// <param name="filePath">A string that specifies a File name. This File should be a document.</param>
+        /// <param name="extension">The extension of the File to associate, as example ".txt"</param>
+        /// <param name="applicationFiletype">The File type of the application, as example "txt.text"</param>
+        /// <param name="description">The description of the File type, as example "Textwriter Textfile"</param>
+        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified File type. This value can be NULL.</param>
         public static void CheckMatchWithApplicationAndSet(string appPath, string filePath, string extension, string applicationFiletype, string description, string iconPath)
         {
             CheckMatchWithApplicationAndSet(appPath, filePath, extension, applicationFiletype, description, iconPath, DEFAULT_FILE_ASSOCIATION_SHOW_MESSAGE_IF_FILE_IS_ASSOCIATED);
         }
         /// <summary>
-        /// Matches if the specified file is associated to the specified application executable is and set the file association of the spicified file to the specified application executable, if requested, if the specified is not associated to the specified application
+        /// Matches if the specified File is associated to the specified application executable is and set the File association of the spicified File to the specified application executable, if requested, if the specified is not associated to the specified application
         /// </summary>
-        /// <param name="appPath">A string that specifies a application which where the specified file shold be associated with</param>
-        /// <param name="filePath">A string that specifies a file name. This file should be a document.</param>
-        /// <param name="extension">The extension of the file to associate, as example ".txt"</param>
-        /// <param name="applicationFiletype">The file type of the application, as example "txt.text"</param>
-        /// <param name="description">The description of the file type, as example "Textwriter Textfile"</param>
-        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified file type. This value can be NULL.</param>
-        /// <param name="showMessageIfFileisAccociated">A boolean value it specifies if an message shold been shown if the specified file is associated to specified application</param>
+        /// <param name="appPath">A string that specifies a application which where the specified File shold be associated with</param>
+        /// <param name="filePath">A string that specifies a File name. This File should be a document.</param>
+        /// <param name="extension">The extension of the File to associate, as example ".txt"</param>
+        /// <param name="applicationFiletype">The File type of the application, as example "txt.text"</param>
+        /// <param name="description">The description of the File type, as example "Textwriter Textfile"</param>
+        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified File type. This value can be NULL.</param>
+        /// <param name="showMessageIfFileisAccociated">A boolean value it specifies if an message shold been shown if the specified File is associated to specified application</param>
         public static void CheckMatchWithApplicationAndSet(string appPath, string filePath, string extension, string applicationFiletype, string description, string iconPath, bool showMessageIfFileisAccociated)
         {
             if (string.IsNullOrEmpty(filePath)) filePath = "." + extension;
@@ -212,28 +212,28 @@ namespace OLKI.Toolbox.DirectoryAndFile
 
         #region Set
         /// <summary>
-        /// Associates the specified file type the the specified  application
+        /// Associates the specified File type the the specified  application
         /// </summary>
-        /// <param name="appPath">A string that specifies a application which where the specified file shold be associated with</param>
-        /// <param name="extension">The extension of the file to associate, as example ".txt"</param>
-        /// <param name="applicationFiletype">The file type of the application, as example "txt.text"</param>
-        /// <param name="description">The description of the file type, as example "Textwriter Textfile"</param>
-        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified file type. This value can be NULL.</param>
-        /// <returns>True if the it was possible to associate the specified file type to the specified application or fale if not</returns>
+        /// <param name="appPath">A string that specifies a application which where the specified File shold be associated with</param>
+        /// <param name="extension">The extension of the File to associate, as example ".txt"</param>
+        /// <param name="applicationFiletype">The File type of the application, as example "txt.text"</param>
+        /// <param name="description">The description of the File type, as example "Textwriter Textfile"</param>
+        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified File type. This value can be NULL.</param>
+        /// <returns>True if the it was possible to associate the specified File type to the specified application or fale if not</returns>
         public static bool Set(string appPath, string extension, string applicationFiletype, string description, string iconPath)
         {
             return Set(appPath, extension, applicationFiletype, description, iconPath, DEFAULT_FILE_ASSOCIATION_USER_TYPE);
         }
         /// <summary>
-        /// Associates the specified file type the the specified  application. It can be specified if it is for all users or only for the current user
+        /// Associates the specified File type the the specified  application. It can be specified if it is for all users or only for the current user
         /// </summary>
-        /// <param name="appPath">A string that specifies a application which where the specified file shold be associated with</param>
-        /// <param name="extension">The extension of the file to associate, as example ".txt"</param>
-        /// <param name="applicationFiletype">The file type of the application, as example "txt.text"</param>
-        /// <param name="description">The description of the file type, as example "Textwriter Textfile"</param>
-        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified file type. This value can be NULL.</param>
+        /// <param name="appPath">A string that specifies a application which where the specified File shold be associated with</param>
+        /// <param name="extension">The extension of the File to associate, as example ".txt"</param>
+        /// <param name="applicationFiletype">The File type of the application, as example "txt.text"</param>
+        /// <param name="description">The description of the File type, as example "Textwriter Textfile"</param>
+        /// <param name="iconPath">A string that specifies the icon which should be associated to the specified File type. This value can be NULL.</param>
         /// <param name="userType">An Enumeration it specifies if the fil type is associated for the specified application for all user or only for the current user</param>
-        /// <returns>True if the it was possible to associate the specified file type to the specified application or false if not</returns>
+        /// <returns>True if the it was possible to associate the specified File type to the specified application or false if not</returns>
         public static bool Set(string appPath, string extension, string applicationFiletype, string description, string iconPath, UserType userType)
         {
             appPath = Path.Repair(appPath);

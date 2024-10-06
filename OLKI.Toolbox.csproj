@@ -86,6 +86,11 @@
       <DependentUpon>clsSerialize.StringTable.resx</DependentUpon>
     </Compile>
     <Compile Include="src\DirectroyAndFile\clsDirectory.cs" />
+    <Compile Include="src\DirectroyAndFile\clsFileCheckSumStringtable.Designer.cs">
+      <DependentUpon>clsFileCheckSumStringtable.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="src\DirectroyAndFile\clsFileCheckSum.cs" />
     <Compile Include="src\DirectroyAndFile\clsFile.cs" />
     <Compile Include="src\DirectroyAndFile\clsFileAssociation.cs" />
@@ -223,6 +228,10 @@
     <EmbeddedResource Include="src\Common\clsSerialize.StringTable.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>clsSerialize.StringTable.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\DirectroyAndFile\clsFileCheckSumStringtable.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>clsFileCheckSumStringtable.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="src\DirectroyAndFile\HandleExistingFiles\frmHandleExistingFilesForm.resx">
       <DependentUpon>frmHandleExistingFilesForm.cs</DependentUpon>
