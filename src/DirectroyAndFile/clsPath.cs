@@ -88,7 +88,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
         {
             try
             {
-                return new System.IO.DriveInfo(directory.Root.Name).Name == directory.FullName;
+                return new DriveInfo(directory.Root.Name).Name == directory.FullName;
             }
             catch
             {
