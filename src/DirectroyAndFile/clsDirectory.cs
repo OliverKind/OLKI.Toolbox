@@ -341,7 +341,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             try
             {
                 exception = null;
-                if ((!showSecurityQuestion || MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0004m, new object[] { path }), src.DirectroyAndFile.clsDirectory_Stringtable._0x0004c, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes) && System.IO.Directory.Exists(path))
+                if ((!showSecurityQuestion || MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0004m, new object[] { path }), clsDirectory_Stringtable._0x0004c, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3) == DialogResult.Yes) && System.IO.Directory.Exists(path))
                 {
                     System.IO.Directory.Delete(path);
                 }
@@ -350,7 +350,7 @@ namespace OLKI.Toolbox.DirectoryAndFile
             catch (Exception ex)
             {
                 exception = ex;
-                if (showExceptionMessage) MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0003m, new object[] { path, ex.Message }), src.DirectroyAndFile.clsDirectory_Stringtable._0x0003c, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (showExceptionMessage) MessageBox.Show(string.Format(clsDirectory_Stringtable._0x0003m, new object[] { path, ex.Message }), clsDirectory_Stringtable._0x0003c, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
