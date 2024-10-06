@@ -57,8 +57,8 @@ namespace OLKI.Toolbox.Common
         /// <returns>True if needle Number is inside the haystack Numbers or if the search Numbers is empty, otherweise False, or False if the Haystack is emptý</returns>
         public static bool List(List<int> haystack, int needle)
         {
-            if (needle == 0 ) return true;
-                if (haystack.Contains(needle)) return true;
+            if (needle == 0) return true;
+            if (haystack.Contains(needle)) return true;
             return false;
         }
 
