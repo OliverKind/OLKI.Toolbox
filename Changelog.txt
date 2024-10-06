@@ -1,5 +1,5 @@
 # OLKI.Toolbox
-## [6.1.0.21] - 2024-10-??
+## [6.1.0.21] - 2024-10-06
 ### Added
 - Several Exception options
 
