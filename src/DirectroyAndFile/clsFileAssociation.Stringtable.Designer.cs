@@ -61,7 +61,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler biem Finden von Dateizuordnungen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Finden von Dateizuordnungen. ähnelt.
         /// </summary>
         internal static string _0x0001c {
             get {
@@ -163,7 +163,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dateityp der Anwendung erfoglreich zugeordnet. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dateityp der Anwendung erfolgreich zugeordnet. ähnelt.
         /// </summary>
         internal static string _0x0006c {
             get {

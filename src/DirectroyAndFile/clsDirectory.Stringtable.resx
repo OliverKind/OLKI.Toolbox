@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="0x0001c" xml:space="preserve">
-    <value>Fehler biem Ordner öffnen.</value>
+    <value>Fehler beim Ordner öffnen.</value>
   </data>
   <data name="0x0001m" xml:space="preserve">
     <value>Der Ordner "{0}" konnte nicht geöffnet und gelesen werden.
@@ -126,7 +126,7 @@
 {1}</value>
   </data>
   <data name="0x0002c" xml:space="preserve">
-    <value>FEhler beim Ordner öffnen.</value>
+    <value>Fehler beim Ordner öffnen.</value>
   </data>
   <data name="0x0002m" xml:space="preserve">
     <value>Der Ordner "{0}" existiert nicht.
@@ -144,7 +144,7 @@ Möchten Sie ihn jetzt anlegen?</value>
     <value>Ordner löschen?</value>
   </data>
   <data name="0x0004m" xml:space="preserve">
-    <value>Sind Sie sich sicher das Sie den Ordner "{0}" unwiederruflich löschen möchten?</value>
+    <value>Sind Sie sich sicher, dass Sie den Ordner "{0}" unwiderruflich löschen möchten?</value>
   </data>
   <data name="0x0005c" xml:space="preserve">
     <value>Fehler beim Ordner erstellen.</value>

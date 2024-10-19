@@ -61,7 +61,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler biem Datei kopieren. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Datei kopieren. ähnelt.
         /// </summary>
         internal static string _0x0001c {
             get {
@@ -99,7 +99,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler biem Datei erstellen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Datei erstellen. ähnelt.
         /// </summary>
         internal static string _0x0003c {
             get {
@@ -128,7 +128,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sind Sie sich sicher das Sie die Datei &quot;{0}&quot; unwiederruflich löschen möchten? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sind Sie sich sicher, dass Sie die Datei &quot;{0}&quot; unwiderruflich löschen möchten? ähnelt.
         /// </summary>
         internal static string _0x0004m {
             get {
@@ -157,7 +157,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehöer beim Datei öffnen und lesen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Datei öffnen und lesen. ähnelt.
         /// </summary>
         internal static string _0x0006c {
             get {

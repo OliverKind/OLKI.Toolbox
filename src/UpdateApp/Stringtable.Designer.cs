@@ -19,7 +19,7 @@ namespace OLKI.Toolbox.src.UpdateApp {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Stringtable {
@@ -61,7 +61,7 @@ namespace OLKI.Toolbox.src.UpdateApp {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Downlaod abgebrochen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Download abgebrochen. ähnelt.
         /// </summary>
         internal static string _0x0001c {
             get {
@@ -70,7 +70,7 @@ namespace OLKI.Toolbox.src.UpdateApp {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Der Download der neuen Programmversion wrude abgebrochen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Der Download der neuen Programmversion wurde abgebrochen. ähnelt.
         /// </summary>
         internal static string _0x0001m {
             get {
@@ -79,7 +79,7 @@ namespace OLKI.Toolbox.src.UpdateApp {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Downlaod fehlerhaft. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Download fehlerhaft. ähnelt.
         /// </summary>
         internal static string _0x0002c {
             get {
@@ -88,7 +88,7 @@ namespace OLKI.Toolbox.src.UpdateApp {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Beim Download der neuen Progammversion ist ein Fehler aufgetreten.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Beim Download der neuen Programmversion ist ein Fehler aufgetreten.
         ///
         ///{0}
         ///
@@ -101,7 +101,7 @@ namespace OLKI.Toolbox.src.UpdateApp {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Downlaod abgeschlossen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Download abgeschlossen. ähnelt.
         /// </summary>
         internal static string _0x0003c {
             get {
@@ -110,9 +110,9 @@ namespace OLKI.Toolbox.src.UpdateApp {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Der Download der neuen Progammversion wurde erfoglreich abgeschlossen.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Der Download der neuen Programmversion wurde erfolgreich abgeschlossen.
         ///
-        ///Das Progarmm wird jetzt beendet und die neue Version installiert.
+        ///Das Programm wird jetzt beendet und die neue Version installiert.
         ///
         ///Pfad zur Setup Datei:
         ///{0} ähnelt.

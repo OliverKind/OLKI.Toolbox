@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="0x0001c" xml:space="preserve">
-    <value>Fehler biem Finden von Dateizuordnungen.</value>
+    <value>Fehler beim Finden von Dateizuordnungen.</value>
   </data>
   <data name="0x0001m" xml:space="preserve">
     <value>Fehler beim Finden der Dateizuordnung von {0}
@@ -160,7 +160,7 @@ Falls Sie die Anwendung nicht als Administrator ausführe, versuchen Sie es bitt
 {1}</value>
   </data>
   <data name="0x0006c" xml:space="preserve">
-    <value>Dateityp der Anwendung erfoglreich zugeordnet.</value>
+    <value>Dateityp der Anwendung erfolgreich zugeordnet.</value>
   </data>
   <data name="0x0006m" xml:space="preserve">
     <value>Der Dateityp *.{0} wurde erfolgreich der Anwendung zugeordnet.

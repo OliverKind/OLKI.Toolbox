@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="0x0001c" xml:space="preserve">
-    <value>Fehler biem Datei kopieren.</value>
+    <value>Fehler beim Datei kopieren.</value>
   </data>
   <data name="0x0001m" xml:space="preserve">
     <value>Beim Kopieren der Datei "{0}" nach "{1}" ist ein Fehler aufgetreten.
@@ -132,7 +132,7 @@
     <value>Die Zieldatei "{0}" existiert bereits. Möchten Sie diese überschreiben?</value>
   </data>
   <data name="0x0003c" xml:space="preserve">
-    <value>Fehler biem Datei erstellen.</value>
+    <value>Fehler beim Datei erstellen.</value>
   </data>
   <data name="0x0003m" xml:space="preserve">
     <value>Die Datei "{0}" konnte nicht erstellt werden.
@@ -143,7 +143,7 @@
     <value>Datei löschen?</value>
   </data>
   <data name="0x0004m" xml:space="preserve">
-    <value>Sind Sie sich sicher das Sie die Datei "{0}" unwiederruflich löschen möchten?</value>
+    <value>Sind Sie sich sicher, dass Sie die Datei "{0}" unwiderruflich löschen möchten?</value>
   </data>
   <data name="0x0005c" xml:space="preserve">
     <value>Fehler beim Datei löschen.</value>
@@ -154,7 +154,7 @@
 {1}</value>
   </data>
   <data name="0x0006c" xml:space="preserve">
-    <value>Fehöer beim Datei öffnen und lesen.</value>
+    <value>Fehler beim Datei öffnen und lesen.</value>
   </data>
   <data name="0x0006m" xml:space="preserve">
     <value>Die Datei "{0}" konnte nicht geöffnet und gelesen werden.

@@ -70,7 +70,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Beim ermitteln der Prüfsumme der Datei &quot;{0}&quot; ist ein fehler aufgetreten.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Beim Ermitteln der Prüfsumme der Datei &quot;{0}&quot; ist ein Fehler aufgetreten.
         ///
         ///{1} ähnelt.
         /// </summary>

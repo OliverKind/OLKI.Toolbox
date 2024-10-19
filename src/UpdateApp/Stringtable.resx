@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="0x0001c" xml:space="preserve">
-    <value>Downlaod abgebrochen.</value>
+    <value>Download abgebrochen.</value>
   </data>
   <data name="0x0001m" xml:space="preserve">
-    <value>Der Download der neuen Programmversion wrude abgebrochen.</value>
+    <value>Der Download der neuen Programmversion wurde abgebrochen.</value>
   </data>
   <data name="0x0002c" xml:space="preserve">
-    <value>Downlaod fehlerhaft.</value>
+    <value>Download fehlerhaft.</value>
   </data>
   <data name="0x0002m" xml:space="preserve">
-    <value>Beim Download der neuen Progammversion ist ein Fehler aufgetreten.
+    <value>Beim Download der neuen Programmversion ist ein Fehler aufgetreten.
 
 {0}
 
 Bitte versuchen Sie es später erneut.</value>
   </data>
   <data name="0x0003c" xml:space="preserve">
-    <value>Downlaod abgeschlossen.</value>
+    <value>Download abgeschlossen.</value>
   </data>
   <data name="0x0003m" xml:space="preserve">
-    <value>Der Download der neuen Progammversion wurde erfoglreich abgeschlossen.
+    <value>Der Download der neuen Programmversion wurde erfolgreich abgeschlossen.
 
-Das Progarmm wird jetzt beendet und die neue Version installiert.
+Das Programm wird jetzt beendet und die neue Version installiert.
 
 Pfad zur Setup Datei:
 {0}</value>

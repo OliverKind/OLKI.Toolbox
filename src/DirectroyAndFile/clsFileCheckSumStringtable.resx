@@ -121,7 +121,7 @@
     <value>Fehler beim Prüfsumme ermitteln.</value>
   </data>
   <data name="0x0001m" xml:space="preserve">
-    <value>Beim ermitteln der Prüfsumme der Datei "{0}" ist ein fehler aufgetreten.
+    <value>Beim Ermitteln der Prüfsumme der Datei "{0}" ist ein Fehler aufgetreten.
 
 {1}</value>
   </data>

@@ -61,7 +61,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler biem Ordner öffnen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Ordner öffnen. ähnelt.
         /// </summary>
         internal static string _0x0001c {
             get {
@@ -81,7 +81,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die FEhler beim Ordner öffnen. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Ordner öffnen. ähnelt.
         /// </summary>
         internal static string _0x0002c {
             get {
@@ -129,7 +129,7 @@ namespace OLKI.Toolbox.src.DirectroyAndFile {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sind Sie sich sicher das Sie den Ordner &quot;{0}&quot; unwiederruflich löschen möchten? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sind Sie sich sicher, dass Sie den Ordner &quot;{0}&quot; unwiderruflich löschen möchten? ähnelt.
         /// </summary>
         internal static string _0x0004m {
             get {
