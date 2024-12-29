@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="src\Common\clsCSVwriter.cs" />
     <Compile Include="src\ColorAndPicture\Color\clsColor.cs" />
     <Compile Include="src\ColorAndPicture\Picture\Modify\clsResize.cs" />
     <Compile Include="src\ColorAndPicture\Picture\Modify\clsRotate.cs" />
