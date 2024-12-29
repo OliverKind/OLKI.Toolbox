@@ -1,4 +1,8 @@
 # OLKI.Toolbox
+## [6.2.0.23] - 2024-12-29
+### Added
+- OLKI.Toolbox.Common.CSVwriter
+
 ## [6.1.1.22] - 2024-10-19
 ### Fixed
 - Spelling
